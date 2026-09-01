@@ -18,11 +18,11 @@
 ## Sub-projects
 <!-- The declared list every mycrew layer reads instead of scanning for .git. -->
 - **Layout:** polyrepo with submodules
-- `mobile/` — мобильное приложение (Expo / React Native), iOS + Android; единственный клиент.
-- `api/` — бэкенд-API (TypeScript); единственная точка входа для приложения.
-- `montage-worker/` — фоновый обработчик (Python): превью медиа и сборка роликов.
+- `projects/mobile/` — мобильное приложение (Expo / React Native), iOS + Android; единственный клиент.
+- `projects/api/` — бэкенд-API (TypeScript); единственная точка входа для приложения.
+- `projects/montage/` — фоновый обработчик (Python): превью медиа и сборка роликов.
 
-Каждый сервис — отдельный git-репозиторий, подключён сабмодулем; в этом (корневом) репозитории —
-`docs/` и конфигурация деплоя.
+Каждый сервис — отдельный git-репозиторий, подключён сабмодулем под `projects/`; в этом (корневом)
+репозитории — `docs/` и конфигурация деплоя.
 
 Технические решения по MVP — в `docs/architecture.md`.
