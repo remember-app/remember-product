@@ -11,13 +11,14 @@ at which point the board is pure overhead.
   behalf still belongs to whoever wanted it.
 - **Work an agent thought up is ruled on before anyone is spent on it; what a human asked for is not.**
   The ruling comes when the card is about to be worked, not when it is written — writing costs nothing
-  and keeps the thought, and it is the doing that spends the day.
+  and keeps the thought, and it is the doing that spends the day. An agent's work waits as a draft
+  until it passes.
 - **Never take up a piece of work you invented for yourself.** Write it down, leave it to whoever owns
   the board, and carry on with what you were given; a mind that sets its own next task has stopped
   being accountable to anyone.
 - **A card names the thing it serves and carries criteria someone other than its executor can check.**
   One serving nothing is work aimed at nothing, and that is the kind that swallows a week.
-- **Never edit a card by hand — every change goes through the board's own tool.** Its sections are
+- **Never edit a card by hand — every change goes through the `backlog` CLI.** Its sections are
   delimited by markers that tool writes and reads; a hand-edited card loses its relationships and its
   history, and nothing warns anyone that it did.
 - **In progress means someone is holding it at this moment.** A card in progress that nobody is working
@@ -39,8 +40,11 @@ A card is opened in this shape and no other, `--dod` only where the work could s
 backlog task create "<the change, named as what is true once it is done>" \
   -d  "<a sentence or two: what the work is>" \
   -l  <from-human|from-chief|from-lead|from-worker> \
-  -m  "<F00N — the feature it serves>" \
+  -m  "<m-N — the milestone it serves>" \
   --ac "<something a reader who did not do the work can check>" \
   --ac "<one flag per criterion>" \
   --dod "<the boundary, set before the work starts>"
 ```
+
+An agent-born card is created with `--draft` and lives in drafts until its gate passes; `backlog draft
+promote <id>` is what puts it on the board.

@@ -1,4 +1,11 @@
-# F003 — AI Video Montage
+---
+id: doc-03
+title: AI Video Montage
+type: specification
+created_date: '2026-09-02 05:59'
+updated_date: '2026-09-02 06:00'
+---
+# AI Video Montage
 
 Когда материал по событию собран, из него можно смонтировать ролик с помощью нейросетей.
 
