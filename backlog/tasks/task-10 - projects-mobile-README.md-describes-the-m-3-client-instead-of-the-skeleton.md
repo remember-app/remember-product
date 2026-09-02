@@ -1,9 +1,10 @@
 ---
-id: DRAFT-04
+id: TASK-10
 title: projects/mobile/README.md describes the m-3 client instead of the skeleton
-status: Draft
+status: In Progress
 assignee: []
 created_date: '2026-09-02 21:14'
+updated_date: '2026-09-02 21:15'
 labels:
   - from-worker
 milestone: m-3
