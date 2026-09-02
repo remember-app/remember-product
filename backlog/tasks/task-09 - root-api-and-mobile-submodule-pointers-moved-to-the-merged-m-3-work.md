@@ -1,10 +1,10 @@
 ---
 id: TASK-09
 title: 'root: api and mobile submodule pointers moved to the merged m-3 work'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-02 10:29'
-updated_date: '2026-09-02 15:34'
+updated_date: '2026-09-02 21:14'
 labels:
   - from-chief
 milestone: m-3
@@ -20,14 +20,15 @@ After TASK-05..08 are accepted and committed, bump projects/api and projects/mob
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 git submodule status shows projects/api and projects/mobile at the new heads
-- [ ] #2 A clean git submodule update --init plus the README bring-up still reaches 'API: ok' on the app
-- [ ] #3 Root commit message references m-3
-- [ ] #4 projects/mobile/README.md carries the remember:// vs exp:// deep-link caveat, committed in the mobile submodule
-- [ ] #5 root README documents how to test m-3 email login in dev and points at the api README for the new (optional) env vars
+- [x] #1 git submodule status shows projects/api and projects/mobile at the new heads
+- [x] #2 A clean git submodule update --init plus the README bring-up still reaches 'API: ok' on the app
+- [x] #3 Root commit message references m-3
+- [x] #4 projects/mobile/README.md carries the remember:// vs exp:// deep-link caveat, committed in the mobile submodule
+- [x] #5 root README documents how to test m-3 email login in dev and points at the api README for the new (optional) env vars
+- [x] #6 projects/api/README.md's dev-token section no longer claims remember:// works on the simulator as-is — it names the Expo Go exp:// form and that remember:// needs a dev build; committed in the api submodule
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 No architecture.md edits (chief's). No deploy / CI / Dockerfiles.
+- [x] #1 No architecture.md edits (chief's). No deploy / CI / Dockerfiles.
 <!-- DOD:END -->
