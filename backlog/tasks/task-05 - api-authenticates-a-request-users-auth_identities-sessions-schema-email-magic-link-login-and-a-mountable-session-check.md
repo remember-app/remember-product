@@ -3,10 +3,10 @@ id: TASK-05
 title: >-
   api authenticates a request: users/auth_identities/sessions schema, email
   magic-link login, and a mountable session check
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-02 10:29'
-updated_date: '2026-09-02 10:30'
+updated_date: '2026-09-02 11:14'
 labels:
   - from-chief
 milestone: m-3
@@ -22,14 +22,17 @@ Migration 002 (idempotent) creates users (id, username citext nullable+unique, n
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 npm run migrate applies 002 on a clean db and is idempotent (re-run is a no-op; kill between file apply and version mark re-runs it clean)
-- [ ] #2 Magic-link works end to end live: /auth/email/start prints a deep link to the api log, /auth/email/verify returns a session token, that token on GET /me returns the user
-- [ ] #3 A route with { preHandler: app.authenticate } gets request.user for a live token and 401 for missing / expired / revoked
-- [ ] #4 npm test, npm run lint, npm run typecheck all green
-- [ ] #5 README documents mounting app.authenticate for the next lead
+- [x] #1 npm run migrate applies 002 on a clean db and is idempotent (re-run is a no-op; kill between file apply and version mark re-runs it clean)
+- [x] #2 Magic-link works end to end live: /auth/email/start prints a deep link to the api log, /auth/email/verify returns a session token, that token on GET /me returns the user
+- [x] #3 A route with { preHandler: app.authenticate } gets request.user for a live token and 401 for missing / expired / revoked
+- [x] #4 npm test, npm run lint, npm run typecheck all green
+- [x] #5 README documents mounting app.authenticate for the next lead
+- [x] #6 Session token is 32 bytes from a crypto-strong source; DB stores only its SHA-256 hash; every session has an expiry and is revocable one at a time
+- [x] #7 Magic-link token is single-use and extinguished at the moment it is consumed (not merely TTL-expired), with a minutes-scale lifetime
+- [x] #8 POST /auth/email/start is rate-limited (cheapest form that works) so it can't be used to enumerate registered addresses or send mail in our name
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 No username claim/change, no user search, no Apple/Google, no session-list endpoint (other m-3 cards). No product tables beyond users/auth_identities/sessions. No mail service.
+- [x] #1 No username claim/change, no user search, no Apple/Google, no session-list endpoint (other m-3 cards). No product tables beyond users/auth_identities/sessions. No mail service.
 <!-- DOD:END -->

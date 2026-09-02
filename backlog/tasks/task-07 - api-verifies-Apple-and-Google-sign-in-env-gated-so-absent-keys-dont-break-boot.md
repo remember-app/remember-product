@@ -6,11 +6,12 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-02 10:29'
+updated_date: '2026-09-02 11:38'
 labels:
   - from-chief
 milestone: m-3
 dependencies: []
-ordinal: 7000
+ordinal: 11000
 ---
 
 ## Description
@@ -25,6 +26,7 @@ POST /auth/apple and POST /auth/google, body { idToken }. Verify the ID token si
 - [ ] #2 With a stubbed verifier: a valid token creates user+identity and returns a session; a second call with the same subject reuses the user
 - [ ] #3 Invalid signature / wrong aud / expired token is rejected
 - [ ] #4 npm test, npm run lint, npm run typecheck all green
+- [ ] #5 Binding is by the provider's stable sub claim, never by email (Apple email may be a hidden relay and can change)
 <!-- AC:END -->
 
 ## Definition of Done
