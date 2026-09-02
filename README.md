@@ -83,6 +83,12 @@ curl -i localhost:3000/health
 
 **Ожидаемо:** `HTTP/1.1 200 OK` и тело `{"status":"ok"}`.
 
+m-3 добавил в API необязательные переменные — `SESSION_TTL_DAYS`, `EMAIL_LOGIN_TTL_MINUTES`,
+`EMAIL_LOGIN_RATE_MAX`, `EMAIL_LOGIN_RATE_MAX_PER_IP`, `EMAIL_LOGIN_RATE_WINDOW_MINUTES`,
+`APPLE_CLIENT_ID`, `GOOGLE_CLIENT_ID`. Подъём от этого не меняется: обязательная по-прежнему
+одна, `DATABASE_URL`. Таблица со значениями по умолчанию — в
+[`projects/api/README.md`](projects/api/README.md).
+
 ### 3. Воркер (montage)
 
 В другом терминале, из `projects/montage`. База — та же, что подняли в шаге 1:
@@ -133,6 +139,10 @@ EXPO_PUBLIC_API_URL=http://localhost:3000 npx expo start
 `localhost` работает только с симулятора/эмулятора. **С телефона через Expo Go** подставьте IP
 машины в локальной сети: `EXPO_PUBLIC_API_URL=http://192.168.1.10:3000`. Переменная вшивается в
 бандл на сборке — после её изменения перезапустите `expo start`.
+
+Вход по email-ссылке (m-3) проверяется без почты: API печатает ссылку себе в лог. В Expo Go
+открывайте её как `exp://127.0.0.1:8081/--/auth/email?token=…` — схема `remember://` требует
+dev-билда. Подробности — в [`projects/mobile/README.md`](projects/mobile/README.md).
 
 Если симулятор не открылся сам, откройте ссылку в нём вручную:
 
