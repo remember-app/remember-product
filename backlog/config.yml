@@ -1,7 +1,7 @@
 project_name: "Remember"
 default_status: "To Do"
-statuses: ["Backlog", "To Do", "In Progress", "Done"]
-labels: ["from-human", "from-chief", "from-lead", "from-worker"]
+statuses: ["To Do", "In Progress", "Done"]
+labels: ["from-human", "from-chief", "from-lead", "from-specialist"]
 date_format: yyyy-mm-dd
 max_column_width: 20
 default_editor: "code"
@@ -14,4 +14,14 @@ zero_padded_ids: 2
 bypass_git_hooks: false
 check_active_branches: true
 active_branch_days: 30
-task_prefix: "task"
+task_prefix: "TASK"
+hide_empty_columns: false             # hide board columns with no cards
+types: [bug, feat]  # allowed --type values
+default_assignee: []                  # assignees applied to new tasks created without -a
+definition_of_done: []                # default Definition of Done items added to every new task - Tests pass
+priorities: ["High", "Medium", "Low"] # ordered priority labels, first sorts highest
+projects: []                          # allowed --project values for a monorepo backlog
+include_datetime_in_dates: true       # add time-of-day to new dates
+default_editor: "code --wait"         # editor opened by the 'E' key
+zero_padded_ids: true                 # pad task/doc/decision IDs with leading zeros
+on_status_change: ""               # shell command run on every status change
