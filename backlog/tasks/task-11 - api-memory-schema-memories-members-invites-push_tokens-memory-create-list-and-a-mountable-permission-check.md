@@ -3,9 +3,10 @@ id: TASK-11
 title: >-
   api: memory schema (memories/members/invites/push_tokens), memory create +
   list, and a mountable permission check
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-02 21:15'
+updated_date: '2026-09-02 21:16'
 labels:
   - from-chief
 milestone: m-0
@@ -29,6 +30,7 @@ Migration 003 (idempotent) creates all four m-0 tables: memories (organizer, tit
 - [ ] #6 README has a section addressed to the next lead: the role x action matrix and a copy-paste mount example (preHandler + how to read the role)
 - [ ] #7 npm test, npm run lint, npm run typecheck all green; the role x action matrix is covered by integration tests against real Postgres
 - [ ] #8 Every new endpoint sits behind app.authenticate
+- [ ] #9 The README section states the identical-404 (non-member and missing memory are indistinguishable) as a house rule that m-1/m-5/m-6/m-2 inherit when they mount the check, not something they reinvent
 <!-- AC:END -->
 
 ## Definition of Done
