@@ -3,10 +3,10 @@ id: TASK-11
 title: >-
   api: memory schema (memories/members/invites/push_tokens), memory create +
   list, and a mountable permission check
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-02 21:15'
-updated_date: '2026-09-02 21:16'
+updated_date: '2026-09-03 06:00'
 labels:
   - from-chief
 milestone: m-0
@@ -22,18 +22,24 @@ Migration 003 (idempotent) creates all four m-0 tables: memories (organizer, tit
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 npm run migrate applies 003 on a clean db and is idempotent (re-run is a no-op; kill between file apply and version mark re-runs it clean)
-- [ ] #2 Migration 003 creates memories, memory_members, invites, push_tokens; memories carries event_start (required) + nullable event_end + counters storage_bytes/media_count/montage_count defaulting to 0
-- [ ] #3 Create-memory endpoint rejects missing/blank title or missing event_start, stores event_end only when given, and creates the creator's memory_members row with role organizer
-- [ ] #4 List endpoint returns exactly the memories where the caller is organizer or member
-- [ ] #5 A route with the permission preHandler gets the memory + caller role on the request; a non-member and a non-existent memory return an identical 404
-- [ ] #6 README has a section addressed to the next lead: the role x action matrix and a copy-paste mount example (preHandler + how to read the role)
-- [ ] #7 npm test, npm run lint, npm run typecheck all green; the role x action matrix is covered by integration tests against real Postgres
-- [ ] #8 Every new endpoint sits behind app.authenticate
-- [ ] #9 The README section states the identical-404 (non-member and missing memory are indistinguishable) as a house rule that m-1/m-5/m-6/m-2 inherit when they mount the check, not something they reinvent
+- [x] #1 npm run migrate applies 003 on a clean db and is idempotent (re-run is a no-op; kill between file apply and version mark re-runs it clean)
+- [x] #2 Migration 003 creates memories, memory_members, invites, push_tokens; memories carries event_start (required) + nullable event_end + counters storage_bytes/media_count/montage_count defaulting to 0
+- [x] #3 Create-memory endpoint rejects missing/blank title or missing event_start, stores event_end only when given, and creates the creator's memory_members row with role organizer
+- [x] #4 List endpoint returns exactly the memories where the caller is organizer or member
+- [x] #5 A route with the permission preHandler gets the memory + caller role on the request; a non-member and a non-existent memory return an identical 404
+- [x] #6 README has a section addressed to the next lead: the role x action matrix and a copy-paste mount example (preHandler + how to read the role)
+- [x] #7 npm test, npm run lint, npm run typecheck all green; the role x action matrix is covered by integration tests against real Postgres
+- [x] #8 Every new endpoint sits behind app.authenticate
+- [x] #9 The README section states the identical-404 (non-member and missing memory are indistinguishable) as a house rule that m-1/m-5/m-6/m-2 inherit when they mount the check, not something they reinvent
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 No invites/member-add/remove/leave endpoints, no push sending (A2). No media_items/montages. No mobile. No architecture.md edits. No jobs table.
+- [x] #1 No invites/member-add/remove/leave endpoints, no push sending (A2). No media_items/montages. No mobile. No architecture.md edits. No jobs table.
 <!-- DOD:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Delivered on api main 1a33124. Migration 003 (idempotent, kill-between verified) creates memories/memory_members/invites/push_tokens. POST/GET /memories behind app.authenticate. app.requireMembership preHandler: param :memoryId, sets request.membership={memory,role}, identical 404 for non-member and missing memory. README section for downstream leads: role x action matrix + mount example + inherited-404 house rule. 32 tests pass, lint+typecheck clean. Fork settled: event dates are timestamptz requiring an RFC3339 offset — cross-repo contract carried into TASK-13 and flagged for m-1.
+<!-- SECTION:FINAL_SUMMARY:END -->
