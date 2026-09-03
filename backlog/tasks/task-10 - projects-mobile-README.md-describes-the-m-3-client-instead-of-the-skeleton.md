@@ -1,10 +1,10 @@
 ---
 id: TASK-10
 title: projects/mobile/README.md describes the m-3 client instead of the skeleton
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-02 21:14'
-updated_date: '2026-09-02 21:15'
+updated_date: '2026-09-03 05:53'
 labels:
   - from-worker
 milestone: m-3
@@ -19,7 +19,7 @@ TASK-08 added login / auth/email / set-username / profile screens and a Stack.Pr
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 README intro no longer calls the app a skeleton; «Экраны» lists login, auth/email, set-username, profile, index (placeholder home), about
-- [ ] #2 the auth gate (Stack.Protected in src/app/_layout.tsx, status from useAuth) is described for the next lead
-- [ ] #3 committed in projects/mobile; root submodule pointer bumped
+- [x] #1 README intro no longer calls the app a skeleton; «Экраны» lists login, auth/email, set-username, profile, index (placeholder home), about
+- [x] #2 the auth gate (Stack.Protected in src/app/_layout.tsx, status from useAuth) is described for the next lead
+- [x] #3 committed in projects/mobile; root submodule pointer bumped
 <!-- AC:END -->
