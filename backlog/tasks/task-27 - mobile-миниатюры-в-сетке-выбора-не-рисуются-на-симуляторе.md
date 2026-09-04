@@ -4,7 +4,9 @@ title: 'mobile: миниатюры в сетке выбора не рисуют�
 status: To Do
 assignee: []
 created_date: '2026-09-04 12:02'
+updated_date: '2026-09-04 14:15'
 labels: []
+milestone: m-7
 dependencies: []
 priority: medium
 ordinal: 31000
