@@ -15,7 +15,7 @@
 
 ## Что нужно на машине
 
-- **Docker** — только для локального Postgres
+- **Docker** — только для локальных Postgres и хранилища
 - **Node 22.18+** — для `api` и `mobile`
 - **Python 3.11+** — для `montage`
 - **iOS-симулятор (Xcode) или Android-эмулятор**, либо **Expo Go** на телефоне
@@ -37,30 +37,40 @@ git submodule update --init --recursive
 
 ## Подъём с нуля
 
-Ниже — полный путь от чистой машины до трёх соединённых сервисов. Порядок важен: Postgres → API →
-воркер → приложение. Каждый шаг заканчивается тем, что видно глазами.
+Ниже — полный путь от чистой машины до трёх соединённых сервисов. Порядок важен: Postgres
+и хранилище → API → воркер → приложение. Каждый шаг заканчивается тем, что видно глазами.
 
 Когда всё уже поставлено, те же команды короче через `make` в корне — `make help` покажет список.
 Makefile ничего своего не делает, только зовёт команды сервисов, описанные ниже.
 
-### 1. Postgres
+### 1. Postgres и хранилище
 
-Канонная локальная база живёт в `docker-compose.yml` у API — она одна на `api` и на `montage`,
-отдельную поднимать не нужно. Занимает порт **5432**.
+Канонный `docker-compose.yml` живёт у API и поднимает сразу две вещи — они одни на `api` и на
+`montage`, своих поднимать не нужно:
+
+- **Postgres**, порт **5432**;
+- **MinIO**, порт **9000** (веб-консоль — **9001**) — локальный дублёр Cloudflare R2 с тем же
+  S3-протоколом. Бакет `remember` создаётся сам при старте.
 
 ```sh
 cd projects/api
 docker compose up -d --wait
 ```
 
-**Ожидаемо:** `docker compose ps` показывает контейнер в статусе `Up (healthy)`. База, пользователь
-и пароль — все три `remember`.
+**Ожидаемо:** `docker compose ps` показывает оба контейнера в статусе `Up (healthy)`. База,
+пользователь и пароль — все три `remember`; ключи к хранилищу — `remember` и `remember-secret`,
+они уже прописаны в `.env.example` обоих сервисов, заводить ничего руками не надо.
 
 Если порт 5432 занят чужим Postgres, освободите его:
 
 ```sh
 docker rm -f remember-pg remember-pg-test 2>/dev/null || true
 ```
+
+**В проде MinIO нет.** Бакет Cloudflare R2 и пару ключей к нему заводит человек руками в панели
+Cloudflare — ни один скрипт и ни одна миграция этого не делают. Полученные значения кладутся в
+`projects/api/.env` и `projects/montage/.env` локально, а на хостинге — в переменные окружения
+сервиса. Имена одинаковые у обоих сервисов, так что один набор значений подходит и API, и воркеру.
 
 ### 2. API
 
@@ -86,22 +96,27 @@ curl -i localhost:3000/health
 
 **Ожидаемо:** `HTTP/1.1 200 OK` и тело `{"status":"ok"}`.
 
-m-3 добавил в API необязательные переменные — `SESSION_TTL_DAYS`, `EMAIL_LOGIN_TTL_MINUTES`,
-`EMAIL_LOGIN_RATE_MAX`, `EMAIL_LOGIN_RATE_MAX_PER_IP`, `EMAIL_LOGIN_RATE_WINDOW_MINUTES`,
-`APPLE_CLIENT_ID`, `GOOGLE_CLIENT_ID`. Подъём от этого не меняется: обязательная по-прежнему
-одна, `DATABASE_URL`. Таблица со значениями по умолчанию — в
+`.env.example` уже содержит и базу, и ключи к локальному MinIO из шага 1 — `cp` достаточно.
+
+Для запуска обязателен по-прежнему один `DATABASE_URL`. Четвёрка `R2_ENDPOINT`, `R2_BUCKET`,
+`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` нужна для медиа: без неё сервер поднимется, но загрузка
+и галерея ответят `503`. Всё остальное необязательно — TTL подписанных ссылок, размер куска
+загрузки, числа лимитов из `architecture.md` (1 ГиБ на файл, видео 5 минут, 10 ГиБ и 1000 файлов на
+воспоминание) и переменные входа, добавленные m-3. Все имена со значениями по умолчанию перечислены
+в [`projects/api/.env.example`](projects/api/.env.example) и
 [`projects/api/README.md`](projects/api/README.md).
 
 ### 3. Воркер (montage)
 
-В другом терминале, из `projects/montage`. База — та же, что подняли в шаге 1:
+В другом терминале, из `projects/montage`. База и хранилище — те же, что подняли в шаге 1:
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-export DATABASE_URL='postgres://remember:remember@localhost:5432/remember'
+cp .env.example .env             # та же база и то же хранилище, что у API
+set -a && . ./.env && set +a     # своего чтения .env у воркера нет
 
 python worker.py init            # создать таблицу jobs
 python worker.py enqueue dummy       # доедет до done
@@ -152,6 +167,21 @@ dev-билда. Подробности — в [`projects/mobile/README.md`](proj
 ```sh
 xcrun simctl openurl booted "exp://127.0.0.1:8081"
 ```
+
+### Что нужно на хостинге
+
+Деплой-конфига в репозитории пока нет — PaaS не выбран (открытый вопрос в
+[`architecture.md`](architecture.md)). Когда он появится, обязательный минимум переменных в нём
+такой:
+
+| Сервис | Обязательно |
+|---|---|
+| `api` | `DATABASE_URL`, `R2_ENDPOINT`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` |
+| `montage` | те же пять — одни и те же имена и одни и те же значения |
+
+Бакет и ключи под них человек заводит руками в Cloudflare (см. шаг 1). Остальное — TTL ссылок,
+размер куска загрузки, числа лимитов — необязательно: значения по умолчанию зашиты в код и
+перечислены в [`projects/api/.env.example`](projects/api/.env.example).
 
 ## Соединено, когда
 

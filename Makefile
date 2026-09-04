@@ -6,6 +6,11 @@ DATABASE_URL ?= postgres://remember:remember@localhost:5432/remember
 EXPO_PUBLIC_API_URL ?= http://localhost:3000
 PY := projects/montage/.venv/bin/python
 
+# Воркер читает только окружение — .env он не открывает. Значения те же, что в
+# projects/montage/.env.example: локальный MinIO из docker-compose. Другое хранилище —
+# make worker R2='R2_ENDPOINT=… R2_BUCKET=… R2_ACCESS_KEY_ID=… R2_SECRET_ACCESS_KEY=…'
+R2 ?= R2_ENDPOINT=http://localhost:9000 R2_BUCKET=remember R2_ACCESS_KEY_ID=remember R2_SECRET_ACCESS_KEY=remember-secret
+
 .DEFAULT_GOAL := help
 .PHONY: help install up down logs _kill db db-stop api migrate worker worker-init mobile test test-api test-mobile test-montage check
 
@@ -20,7 +25,7 @@ install: ## поставить зависимости всех трёх серв
 up: _kill db migrate ## поднять всё разом: база, API, воркер, приложение
 	@mkdir -p .run
 	@set -m; ( cd projects/api && npm run dev ) > .run/api.log 2>&1 & echo $$! > .run/api.pid
-	@set -m; ( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' .venv/bin/python worker.py run ) > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
+	@set -m; ( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run ) > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
 	@set -m; ( cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start ) > .run/mobile.log 2>&1 & echo $$! > .run/mobile.pid
 	@echo 'поднято: api, воркер, приложение. логи — make logs, погасить — make down'
 
@@ -32,10 +37,10 @@ logs: ## смотреть логи поднятого (Ctrl-C — выйти)
 _kill:
 	@for f in .run/*.pid; do [ -f "$$f" ] || continue; kill -- -$$(cat $$f) 2>/dev/null || true; done; rm -f .run/*.pid
 
-db: ## поднять локальный Postgres (общий для api и montage)
+db: ## поднять локальные Postgres и хранилище (общие для api и montage)
 	cd projects/api && docker compose up -d --wait
 
-db-stop: ## погасить локальный Postgres
+db-stop: ## погасить локальные Postgres и хранилище
 	cd projects/api && docker compose down
 
 migrate: ## накатить миграции API
@@ -48,7 +53,7 @@ worker-init: ## создать таблицу задач для воркера
 	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' .venv/bin/python worker.py init
 
 worker: ## запустить воркер
-	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' .venv/bin/python worker.py run
+	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run
 
 mobile: ## запустить приложение (Expo)
 	cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start
@@ -62,7 +67,7 @@ test-mobile: ## тесты приложения
 	cd projects/mobile && npm test
 
 test-montage: ## тесты воркера (чистят таблицу jobs в базе)
-	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' .venv/bin/python -m pytest
+	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python -m pytest
 
 check: ## линт и типы
 	cd projects/api && npm run lint && npm run typecheck
