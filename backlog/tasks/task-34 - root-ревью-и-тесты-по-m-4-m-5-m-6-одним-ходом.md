@@ -4,7 +4,9 @@ title: 'root: ревью и тесты по m-4, m-5, m-6 одним ходом'
 status: To Do
 assignee: []
 created_date: '2026-09-04 12:58'
+updated_date: '2026-09-05 04:07'
 labels: []
+milestone: m-8
 dependencies: []
 priority: high
 ordinal: 38000
