@@ -1,9 +1,10 @@
 ---
 id: TASK-55
 title: 'mobile: ролик — заказ, список, скачать/поделиться, повтор; заглушка убрана'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-05 04:24'
+updated_date: '2026-09-05 04:50'
 labels:
   - from-lead
 milestone: m-9
