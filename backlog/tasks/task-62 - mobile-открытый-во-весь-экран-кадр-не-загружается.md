@@ -4,8 +4,10 @@ title: 'mobile: открытый во весь экран кадр не загр
 status: To Do
 assignee: []
 created_date: '2026-09-07 06:27'
+updated_date: '2026-09-07 06:29'
 labels:
   - from-human
+milestone: m-11
 dependencies: []
 priority: high
 type: bug

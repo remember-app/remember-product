@@ -4,8 +4,10 @@ title: 'mobile: карточка воспоминания показывает �
 status: To Do
 assignee: []
 created_date: '2026-09-07 06:27'
+updated_date: '2026-09-07 06:29'
 labels:
   - from-human
+milestone: m-11
 dependencies: []
 priority: high
 ordinal: 67000
