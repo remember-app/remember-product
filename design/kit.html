@@ -64,7 +64,8 @@ body{
 .ico-s{width:16px;height:16px}
 
 /* Перфорация плёнки — единственный громкий приём кита.
-   Живёт на карточке воспоминания и в шапке экрана, больше нигде. */
+   Живёт на карточке воспоминания, в шапке экрана и на верхнем крае
+   ленты кадров, больше нигде. */
 .rail{
   width:8px; align-self:stretch; flex:none;
   background-image:radial-gradient(circle at 4px 6.5px, #4A403A 2.4px, transparent 2.6px);
@@ -263,13 +264,72 @@ body{
 @keyframes safelight{0%,100%{opacity:.25}50%{opacity:1}}
 .tile--failed{border:1px solid rgba(126,43,29,.9); background:rgba(126,43,29,.18)}
 .tile--failed .tile__state{color:#E98C7A}
-/* Выбор перед отправкой: рамка фонаря + метка в углу */
-.tile--selected{box-shadow:inset 0 0 0 2px var(--ember)}
+/* Выбор перед отправкой: рамка фонаря + метка в углу.
+   Кольцо рисуют поверх кадра отдельным слоем: внутренняя тень ушла бы
+   под картинку и её не было бы видно. Тем же кольцом лента отмечает
+   открытый кадр — метка выделения в продукте одна. */
+.tile--selected::after, .tile--current::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  border:2px solid var(--ember); border-radius:inherit;
+}
 .tile__check{
   position:absolute; top:5px; right:5px; width:22px; height:22px; border-radius:50%;
   display:grid; place-items:center; background:var(--ember); color:#1A0B05;
 }
 .tile--selected img{filter:brightness(.82)}
+
+/* ── 8.1 КАДР НА ВЕСЬ ЭКРАН И ЛЕНТА ──────────────────────────────────────
+   Открытый кадр — это весь экран. Под ним не стоит ни одной кнопки: там
+   лента остальных кадров, ею же и листают. Действия ушли наверх, на
+   затемнение, — так же, как значки уже стоят в шапке всех экранов. */
+.viewer{
+  position:relative; display:flex; flex-direction:column; height:100%;
+  background:var(--ink); overflow:hidden;
+}
+.viewer__frame{position:relative; flex:1; min-height:0; display:grid; place-items:center}
+/* Целиком, а не по обрезу: кадр показывают таким, каким сняли, даже если
+   он не по форме экрана. Поля по бокам — ink, они не читаются как рамка. */
+.viewer__frame img{
+  max-width:100%; max-height:100%; display:block;
+  animation:develop var(--slow) var(--ease) both;
+}
+/* Верхняя полоса поверх кадра. Затемнение — чтобы значки читались хоть на
+   снегу. Сама полоса касание не перехватывает: тапают кадр. */
+.viewer__bar{
+  position:absolute; top:0; left:0; right:0; z-index:1;
+  display:flex; align-items:center; gap:var(--s2);
+  padding:var(--s2) var(--s2) var(--s6);
+  background:linear-gradient(rgba(20,17,15,.86), rgba(20,17,15,0));
+  pointer-events:none;
+}
+.viewer__bar > *{pointer-events:auto}
+.viewer__bar .iconbtn{color:var(--paper)}
+.viewer__bar .iconbtn:hover{background:rgba(242,236,227,.14)}
+.viewer__who{
+  flex:1; min-width:0; padding-left:var(--s1); color:rgba(242,236,227,.76);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+/* Лента: вся галерея под кадром. Перфорация по верхнему краю — это
+   отрезок плёнки, а не панель инструментов. */
+.filmstrip{flex:none; background:var(--ink); padding-bottom:var(--s2)}
+.filmstrip__track{
+  display:flex; align-items:flex-start; gap:3px; padding:var(--s2) var(--s2) 0;
+  overflow-x:auto; scroll-snap-type:x proximity;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.filmstrip__track::-webkit-scrollbar{display:none}
+/* Тот же кадр контактного листа, только мельче и в тени: светится ровно
+   один — открытый. Метка та же, что у выбранного, — кольцо ember. */
+.filmstrip .tile{
+  width:52px; flex:none; scroll-snap-align:center;
+  filter:brightness(.42) saturate(.85);
+  transition:filter var(--fast) var(--ease);
+}
+.filmstrip .tile--current{filter:none}
+.filmstrip .tile__duration{right:3px; bottom:3px; padding:1px 4px; font-size:10px}
+/* На кадре в 52px слов не разобрать — от ждущего остаётся один фонарь */
+.filmstrip .tile--processing .tile__state::before{width:9px; height:9px}
 
 /* ============================================================================
    9. ЗАГРУЗКА
@@ -287,13 +347,15 @@ body{
 }
 .card-montage__poster{position:relative; aspect-ratio:16/9; background:var(--ink)}
 .card-montage__poster img{width:100%; height:100%; object-fit:cover; display:block}
-.card-montage__play{
+/* Одна кнопка «смотреть» на весь продукт: и на карточке ролика,
+   и на открытом видеокадре. */
+.card-montage__play, .viewer__play{
   position:absolute; inset:0; margin:auto; width:56px; height:56px; border-radius:50%;
   display:grid; place-items:center; border:none; cursor:pointer;
   background:var(--ember); color:#1A0B05; box-shadow:var(--glow);
   transition:transform var(--fast) var(--ease);
 }
-.card-montage__play:hover{transform:scale(1.05)}
+.card-montage__play:hover, .viewer__play:hover{transform:scale(1.05)}
 .card-montage__pending{
   position:absolute; inset:0; display:flex; flex-direction:column;
   align-items:center; justify-content:center; gap:var(--s3); color:var(--muted);
@@ -379,6 +441,7 @@ body{
 .kit-grid{display:grid; gap:var(--s5); grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); align-items:start}
 .kit-demo--wide{grid-column:1 / -1}
 .kit-stage-phone{max-width:380px}
+.kit-fullscreen{width:100%; max-width:344px; aspect-ratio:9/17; border-radius:var(--r-card); overflow:hidden}
 .kit-demo{
   display:flex; flex-direction:column; gap:var(--s3);
   padding:var(--s5); border:1px solid var(--line); border-radius:var(--r-card); background:#191512;
@@ -695,6 +758,75 @@ body{
         </div>
       </div>
       <figcaption>Одна полоса на всю отправку, а не тридцать четыре. Полоса ember — единственное движущееся на экране.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="kit-sec">
+  <h2>Кадр на весь экран</h2>
+  <div class="kit-grid">
+    <figure class="kit-demo">
+      <div class="kit-demo__stage" style="width:100%;align-items:center">
+        <div class="kit-fullscreen">
+          <div class="viewer">
+            <div class="viewer__bar">
+              <button class="iconbtn" aria-label="Закрыть"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+              <p class="t-meta viewer__who">Марина · 3 сентября</p>
+              <button class="iconbtn" aria-label="Скачать кадр"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+              <button class="iconbtn" aria-label="Удалить кадр"><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button>
+            </div>
+            <div class="viewer__frame">
+              <img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 13'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23E0A46A'/><stop offset='1' stop-color='%23703A2E'/></linearGradient></defs><rect width='9' height='13' fill='url(%23a)'/></svg>">
+            </div>
+            <div class="filmstrip">
+              <div class="rail-h" aria-hidden="true"></div>
+              <div class="filmstrip__track">
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237E93B8'/><stop offset='1' stop-color='%231F2739'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23A8B487'/><stop offset='1' stop-color='%2334402F'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"><span class="tile__duration">0:42</span></button>
+                <button class="tile tile--ready tile--current" aria-current="true"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23E0A46A'/><stop offset='1' stop-color='%23703A2E'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23D98C93'/><stop offset='1' stop-color='%234A2731'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23C9A227'/><stop offset='1' stop-color='%23413313'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23B9AFA4'/><stop offset='1' stop-color='%233A332E'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236E7F6A'/><stop offset='1' stop-color='%23232B22'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23B07A9E'/><stop offset='1' stop-color='%23342239'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Открытый кадр занимает экран целиком, под ним нет ни одной кнопки — только лента. Кадр показывают полностью, не по обрезу: поля по бокам уходят в ink и не читаются как рамка. Лента — тот же контактный лист, свёрнутый в строку: все кадры притушены, светится один открытый, он же обведён кольцом ember — той же меткой, что и выбранный кадр на листе. Перфорация по верхнему краю говорит, что это отрезок плёнки.</figcaption>
+    </figure>
+    <figure class="kit-demo">
+      <div class="kit-demo__stage" style="width:100%;align-items:center">
+        <div class="kit-fullscreen">
+          <div class="viewer">
+            <div class="viewer__bar">
+              <button class="iconbtn" aria-label="Закрыть"><svg class="ico" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+              <p class="t-meta viewer__who">Костя · 3 сентября</p>
+              <button class="iconbtn" aria-label="Скачать кадр"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+              <button class="iconbtn" aria-label="Удалить кадр"><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button>
+            </div>
+            <div class="viewer__frame">
+              <img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23A8B487'/><stop offset='1' stop-color='%2334402F'/></linearGradient></defs><rect width='16' height='9' fill='url(%23a)'/></svg>">
+              <button class="viewer__play" aria-label="Смотреть"><svg class="ico" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><polygon points="7 4 20 12 7 20"/></svg></button>
+            </div>
+            <div class="filmstrip">
+              <div class="rail-h" aria-hidden="true"></div>
+              <div class="filmstrip__track">
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237E93B8'/><stop offset='1' stop-color='%231F2739'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready tile--current" aria-current="true"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23A8B487'/><stop offset='1' stop-color='%2334402F'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"><span class="tile__duration">0:42</span></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23E0A46A'/><stop offset='1' stop-color='%23703A2E'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <span class="tile tile--processing" aria-label="Проявляется"><span class="tile__state"></span></span>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23D98C93'/><stop offset='1' stop-color='%234A2731'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23C9A227'/><stop offset='1' stop-color='%23413313'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23B9AFA4'/><stop offset='1' stop-color='%233A332E'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+                <button class="tile tile--ready"><img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23B07A9E'/><stop offset='1' stop-color='%23342239'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Видеокадр — тот же экран: кнопка «смотреть» ровно та же, что на карточке ролика, и она здесь единственное, что светится. Действия кадра стоят значками в верхней полосе на затемнении, а не под кадром: закрыть слева, скачать и удалить справа, между ними — кто снял и когда. Удаление отсюда спрашивает листом подтверждения из раздела «Сообщения и подтверждение». Ждущий кадр остаётся в ленте, но открыть его нельзя — он ещё проявляется.</figcaption>
     </figure>
   </div>
 </section>
