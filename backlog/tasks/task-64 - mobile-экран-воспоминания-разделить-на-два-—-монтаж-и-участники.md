@@ -1,10 +1,10 @@
 ---
 id: TASK-64
 title: 'mobile: экран воспоминания разделить на два — монтаж и участники'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-07 06:27'
-updated_date: '2026-09-07 06:29'
+updated_date: '2026-09-07 06:52'
 labels:
   - from-human
 milestone: m-11
