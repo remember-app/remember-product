@@ -1,10 +1,10 @@
 ---
 id: TASK-67
 title: 'mobile/montage: кадры так и не проявляются после загрузки — «Preparing…» везде'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-07 07:41'
-updated_date: '2026-09-07 08:02'
+updated_date: '2026-09-07 08:15'
 labels:
   - from-human
 dependencies: []
