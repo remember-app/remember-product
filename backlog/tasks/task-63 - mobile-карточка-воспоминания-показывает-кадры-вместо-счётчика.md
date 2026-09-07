@@ -1,10 +1,10 @@
 ---
 id: TASK-63
 title: 'mobile: карточка воспоминания показывает кадры вместо счётчика'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-07 06:27'
-updated_date: '2026-09-07 06:29'
+updated_date: '2026-09-07 06:59'
 labels:
   - from-human
 milestone: m-11

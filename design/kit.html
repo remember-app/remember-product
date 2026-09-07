@@ -182,17 +182,27 @@ body{
 }
 .card-memory__meta{display:flex; align-items:center; gap:var(--s2)}
 .card-memory__dot{width:3px; height:3px; border-radius:50%; background:var(--muted)}
-/* Хвост из последних кадров: видно, что внутри, до открытия */
-.stack{display:flex; align-items:center; align-self:center; flex:none}
-.stack img, .stack .stack__more{
-  width:44px; height:44px; border-radius:var(--r-frame);
-  object-fit:cover; border:1px solid var(--ink); margin-left:-12px;
-  background:var(--raise);
+
+/* Срез плёнки под подписью: карточка показывает, что внутри, а не считает.
+   Кадры делят свободную ширину поровну — один растянется во всю, пять станут
+   узкими. Сетки нет, поэтому любое их число выглядит намеренным, а не дырявым.
+   Высота фиксирована на 80 (s8+s7): список идёт ровным краем при любом раскладе.
+   Просвет между кадрами 3 — тот же рез, что на контактном листе.
+   Отступ от подписи 12 = gap тела (s2) + s1. */
+.card-memory__strip{display:flex; gap:3px; margin-top:var(--s1)}
+.card-memory__frame{
+  flex:1 1 0; min-width:0; height:80px; display:block;
+  border:1px solid var(--line); border-radius:var(--r-frame);
+  background:var(--ink); object-fit:cover;
 }
-.stack > :first-child{margin-left:0}
-.stack__more{
-  display:grid; place-items:center; color:var(--muted);
-  font:500 13px/1 var(--font-ui); font-variant-numeric:tabular-nums;
+/* Кадров нет: не дыра, а чистая плёнка, которая называет следующий шаг */
+.card-memory__blank{
+  flex:1 1 0; height:80px;
+  display:flex; align-items:center; justify-content:center;
+  padding:0 var(--s4); text-align:center;
+  border:1px solid var(--line); border-radius:var(--r-frame);
+  background:var(--ink); color:var(--muted);
+  font:500 13px/1.35 var(--font-ui);
 }
 
 /* ============================================================================
@@ -645,14 +655,41 @@ body{
             <span class="card-memory__title">Свадьба Лёши</span>
             <span class="card-memory__meta">
               <span class="t-meta">3 сентября</span><span class="card-memory__dot"></span>
-              <span class="t-meta">128 кадров</span><span class="card-memory__dot"></span>
               <span class="t-meta">7 человек</span>
             </span>
+            <span class="card-memory__strip">
+              <img class="card-memory__frame" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23E0A46A'/><stop offset='1' stop-color='%23703A2E'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
+              <img class="card-memory__frame" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237E93B8'/><stop offset='1' stop-color='%231F2739'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
+            </span>
           </span>
-          <span class="stack">
-            <img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23E0A46A'/><stop offset='1' stop-color='%23703A2E'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
-            <img alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237E93B8'/><stop offset='1' stop-color='%231F2739'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
-            <span class="stack__more">+126</span>
+        </button>
+        <button class="card-memory">
+          <span class="rail" aria-hidden="true"></span>
+          <span class="card-memory__body">
+            <span class="card-memory__title">Днюха Марины</span>
+            <span class="card-memory__meta">
+              <span class="t-meta">22 августа</span><span class="card-memory__dot"></span>
+              <span class="t-meta">4 человека</span>
+            </span>
+            <span class="card-memory__strip">
+              <img class="card-memory__frame" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23A8B487'/><stop offset='1' stop-color='%2333402A'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
+            </span>
+          </span>
+        </button>
+        <button class="card-memory">
+          <span class="rail" aria-hidden="true"></span>
+          <span class="card-memory__body">
+            <span class="card-memory__title">Выпускной</span>
+            <span class="card-memory__meta">
+              <span class="t-meta">27 июня</span><span class="card-memory__dot"></span>
+              <span class="t-meta">12 человек</span>
+            </span>
+            <span class="card-memory__strip">
+              <img class="card-memory__frame" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23D6A0A8'/><stop offset='1' stop-color='%234A2530'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
+              <img class="card-memory__frame" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%237E93B8'/><stop offset='1' stop-color='%231F2739'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
+              <img class="card-memory__frame" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23C9C2B4'/><stop offset='1' stop-color='%233A342C'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
+              <img class="card-memory__frame" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236F8FA0'/><stop offset='1' stop-color='%23222E33'/></linearGradient></defs><rect width='10' height='10' fill='url(%23a)'/></svg>">
+            </span>
           </span>
         </button>
         <button class="card-memory">
@@ -661,13 +698,15 @@ body{
             <span class="card-memory__title">Поездка в Карелию</span>
             <span class="card-memory__meta">
               <span class="t-meta">12–16 августа</span><span class="card-memory__dot"></span>
-              <span class="t-meta">пока пусто</span>
+              <span class="t-meta">3 человека</span>
+            </span>
+            <span class="card-memory__strip">
+              <span class="card-memory__blank">Пока ни одного кадра. Добавьте первые.</span>
             </span>
           </span>
-          <span class="stack"><span class="stack__more" style="margin-left:0">—</span></span>
         </button>
       </div>
-      <figcaption>Перфорация слева отличает воспоминание от любой другой карточки. Справа — хвост из последних кадров: видно, что внутри, не открывая. Пустое воспоминание честно говорит, что пустое.</figcaption>
+      <figcaption>Перфорация слева отличает воспоминание от любой другой карточки, срез плёнки под подписью показывает, что внутри, до открытия. Кадры делят ширину поровну: один растягивается во всю полосу, четыре становятся узкими — счётчика нет, потому что кадры видно. Пустое воспоминание показывает чистую плёнку и называет следующий шаг.</figcaption>
     </figure>
     <figure class="kit-demo">
       <div class="kit-demo__stage" style="width:100%">
