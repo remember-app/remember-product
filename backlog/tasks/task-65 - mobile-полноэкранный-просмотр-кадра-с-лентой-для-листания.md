@@ -1,10 +1,10 @@
 ---
 id: TASK-65
 title: 'mobile: полноэкранный просмотр кадра с лентой для листания'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-07 06:27'
-updated_date: '2026-09-07 06:29'
+updated_date: '2026-09-07 07:11'
 labels:
   - from-human
 milestone: m-11
