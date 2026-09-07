@@ -4,8 +4,10 @@ title: 'mobile: лента под открытым кадром показыва
 status: To Do
 assignee: []
 created_date: '2026-09-07 09:23'
+updated_date: '2026-09-07 09:39'
 labels:
   - from-specialist
+milestone: m-12
 dependencies: []
 priority: high
 type: bug

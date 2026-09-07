@@ -4,8 +4,10 @@ title: 'mobile: светится не то — ember достался не гл�
 status: To Do
 assignee: []
 created_date: '2026-09-07 09:24'
+updated_date: '2026-09-07 09:39'
 labels:
   - from-specialist
+milestone: m-12
 dependencies: []
 priority: medium
 type: bug
