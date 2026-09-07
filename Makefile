@@ -24,9 +24,12 @@ install: ## поставить зависимости всех трёх серв
 
 up: _kill db migrate ## поднять всё разом: база, API, воркер, приложение
 	@mkdir -p .run
-	@set -m; ( cd projects/api && npm run dev ) > .run/api.log 2>&1 & echo $$! > .run/api.pid
-	@set -m; ( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run ) > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
-	@set -m; ( cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start ) > .run/mobile.log 2>&1 & echo $$! > .run/mobile.pid
+	@set -m; ( cd projects/api && npm run dev ) < /dev/null > .run/api.log 2>&1 & echo $$! > .run/api.pid
+	@set -m; ( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run ) < /dev/null > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
+	@set -m; ( cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start ) < /dev/null > .run/mobile.log 2>&1 & echo $$! > .run/mobile.pid
+	@sleep 3; for n in api worker mobile; do \
+		kill -0 $$(cat .run/$$n.pid) 2>/dev/null || echo "!! $$n упал сразу после запуска — смотри .run/$$n.log"; \
+	done
 	@echo 'поднято: api, воркер, приложение. логи — make logs, погасить — make down'
 
 down: _kill db-stop ## погасить всё
