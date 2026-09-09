@@ -4,8 +4,10 @@ title: 'mobile: причина ошибки загрузки застревае�
 status: To Do
 assignee: []
 created_date: '2026-09-07 11:24'
+updated_date: '2026-09-09 06:37'
 labels:
   - from-lead
+milestone: m-17
 dependencies: []
 priority: low
 type: bug

@@ -4,7 +4,9 @@ title: 'mobile: открытый на весь экран кадр показы�
 status: To Do
 assignee: []
 created_date: '2026-09-08 19:02'
+updated_date: '2026-09-09 06:37'
 labels: []
+milestone: m-17
 dependencies: []
 priority: high
 ordinal: 124000
