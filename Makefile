@@ -3,6 +3,9 @@
 # Здесь только короткие имена; ничего своего эти цели не делают.
 
 DATABASE_URL ?= postgres://remember:remember@localhost:5432/remember
+# Своя база для тестов воркера, на том же Postgres. Они чистят jobs и разбирают очередь целиком,
+# так что общая с `make up` база означала бы драку за очередь с живым воркером.
+TEST_DATABASE_URL ?= postgres://remember:remember@localhost:5432/remember_test
 EXPO_PUBLIC_API_URL ?= http://localhost:3000
 PY := projects/montage/.venv/bin/python
 
@@ -69,8 +72,10 @@ test-api: ## тесты API
 test-mobile: ## тесты приложения
 	cd projects/mobile && npm test
 
-test-montage: ## тесты воркера (чистят таблицу jobs в базе)
-	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python -m pytest
+test-montage: ## тесты воркера (в своей базе, поднятому стенду не мешают)
+	@$(PY) -c "import psycopg,urllib.parse as u;n=u.urlparse('$(TEST_DATABASE_URL)').path.lstrip('/');c=psycopg.connect('$(DATABASE_URL)',autocommit=True);c.execute('SELECT 1 FROM pg_database WHERE datname=%s',(n,)).fetchone() or c.execute('CREATE DATABASE \"'+n+'\"')"
+	cd projects/api && DATABASE_URL='$(TEST_DATABASE_URL)' npm run migrate
+	cd projects/montage && DATABASE_URL='$(TEST_DATABASE_URL)' $(R2) .venv/bin/python -m pytest
 
 check: ## линт и типы
 	cd projects/api && npm run lint && npm run typecheck
