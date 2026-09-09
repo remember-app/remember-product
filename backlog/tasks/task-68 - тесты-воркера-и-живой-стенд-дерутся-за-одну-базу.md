@@ -1,10 +1,10 @@
 ---
 id: TASK-68
 title: тесты воркера и живой стенд дерутся за одну базу
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-07 08:15'
-updated_date: '2026-09-09 09:08'
+updated_date: '2026-09-09 09:27'
 labels:
   - from-chief
 milestone: m-20
