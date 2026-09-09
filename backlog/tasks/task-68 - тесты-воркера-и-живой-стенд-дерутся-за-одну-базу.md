@@ -4,8 +4,10 @@ title: тесты воркера и живой стенд дерутся за о
 status: To Do
 assignee: []
 created_date: '2026-09-07 08:15'
+updated_date: '2026-09-09 09:08'
 labels:
   - from-chief
+milestone: m-20
 dependencies: []
 priority: medium
 ordinal: 72000

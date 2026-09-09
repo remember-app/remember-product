@@ -4,9 +4,10 @@ title: 'api: README отстал от TASK-126 — контракт заказа
 status: To Do
 assignee: []
 created_date: '2026-09-09 07:13'
-updated_date: '2026-09-09 08:17'
+updated_date: '2026-09-09 09:08'
 labels:
   - from-lead
+milestone: m-20
 dependencies: []
 priority: low
 type: bug

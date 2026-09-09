@@ -4,8 +4,10 @@ title: веб-сборка приложения не годится как ми�
 status: To Do
 assignee: []
 created_date: '2026-09-07 14:59'
+updated_date: '2026-09-09 09:08'
 labels:
   - from-chief
+milestone: m-20
 dependencies: []
 priority: medium
 ordinal: 100000

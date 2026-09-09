@@ -4,9 +4,10 @@ title: 'montage: README отстал от TASK-126.2 — холст описан
 status: To Do
 assignee: []
 created_date: '2026-09-09 07:13'
-updated_date: '2026-09-09 08:21'
+updated_date: '2026-09-09 09:08'
 labels:
   - from-lead
+milestone: m-20
 dependencies: []
 priority: low
 type: bug
