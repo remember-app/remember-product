@@ -367,6 +367,16 @@ body{
 .chip-action[aria-pressed="true"]{border-color:var(--fixed-line)}
 .chip-action[aria-pressed="true"] .ico{color:var(--fixed)}
 
+/* Чип, который стоит в строке вместо роли, а не рядом с ней, — предложение
+   сохранить. Он и есть правый конец строки, поэтому встаёт в ту же колонку,
+   что кнопки соседних строк: правый край стопки идёт ровно. */
+.row-member > .chip-action:last-child{grid-column:4}
+
+/* Убранный контакт не исчезает мгновенно: строка остаётся на месте, имя гаснет
+   до вторичного, крестик сменяется тихим «Вернуть». Ничего не съезжает, и
+   промах отменяется там же, где случился, — листа подтверждения не надо. */
+.row-member--gone .row-member__name{color:var(--muted)}
+
 /* ============================================================================
    8. КАДР И КОНТАКТНЫЙ ЛИСТ
    ========================================================================= */
@@ -620,6 +630,15 @@ body{
 .screen{position:relative; display:flex; flex-direction:column; height:100%; background:var(--ink); overflow:hidden}
 .screen__head{flex:none; padding:0 var(--s4)}
 .screen__head .segment-wide{margin-bottom:var(--s4)}
+/* Поле в шапке — не настройка, а сито списка под ним: оно идёт во всю ширину и
+   не уезжает вместе со списком, иначе набранное пропадает из виду. */
+.screen__head .field{max-width:none; margin-bottom:var(--s4)}
+/* Список людей внутри листа. Лист не должен вырасти в экран, поэтому список
+   обрезан ровно по половине третьей строки: две строки целиком, третья срезана —
+   по срезу видно, что список продолжается, и его крутят. */
+.picklist{max-height:216px; overflow-y:auto; scrollbar-width:none; -ms-overflow-style:none}
+.picklist::-webkit-scrollbar{display:none}
+.picklist > .row-member:first-child{padding-top:0}
 .screen__body{
   flex:1; min-height:0; overflow-y:auto; padding:0 var(--s4) var(--s5);
   scrollbar-width:none; -ms-overflow-style:none;
@@ -1024,7 +1043,7 @@ body{
         <div class="appbar">
           <button class="iconbtn" aria-label="Назад"><svg class="ico" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
           <h3 class="t-display">Воспоминания</h3>
-          <button class="iconbtn" aria-label="Профиль"><svg class="ico" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+          <button class="iconbtn" aria-label="Контакты"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></button><button class="iconbtn" aria-label="Профиль"><svg class="ico" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
         </div>
         <div class="actionbar" style="width:100%">
           <button class="btn btn-primary btn-wide"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg>Новое воспоминание</button>
@@ -1223,6 +1242,41 @@ body{
       </div>
       <figcaption>Ссылка-приглашение. Отзыв — тихое действие рядом, а не красная кнопка: ссылку меняют часто.</figcaption>
     </figure>
+    <figure class="kit-demo">
+      <div class="kit-demo__stage" style="width:100%;align-items:stretch">
+        <div class="row-member">
+          <span class="avatar">К</span>
+          <p class="row-member__name">Костя</p>
+          <p class="t-meta row-member__meta"><span class="row-member__who">@kostya</span></p>
+          <button class="iconbtn iconbtn-sm" aria-label="Убрать Костю из контактов"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="row-member">
+          <span class="avatar">Д</span>
+          <p class="row-member__name">Дима</p>
+          <p class="t-meta row-member__meta"><span class="row-member__who">@dima</span></p>
+          <button class="btn btn-secondary btn-sm">Позвать</button>
+        </div>
+        <div class="row-member">
+          <span class="avatar">Д</span>
+          <p class="row-member__name">Дима</p>
+          <p class="t-meta row-member__meta"><span class="row-member__who">@dima</span><span class="status">Приглашён</span></p>
+          <button class="chip chip-action" aria-pressed="false">В контакты</button>
+        </div>
+        <div class="row-member">
+          <span class="avatar">Д</span>
+          <p class="row-member__name">Дима</p>
+          <p class="t-meta row-member__meta"><span class="row-member__who">@dima</span><span class="status">Приглашён</span></p>
+          <button class="chip chip-action" aria-pressed="true"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true" style="width:13px;height:13px;stroke-width:3"><path d="M20 6 9 17l-5-5"/></svg>В контактах</button>
+        </div>
+        <div class="row-member row-member--gone">
+          <span class="avatar">М</span>
+          <p class="row-member__name">Марина</p>
+          <p class="t-meta row-member__meta"><span class="row-member__who">Убрана из контактов</span></p>
+          <button class="btn btn-quiet btn-sm">Вернуть</button>
+        </div>
+      </div>
+      <figcaption>Та же строка человека, пять правых концов — новых кирпичей контакты не заводят. Сохранённый контакт: ник вместо вклада, крестик убирает. В листе приглашения та же строка держит «Позвать». Позвали набором ника — на месте кнопки встаёт чип-предложение «В контакты», ростом с надпись: нажали — он остаётся на месте и читается «В контактах». Одна буква — всё движение; проигнорировали — он уехал вместе со строкой. Убранный контакт гаснет на месте и даёт «Вернуть», а не спрашивает листом: ничего не потеряно, человек остаётся в своих воспоминаниях.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -1420,7 +1474,7 @@ body{
 
   <figure class="kit-demo kit-demo--wide">
     <div class="kit-demo__stage" style="width:100%">
-      <p class="t-body">Одиннадцать экранов, ни одного лишнего. Все собраны из компонентов выше:
+      <p class="t-body">Двенадцать экранов, ни одного лишнего. Все собраны из компонентов выше:
       ниже нет ни одного приёма, которого нет в ките. Правила общие для всех.</p>
       <dl class="kit-spec" style="min-width:0">
         <dt>Три пояса</dt><dd>Шапка не уезжает, тело крутится, действие прибито к низу — под большой палец. Боковой отступ 16 задаёт экран, компоненты внутри его не повторяют.</dd>
@@ -1433,7 +1487,7 @@ body{
                       │                        ▼
                       ├──────────────► Воспоминание ─┬─ Кадры ─┬─► Выбор кадров
 Приглашение ──────────┘                              │         └─► Кадр целиком
-(ссылка, пуш)                                        ├─ Ролики
+(ссылка, пуш)         ├─► Контакты                   ├─ Ролики
                       └─► Профиль                    └─ Люди ──► лист «Пригласить»</pre>
     </div>
     <figcaption>Карта переходов. Воспоминание — не три экрана с одним именем, а один экран с тремя лицами: имя стоит в шапке, лицо выбирают переключателем под ней.</figcaption>
@@ -1481,7 +1535,7 @@ body{
             <div class="appbar">
               <div class="rail" aria-hidden="true"></div>
               <h1 class="t-display">Воспоминания</h1>
-              <button class="iconbtn" aria-label="Профиль"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+              <button class="iconbtn" aria-label="Контакты"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></button><button class="iconbtn" aria-label="Профиль"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
             </div>
           </div>
           <div class="screen__body stack">
@@ -1545,7 +1599,7 @@ body{
             <div class="appbar">
               <div class="rail" aria-hidden="true"></div>
               <h1 class="t-display">Воспоминания</h1>
-              <button class="iconbtn" aria-label="Профиль"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+              <button class="iconbtn" aria-label="Контакты"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></button><button class="iconbtn" aria-label="Профиль"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
             </div>
           </div>
           <div class="screen__body screen__body-mid">
@@ -1565,6 +1619,7 @@ body{
         <dt>Задача</dt><dd>Показать, что у человека есть, и дать завести новое.</dd>
         <dt>Главное</dt><dd>Карточки. Кадры на них — единственное цветное на экране, поэтому список читается как стопка отпечатков, а не как реестр.</dd>
         <dt>Порядок</dt><dd>Шапка с перфорацией → карточки по убыванию даты события → подвал с одним действием.</dd>
+        <dt>Справа в шапке</dt><dd>Два значка — предел, который кит держит, и оба заняты: контакты и профиль. Контакты стоят левее, профиль остаётся крайним и не двигается никогда. Двое людей против одного — тем и различаются: список тех, кого зовут, и я сам. Отсюда единственный вход в контакты: профиль их не открывает, а лист приглашения ими пользуется, но не заводит.</dd>
         <dt>Ждём</dt><dd>Место списка держит «Собираем ваши воспоминания…» со спиннером; подвал уже на месте и уже нажимается.</dd>
         <dt>Пусто</dt><dd>Второй экран: приглашение, а не отчёт. Кнопки в самой заглушке нет — она уже стоит в подвале, две одинаковые кнопки на экране спорили бы.</dd>
         <dt>Сбой</dt><dd>Полоса-ошибка над списком с «Повторить»; уже загруженные карточки остаются на месте.</dd>
@@ -1975,16 +2030,6 @@ body{
             <div class="confirm">
               <span class="confirm__grip"></span>
               <p class="t-title">Пригласить</p>
-              <label class="field">
-                <span class="t-label">Ник</span>
-                <input class="input" value="kostya">
-              </label>
-              <div class="row-member" style="padding-top:0">
-                <span class="avatar">К</span>
-                <p class="row-member__name">Костя</p>
-                <p class="t-meta row-member__meta"><span class="row-member__who">@kostya</span></p>
-                <button class="btn btn-secondary btn-sm">Позвать</button>
-              </div>
               <div class="stack stack-2">
                 <p class="t-label">Что сможет</p>
                 <div class="segment segment-wide" role="radiogroup" aria-label="Уровень доступа">
@@ -1992,6 +2037,39 @@ body{
                   <label for="access-add">Добавлять</label>
                   <input type="radio" name="access" id="access-view">
                   <label for="access-view">Смотреть</label>
+                </div>
+              </div>
+              <label class="field" style="max-width:none">
+                <span class="t-label">Ник</span>
+                <input class="input" placeholder="kostya">
+              </label>
+              <div class="stack stack-2">
+                <p class="t-label">Из контактов</p>
+                <div class="picklist">
+                  <div class="row-member">
+                    <span class="avatar">К</span>
+                    <p class="row-member__name">Костя</p>
+                    <p class="t-meta row-member__meta"><span class="row-member__who">@kostya</span></p>
+                    <button class="btn btn-secondary btn-sm">Позвать</button>
+                  </div>
+                  <div class="row-member">
+                    <span class="avatar">А</span>
+                    <p class="row-member__name">Аня</p>
+                    <p class="t-meta row-member__meta"><span class="row-member__who">@anya</span></p>
+                    <button class="btn btn-secondary btn-sm">Позвать</button>
+                  </div>
+                  <div class="row-member">
+                    <span class="avatar">В</span>
+                    <p class="row-member__name">Вера</p>
+                    <p class="t-meta row-member__meta"><span class="row-member__who">@vera</span></p>
+                    <button class="btn btn-secondary btn-sm">Позвать</button>
+                  </div>
+                  <div class="row-member">
+                    <span class="avatar">Д</span>
+                    <p class="row-member__name">Дима</p>
+                    <p class="t-meta row-member__meta"><span class="row-member__who">@dima</span></p>
+                    <button class="btn btn-secondary btn-sm">Позвать</button>
+                  </div>
                 </div>
               </div>
               <div class="stack stack-2">
@@ -2006,19 +2084,125 @@ body{
           </div>
         </div>
       </div>
+      <div class="kit-screen">
+        <div class="screen">
+          <div class="screen__head">
+            <div class="appbar">
+              <button class="iconbtn" aria-label="Назад"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+              <h1 class="t-display">Свадьба Лёши</h1>
+            </div>
+            <div class="segment segment-wide" role="radiogroup" aria-label="Что показать">
+              <input type="radio" name="face-f" id="face-f-frames">
+              <label for="face-f-frames">Кадры</label>
+              <input type="radio" name="face-f" id="face-f-films">
+              <label for="face-f-films">Ролики</label>
+              <input type="radio" name="face-f" id="face-f-people" checked>
+              <label for="face-f-people">Люди</label>
+            </div>
+          </div>
+          <div class="screen__body stack stack-6">
+            <div>
+              <div class="row-member">
+                <span class="avatar">Л</span>
+                <p class="row-member__name">Лёша</p>
+                <p class="t-meta row-member__meta">
+                  <button class="chip chip-action" aria-pressed="false">Мне нечего добавлять</button>
+                  <span class="num row-member__count">0 кадров</span>
+                </p>
+                <span class="chip chip-organizer">Организатор</span>
+              </div>
+              <div class="row-member">
+                <span class="avatar">Р</span>
+                <p class="row-member__name">Рома</p>
+                <p class="t-meta row-member__meta">
+                  <span class="row-member__who">@roma</span>
+                  <span class="status">Планирует загрузить</span>
+                  <span class="num row-member__count">0 кадров</span>
+                </p>
+                <span class="chip">Добавление</span>
+              </div>
+            </div>
+          </div>
+          <div class="screen__foot">
+            <div class="actionbar">
+              <button class="btn btn-primary btn-wide">Пригласить</button>
+            </div>
+          </div>
+          <div class="screen__over">
+            <div class="confirm">
+              <span class="confirm__grip"></span>
+              <p class="t-title">Пригласить</p>
+              <div class="stack stack-2">
+                <p class="t-label">Что сможет</p>
+                <div class="segment segment-wide" role="radiogroup" aria-label="Уровень доступа">
+                  <input type="radio" name="access-2" id="access-2-add" checked>
+                  <label for="access-2-add">Добавлять</label>
+                  <input type="radio" name="access-2" id="access-2-view">
+                  <label for="access-2-view">Смотреть</label>
+                </div>
+              </div>
+              <label class="field" style="max-width:none">
+                <span class="t-label">Ник</span>
+                <input class="input" placeholder="kostya">
+              </label>
+              <div class="row-member" style="padding-top:0">
+                <span class="avatar">Р</span>
+                <p class="row-member__name">Рома</p>
+                <p class="t-meta row-member__meta">
+                  <span class="row-member__who">@roma</span>
+                  <span class="status">Приглашён</span>
+                </p>
+                <button class="chip chip-action" aria-pressed="false">В контакты</button>
+              </div>
+              <div class="stack stack-2">
+                <p class="t-label">Из контактов</p>
+                <div class="picklist">
+                  <div class="row-member">
+                    <span class="avatar">К</span>
+                    <p class="row-member__name">Костя</p>
+                    <p class="t-meta row-member__meta"><span class="row-member__who">@kostya</span></p>
+                    <button class="btn btn-secondary btn-sm">Позвать</button>
+                  </div>
+                  <div class="row-member">
+                    <span class="avatar">А</span>
+                    <p class="row-member__name">Аня</p>
+                    <p class="t-meta row-member__meta"><span class="row-member__who">@anya</span></p>
+                    <button class="btn btn-secondary btn-sm">Позвать</button>
+                  </div>
+                  <div class="row-member">
+                    <span class="avatar">В</span>
+                    <p class="row-member__name">Вера</p>
+                    <p class="t-meta row-member__meta"><span class="row-member__who">@vera</span></p>
+                    <button class="btn btn-secondary btn-sm">Позвать</button>
+                  </div>
+                </div>
+              </div>
+              <div class="stack stack-2">
+                <p class="t-label">Или ссылкой</p>
+                <div class="invite">
+                  <span class="invite__url">rmbr.link/7QF2K9</span>
+                  <button class="btn btn-secondary btn-sm">Копировать</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <dl class="kit-spec">
         <dt>Задача</dt><dd>Показать, кто в воспоминании, что кому можно и кто сколько уже принёс, — и позвать ещё.</dd>
         <dt>Главное</dt><dd>«Пригласить» в подвале: экран существует ради того, чтобы людей стало больше.</dd>
         <dt>Порядок</dt><dd>Организатор всегда первым, дальше по времени входа. Роль — словом в чипе, не цветом; точка ember только у организатора.</dd>
         <dt>Вклад</dt><dd>Вторая строка человека: ник, статус («Планирует загрузить», «Всё загрузил», «Нечего добавлять») и счёт кадров. Зелёная точка только у «Всё загрузил» — по ней организатор одним взглядом видит, от кого ещё ждать. Счёт стоит справа ровным столбцом табличными цифрами и не режется; ужимается ник.</dd>
         <dt>Свой статус</dt><dd>В своей строке на месте статуса — чип-кнопка «Мне нечего добавлять», ростом ровно с надпись, которую она заменяет: строка от неё не выше соседних. Нажали — чип остаётся на месте с галочкой и читается «Нечего добавлять»; нажали ещё раз — вернулись. Кнопка живёт в строке, а не блоком под ней: статус и его переключатель — одно место. Показывают её только тому, кто ещё ничего не загрузил, — у загрузившего статус спрашивают вопросом после отправки.</dd>
-        <dt>Лист</dt><dd>Приглашение приходит снизу листом, а не отдельным экраном: это одно короткое действие. Ник, найденный человек, уровень доступа, ссылка — в одном листе, потому что выбор между ником и ссылкой делают на месте.</dd>
-        <dt>Ждём</dt><dd>Проверка ника идёт в поле, не в кнопке: граница зеленеет и подпись говорит «Костя найден» — или «Такого ника нет». Счёт кадров приходит вместе со списком; пока его нет — прочерк на месте числа, строка не прыгает.</dd>
-        <dt>Сбой</dt><dd>Неудача приглашения — полоса-ошибка в листе, лист не закрывается и введённое не теряет.</dd>
+        <dt>Лист</dt><dd>Приглашение приходит снизу листом, а не отдельным экраном: это одно короткое действие. Уровень доступа, ник, контакты и ссылка — в одном листе, потому что выбор между тремя путями делают на месте. Доступ стоит первым и выше всех путей: он относится к приглашению, а не к человеку, и его надо видеть до того, как нажмут «Позвать».</dd>
+        <dt>Два пути</dt><dd>Из контактов — списком под полем: те же строки человека, у каждой «Позвать». Это первый путь, потому что зовут чаще всего тех же. По нику — поле над списком, оно же сито: набранное сужает контакты, а если такого ника среди них нет, найденный продукт отдаёт отдельной строкой «Не в контактах» с той же кнопкой «Позвать». Одно поле, два ответа — второго поля на листе нет. Список обрезан по половине третьей строки и крутится внутри себя: лист не растёт в экран. Кто уже в воспоминании, из списка выпадает — его видно за листом. Контактов нет ни одного — блока нет вовсе, и лист ровно такой, каким был до контактов: пустого списка в листе не показывают.</dd>
+        <dt>Сохранить</dt><dd>Позвали набором ника — на месте кнопки в той же строке встаёт чип «В контакты»; нажали — он остаётся на месте и читается «В контактах». Отдельного листа поверх листа нет, ничего не всплывает и ничего не перекрывает: предложение сидит на человеке, к которому относится, и его можно просто не заметить. Позвали выбором из контактов — предложения нет, он уже сохранён. Позвали ссылкой — тоже нет: ника мы не знаем.</dd>
+        <dt>Ждём</dt><dd>Проверка ника идёт в поле, не в кнопке: граница зеленеет и подпись говорит «Костя найден» — или «Такого ника нет». Строка контакта на время отправки держит кнопку в <b>aria-busy</b>, остальные строки не гаснут. Счёт кадров приходит вместе со списком; пока его нет — прочерк на месте числа, строка не прыгает.</dd>
+        <dt>Сбой</dt><dd>Неудача приглашения — полоса-ошибка в листе, лист не закрывается и введённое не теряет. Контакты не отдались — их блока просто нет, поле ника на месте и работает.</dd>
         <dt>Края</dt><dd>Участнику не показывают ни «Пригласить», ни крестики — только состав и свою строку. Исключение спрашивают листом подтверждения и называют последствие: кадры уйдут вместе с человеком. Выхода из воспоминания на экране нет — такого действия в интерфейсе продукта не существует.</dd>
       </dl>
     </div>
-    <figcaption>Третье лицо. Красного на экране нет вовсе: единственное необратимое — исключение, и крестик только спрашивает. Экран отвечает на один вопрос организатора: от кого ещё ждать материал.</figcaption>
+    <figcaption>Третье лицо. Красного на экране нет вовсе: единственное необратимое — исключение, и крестик только спрашивает. Экран отвечает на один вопрос организатора: от кого ещё ждать материал. Справа — лист приглашения: открыт (зовут из контактов или набором ника) и он же после того, как позвали набором, — чип «В контакты» стоит в строке позванного.</figcaption>
   </figure>
 
   <!-- ── 7. ВЫБОР КАДРОВ ─────────────────────────────────────────────── -->
@@ -2136,7 +2320,129 @@ body{
     <figcaption>Конец продукта, где человек настраивает себя. Настроек ровно две, и обе видны целиком — списка, который надо открывать, здесь нет.</figcaption>
   </figure>
 
-  <!-- ── 9. ПРИГЛАШЕНИЕ ──────────────────────────────────────────────── -->
+  <!-- ── 9. КОНТАКТЫ ─────────────────────────────────────────────────── -->
+  <figure class="kit-demo kit-demo--wide">
+    <div class="kit-screens">
+      <div class="kit-screen">
+        <div class="screen">
+          <div class="screen__head">
+            <div class="appbar">
+              <button class="iconbtn" aria-label="Назад"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+              <h1 class="t-display">Контакты</h1>
+            </div>
+            <label class="field">
+              <input class="input" placeholder="Ник" aria-label="Ник">
+            </label>
+          </div>
+          <div class="screen__body">
+            <div class="row-member">
+              <span class="avatar">А</span>
+              <p class="row-member__name">Аня</p>
+              <p class="t-meta row-member__meta"><span class="row-member__who">@anya</span></p>
+              <button class="iconbtn iconbtn-sm" aria-label="Убрать Аню из контактов"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            </div>
+            <div class="row-member">
+              <span class="avatar">В</span>
+              <p class="row-member__name">Вера</p>
+              <p class="t-meta row-member__meta"><span class="row-member__who">@vera</span></p>
+              <button class="iconbtn iconbtn-sm" aria-label="Убрать Веру из контактов"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            </div>
+            <div class="row-member">
+              <span class="avatar">Д</span>
+              <p class="row-member__name">Дима</p>
+              <p class="t-meta row-member__meta"><span class="row-member__who">@dima</span></p>
+              <button class="iconbtn iconbtn-sm" aria-label="Убрать Диму из контактов"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            </div>
+            <div class="row-member">
+              <span class="avatar">К</span>
+              <p class="row-member__name">Костя</p>
+              <p class="t-meta row-member__meta"><span class="row-member__who">@kostya</span></p>
+              <button class="iconbtn iconbtn-sm" aria-label="Убрать Костю из контактов"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            </div>
+            <div class="row-member row-member--gone">
+              <span class="avatar">М</span>
+              <p class="row-member__name">Марина</p>
+              <p class="t-meta row-member__meta"><span class="row-member__who">Убрана из контактов</span></p>
+              <button class="btn btn-quiet btn-sm">Вернуть</button>
+            </div>
+            <div class="row-member">
+              <span class="avatar">С</span>
+              <p class="row-member__name">Саша</p>
+              <p class="t-meta row-member__meta"><span class="row-member__who">@sasha_petrov</span></p>
+              <button class="iconbtn iconbtn-sm" aria-label="Убрать Сашу из контактов"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kit-screen">
+        <div class="screen">
+          <div class="screen__head">
+            <div class="appbar">
+              <button class="iconbtn" aria-label="Назад"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+              <h1 class="t-display">Контакты</h1>
+            </div>
+            <label class="field">
+              <input class="input" value="roma" aria-label="Ник">
+            </label>
+          </div>
+          <div class="screen__body stack stack-4">
+            <div>
+              <div class="row-member">
+                <span class="avatar">Р</span>
+                <p class="row-member__name">Рома Гуров</p>
+                <p class="t-meta row-member__meta"><span class="row-member__who">@romagurov</span></p>
+                <button class="iconbtn iconbtn-sm" aria-label="Убрать Рому Гурова из контактов"><svg class="ico ico-s" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+              </div>
+            </div>
+            <div class="stack stack-2">
+              <p class="t-label">Не в контактах</p>
+              <div>
+                <div class="row-member" style="padding-top:0">
+                  <span class="avatar">Р</span>
+                  <p class="row-member__name">Рома</p>
+                  <p class="t-meta row-member__meta"><span class="row-member__who">@roma</span></p>
+                  <button class="btn btn-secondary btn-sm">Сохранить</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kit-screen">
+        <div class="screen">
+          <div class="screen__head">
+            <div class="appbar">
+              <button class="iconbtn" aria-label="Назад"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+              <h1 class="t-display">Контакты</h1>
+            </div>
+            <label class="field">
+              <input class="input" placeholder="Ник" aria-label="Ник">
+            </label>
+          </div>
+          <div class="screen__body screen__body-mid">
+            <div class="empty">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <p class="empty__text">Пока никого. Наберите ник — и в следующий раз позовёте выбором, не вспоминая.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="kit-spec">
+        <dt>Задача</dt><dd>Держать тех, кого зовут снова: чтобы ник не вспоминали и не набирали второй раз. Список плоский и свой — чужого здесь не видит никто, и попадание в него ничего не открывает тому, кто в нём оказался.</dd>
+        <dt>Главное</dt><dd>Сам список. Ember не горит ни на чём и подвала нет: сюда приходят не ради одного действия, а посмотреть и поправить — как в профиль.</dd>
+        <dt>Порядок</dt><dd>Назад → «Контакты» → поле → строки по алфавиту. Строка та же, что у участника воспоминания: кружок, имя, ник. Вклада и роли здесь нет — контакт ничего не загружает.</dd>
+        <dt>Одно поле</dt><dd>Поле в шапке делает обе работы и остаётся одно. Набранное сужает список под ним; если среди сохранённых такого нет, а в Remember такой ник есть, он приходит отдельной строкой под чертой «Не в контактах» с кнопкой «Сохранить». Двух полей — «искать» и «добавить» — на экране нет: человек всё равно набирает одно и то же, и выбирать между ними значило бы думать за продукт. Поле прибито к шапке и не уезжает со списком.</dd>
+        <dt>Убрать</dt><dd>Крестик в строке, без листа подтверждения: ничего не теряется — человек остаётся в своих воспоминаниях, а ник набирается заново. Строка не исчезает, а гаснет на месте и пять секунд держит «Вернуть»; после этого сворачивается и список смыкается. Пока она стоит, ничего не двигается — соседи на своих местах, промах отменяется тем же пальцем. Лист подтверждения в продукте остаётся за тем, что уносит кадры.</dd>
+        <dt>Ждём</dt><dd>Список приходит спиннером на месте строк. Проверка набранного ника идёт в поле, как в листе приглашения: «Такого ника нет» подписью под ним. «Сохранить» уходит в <b>aria-busy</b> и на месте кнопки остаётся крестик — строка переезжает в список сама, без перерисовки экрана.</dd>
+        <dt>Пусто</dt><dd>Третий экран: ни одного контакта — приглашение набрать ник, а не отчёт о пустом списке. Поле остаётся в шапке: оно и есть способ добавить. Ничего не нашлось по набранному — «Ника @roma в Remember нет» на месте списка, набранное в поле остаётся.</dd>
+        <dt>Сбой</dt><dd>Список не отдался — полоса-ошибка с «Повторить» на месте строк. Не сохранилось — полоса над списком, строка найденного остаётся с кнопкой.</dd>
+        <dt>Края</dt><dd>Длинные имя и ник режутся многоточием каждый на своей строке — кружок и правый край не двигаются. Ник с большой буквы и с собакой на входе принимается как есть: продукт приводит его к своему виду сам. Уже сохранённого ник вводом не задваивает — набор показывает его в списке, а не отдельной строкой.</dd>
+      </dl>
+    </div>
+    <figcaption>Единственный список, который человек ведёт про себя, а не про событие. Это не друзья: вторая сторона не спрошена, не уведомлена и ничего не получила — потому здесь нет ни запросов, ни статуса, ни счётчика. Один вход — значок людей в шапке «Воспоминаний», рядом с профилем.</figcaption>
+  </figure>
+
+  <!-- ── 10. ПРИГЛАШЕНИЕ ─────────────────────────────────────────────── -->
   <figure class="kit-demo kit-demo--wide">
     <div class="kit-screens">
       <div class="kit-screen">
