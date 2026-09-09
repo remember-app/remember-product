@@ -495,6 +495,23 @@ body{
 }
 .card-montage__poster{position:relative; aspect-ratio:16/9; background:var(--ink)}
 .card-montage__poster :where(img,.px){width:100%; height:100%; object-fit:cover; display:block}
+/* Ролик бывает и стоящим. Рамка не остаётся горизонтальной — она встаёт вместе
+   с постером, но не в полный рост 9/16: во всю ширину такая карточка заняла бы
+   почти два экрана, и список роликов перестал бы листаться. Портретная рамка
+   продукта — 4/5, и стоящий постер показан в ней целиком, как отпечаток на
+   мат-борде: поля по бокам — ink, ровно то правило, по которому открытый кадр
+   показывают целиком, а не по обрезу. Ни один постер не срезается,
+   горизонтальный случай не меняется ничем. */
+.card-montage__poster--tall{aspect-ratio:4/5; display:grid; place-items:center}
+.card-montage__poster--tall :where(img,.px){width:auto; max-width:100%; object-fit:contain; border-radius:var(--r-frame)}
+.card-montage__poster--tall .px{aspect-ratio:9/16}
+/* Пока ролик собирается, постера ещё нет — и в стоящей рамке на его месте
+   стоит пустая плашка того же роста: иначе 4/5 читаются не как ждущий ролик,
+   а как поломанная карточка. Плашка — то же место, куда встанет постер. */
+.card-montage__poster--tall .card-montage__pending{
+  inset:auto; height:100%; aspect-ratio:9/16;
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-frame);
+}
 /* Одна кнопка «смотреть» на весь продукт: и на карточке ролика,
    и на открытом видеокадре. */
 .card-montage__play, .viewer__play{
@@ -1402,7 +1419,21 @@ body{
           <button class="iconbtn" aria-label="Скачать"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
         </div>
       </div>
-      <figcaption>Награда за то, что все скинули медиа. Единственное место, где кадр занимает всю ширину.</figcaption>
+      <figcaption>Награда за то, что все скинули медиа. Единственное место, где кадр занимает всю ширину. Горизонтальный ролик — рамка 16/9 по обрезу.</figcaption>
+    </figure>
+    <figure class="kit-demo">
+      <div class="card-montage" style="width:100%">
+        <div class="card-montage__poster card-montage__poster--tall">
+          <span class="px px-2"></span>
+          <button class="card-montage__play" aria-label="Смотреть"><svg class="ico" viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><polygon points="7 4 20 12 7 20"/></svg></button>
+        </div>
+        <div class="card-montage__foot">
+          <p class="t-subtitle">Ролик на 0:45</p>
+          <span class="status status-ready">Готов</span>
+          <button class="iconbtn" aria-label="Скачать"><svg class="ico" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+        </div>
+      </div>
+      <figcaption>Вертикальный ролик: рамка встаёт вместе с постером — 4/5 вместо 16/9, — и постер стоит в ней целиком. Поля по бокам — ink, тот же мат-борд, на котором показывают открытый кадр; ни срезанного края, ни растянутого кадра. Подвал, кнопка «смотреть» и все состояния — ровно те же. Ориентация известна с момента заказа, поэтому стоящей рамку получает и собирающийся ролик: когда он соберётся, карточка не подпрыгнет.</figcaption>
     </figure>
     <figure class="kit-demo">
       <div class="kit-demo__stage" style="width:100%">
@@ -1872,7 +1903,7 @@ body{
           </div>
           <div class="screen__body stack">
             <div class="card-montage">
-              <div class="card-montage__poster">
+              <div class="card-montage__poster card-montage__poster--tall">
                 <div class="card-montage__pending">
                   <div class="spinner"></div>
                   <p class="t-meta">Отсматриваем 128 кадров</p>
@@ -1895,6 +1926,17 @@ body{
               </div>
             </div>
             <div class="card-montage">
+              <div class="card-montage__poster card-montage__poster--tall">
+                <span class="px px-2"></span>
+                <button class="card-montage__play" aria-label="Смотреть"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;stroke:none"><polygon points="7 4 20 12 7 20"/></svg></button>
+              </div>
+              <div class="card-montage__foot">
+                <p class="t-subtitle">Ролик на 0:45</p>
+                <span class="status status-ready">Готов</span>
+                <button class="iconbtn" aria-label="Скачать ролик"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></button>
+              </div>
+            </div>
+            <div class="card-montage">
               <div class="card-montage__foot">
                 <p class="t-subtitle">Не собралось</p>
                 <button class="btn btn-secondary btn-sm">Повторить</button>
@@ -1910,9 +1952,9 @@ body{
       </div>
       <dl class="kit-spec">
         <dt>Задача</dt><dd>Отдать награду: показать готовые ролики и заказать новый.</dd>
-        <dt>Главное</dt><dd>Постер готового ролика — единственное место в продукте, где кадр занимает всю ширину. Ember на нём — кнопка «смотреть», та же, что на открытом видеокадре.</dd>
+        <dt>Главное</dt><dd>Постер готового ролика — единственное место в продукте, где кадр занимает всю ширину. Ember на нём — кнопка «смотреть», та же, что на открытом видеокадре. Ролик бывает горизонтальным и вертикальным: рамка встаёт вместе с постером — 16/9 или 4/5, — и в стоящей рамке постер стоит целиком на полях цвета ink. Полный рост 9/16 карточка не берёт: во всю ширину она заняла бы почти два экрана.</dd>
         <dt>Порядок</dt><dd>Собирающийся сверху — за ним пришли только что, — дальше готовые по убыванию, упавшие среди них на своём месте по времени.</dd>
-        <dt>Ждём</dt><dd>Ролик собирается прямо в списке: постер занят спиннером и говорит, чем занят и сколько это примерно. Пуш придёт и без открытого приложения.</dd>
+        <dt>Ждём</dt><dd>Ролик собирается прямо в списке: постер занят спиннером и говорит, чем занят и сколько это примерно. Рамку он держит той ориентации, которую заказали, — готовый постер встанет на её место, не двинув список. Пуш придёт и без открытого приложения.</dd>
         <dt>Пусто</dt><dd>«Роликов ещё нет. Соберите первый — он получится из того, что уже загрузили» и «Смонтировать» в подвале.</dd>
         <dt>Сбой</dt><dd>Карточка без постера: «Не собралось» и «Повторить» рядом. Кода ошибки нет, второй раз то же самое чаще всего проходит.</dd>
         <dt>Края</dt><dd>Заказывать может только организатор — у остальных подвала нет, список читается и скачивается. Пока в воспоминании нет кадров, «Смонтировать» выключена: монтировать нечего.</dd>
