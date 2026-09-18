@@ -3,10 +3,10 @@ id: TASK-142
 title: >-
   mobile: библиотека деталей по спецификации «Афиша» — взамен нынешней, с
   историями
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-18 13:01'
-updated_date: '2026-09-18 13:17'
+updated_date: '2026-09-18 14:10'
 labels:
   - from-chief
 milestone: m-21
