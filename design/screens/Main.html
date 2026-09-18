@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Воспоминания — ночь</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Onest', ui-sans-serif, system-ui, sans-serif; background: #0B0B12; color: #F5F3EE; -webkit-font-smoothing: antialiased; overflow: hidden; }
+html { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+</style>
+</head>
+<body>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0B0B12; position: relative; overflow: hidden;">
+
+  <!-- Шапка. Верхние 52px — под системную строку статуса, своей мы не рисуем. -->
+  <div style="position: absolute; left: 0; top: 0; right: 0; padding: 52px 16px 0; display: flex; align-items: center; gap: 12px;">
+    <h1 style="margin: 0; flex-grow: 1; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 25px; line-height: 28px; letter-spacing: -0.03em; color: #F5F3EE;">Воспоминания</h1>
+    <button type="button" aria-label="Аккаунт" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2C2C3A; background: #16161F; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    </button>
+  </div>
+
+  <!-- Лента воспоминаний -->
+  <div style="position: absolute; left: 0; top: 114px; right: 0; bottom: 0; padding: 0 16px; display: flex; flex-direction: column; gap: 12px; overflow: hidden;">
+
+    <!-- Свежее воспоминание: крупная карточка, материал вместо счётчика -->
+    <a href="#memory" style="display: block; position: relative; height: 340px; border-radius: 26px; overflow: hidden; background: #16161F; flex-shrink: 0;">
+      <div style="position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 2px;">
+        <img src="../img/f10.jpg" alt="" style="grid-column: 1 / 3; grid-row: 1 / 3; width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img src="../img/f03.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img src="../img/f06.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      </div>
+      <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,7,13,0.95) 0%, rgba(7,7,13,0.78) 30%, rgba(7,7,13,0.10) 62%, rgba(7,7,13,0.28) 100%);"></div>
+
+      <div style="position: absolute; left: 14px; right: 14px; top: 14px; display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 11px; border-radius: 999px; background: #E4FF4F; color: #14160A;">Организатор</span>
+        <span style="flex-grow: 1;"></span>
+        <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 12px 6px 10px; border-radius: 999px; background: #4B5BFF; color: #FFFFFF;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg>
+          2 ролика
+        </span>
+      </div>
+
+      <div style="position: absolute; left: 18px; right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 26px; line-height: 29px; letter-spacing: -0.03em; color: #FFFFFF; text-wrap: balance;">Свадьба Лизы и Марка</h2>
+          <div style="display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.76); font-variant-numeric: tabular-nums;">
+            <span>12–14 сентября</span>
+            <span style="width: 3px; height: 3px; border-radius: 999px; background: rgba(255,255,255,0.45);"></span>
+            <span>486 кадров</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <div style="height: 4px; border-radius: 999px; background: rgba(255,255,255,0.22); overflow: hidden;">
+            <div style="width: 78%; height: 100%; border-radius: 999px; background: #E4FF4F;"></div>
+          </div>
+          <div style="font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.72); font-variant-numeric: tabular-nums;">7 из 9 уже скинули свои кадры</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Обычная карточка: полоса кадров, имя, факты -->
+    <a href="#memory" style="display: block; background: #16161F; border: 1px solid #2C2C3A; border-radius: 22px; padding: 10px; flex-shrink: 0;">
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3px; height: 96px; border-radius: 14px; overflow: hidden;">
+        <img src="../img/f12.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img src="../img/f02.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img src="../img/f09.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <img src="../img/f07.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      </div>
+      <div style="padding: 13px 6px 5px; display: flex; align-items: flex-end; gap: 12px;">
+        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 19px; line-height: 22px; letter-spacing: -0.025em; color: #F5F3EE;">Поход на Ладогу</h2>
+          <div style="display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">
+            <span>2–5 августа</span>
+            <span style="width: 3px; height: 3px; border-radius: 999px; background: #45424F;"></span>
+            <span>212 кадров</span>
+          </div>
+        </div>
+        <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 6px 11px 6px 9px; border-radius: 999px; border: 1px solid #4B5BFF; color: #A7AEFF;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg>
+          1 ролик
+        </span>
+      </div>
+    </a>
+
+    <!-- Воспоминание, в которое ещё ничего не скинули: та же анатомия, чистая плёнка -->
+    <a href="#memory" style="display: block; background: #16161F; border: 1px solid #2C2C3A; border-radius: 22px; padding: 10px; flex-shrink: 0;">
+      <div style="height: 96px; border-radius: 14px; border: 1px dashed #35333F; background: #1D1D28; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E6B7D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><circle cx="8.5" cy="10" r="1.6"></circle><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"></path></svg>
+        <span style="font-size: 13px; font-weight: 500; color: #A4A1B2;">Ни одного кадра — скиньте первые</span>
+      </div>
+      <div style="padding: 13px 6px 5px; display: flex; flex-direction: column; gap: 6px;">
+        <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 19px; line-height: 22px; letter-spacing: -0.025em; color: #F5F3EE;">Корпоратив Nox</h2>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Единственное действие экрана, прибитое к низу -->
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 132px; background: linear-gradient(to top, #0B0B12 58%, rgba(11,11,18,0) 100%); pointer-events: none;"></div>
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 30px;">
+    <button type="button" style="width: 100%; height: 56px; border: none; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer; box-shadow: 0 12px 32px rgba(75,91,255,0.38);">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+      Новое воспоминание
+    </button>
+  </div>
+
+</div>
+</body>
+</html>

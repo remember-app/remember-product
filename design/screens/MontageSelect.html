@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Ролик — какие кадры взять</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Onest', ui-sans-serif, system-ui, sans-serif; background: #0B0B12; color: #F5F3EE; -webkit-font-smoothing: antialiased; overflow: hidden; }
+html { overflow: hidden; }
+button { font-family: inherit; }
+</style>
+</head>
+<body>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0B0B12; position: relative; overflow: hidden;">
+
+  <div style="position: absolute; left: 0; top: 0; right: 0; padding: 52px 16px 0;">
+    <div style="display: flex; align-items: center; height: 44px;">
+      <div style="width: 74px; display: flex;">
+        <button type="button" aria-label="Назад" style="width: 44px; height: 44px; margin-left: -10px; border: none; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+      </div>
+      <span style="flex-grow: 1; text-align: center; font-size: 13px; font-weight: 600; color: #A4A1B2; font-variant-numeric: tabular-nums;">Шаг 1 из 4</span>
+      <div style="width: 74px; display: flex; justify-content: flex-end;">
+        <button type="button" style="height: 44px; padding: 0 10px; margin-right: -10px; border: none; background: transparent; color: #A4A1B2; font-size: 14px; font-weight: 600; cursor: pointer;">Отмена</button>
+      </div>
+    </div>
+
+    <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;">
+      <span style="height: 3px; border-radius: 999px; background: #4B5BFF;"></span>
+      <span style="height: 3px; border-radius: 999px; background: #2C2C3A;"></span>
+      <span style="height: 3px; border-radius: 999px; background: #2C2C3A;"></span>
+      <span style="height: 3px; border-radius: 999px; background: #2C2C3A;"></span>
+    </div>
+
+    <h1 style="margin: 18px 0 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 26px; line-height: 29px; letter-spacing: -0.035em; color: #F5F3EE;">Какие кадры взять</h1>
+
+    <!-- Отсев — предложение, а не приговор: сказано, сколько сняли и чем это открыть -->
+    <div style="margin-top: 10px; display: flex; align-items: center; gap: 12px;">
+      <span style="flex-grow: 1; font-size: 13px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">Возьмём 214 из 486 · 68 сняли автоматически</span>
+      <button type="button" style="height: 44px; padding: 0 14px; margin-right: -4px; border: 1px solid #2C2C3A; border-radius: 999px; background: transparent; color: #F5F3EE; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Что сняли</button>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 0; top: 232px; right: 0; bottom: 0; padding: 0 16px; overflow: hidden;">
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px;">
+
+      <div style="position: relative;">
+        <img src="../img/f03.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f10.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+      </div>
+
+      <!-- Снято автоматически: приглушено, причина названа, возвращается касанием -->
+      <div style="position: relative;">
+        <img src="../img/f06.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block; opacity: 0.32;">
+        <span style="position: absolute; left: 5px; right: 5px; bottom: 5px; display: flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 999px; background: rgba(9,9,14,0.86); color: #A4A1B2; font-size: 10px; font-weight: 600;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v5"></path></svg>
+          Размыто
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f11.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f01.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block; opacity: 0.32;">
+        <span style="position: absolute; left: 5px; right: 5px; bottom: 5px; display: flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 999px; background: rgba(9,9,14,0.86); color: #A4A1B2; font-size: 10px; font-weight: 600;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path></svg>
+          Дубль
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f05.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+      </div>
+
+      <!-- Снято рукой организатора: другой знак, чем у автоматики -->
+      <div style="position: relative;">
+        <img src="../img/f08.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block; opacity: 0.32;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: rgba(9,9,14,0.86); border: 1px solid #45424F; color: #A4A1B2; display: flex; align-items: center; justify-content: center; box-sizing: border-box;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f09.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+        <span style="position: absolute; left: 6px; bottom: 6px; display: flex; align-items: center; gap: 4px; padding: 3px 7px 3px 5px; border-radius: 999px; background: rgba(9,9,14,0.72); color: #F5F3EE; font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums;">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg>
+          1:08
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f12.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block; opacity: 0.32;">
+        <span style="position: absolute; left: 5px; right: 5px; bottom: 5px; display: flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 999px; background: rgba(9,9,14,0.86); color: #A4A1B2; font-size: 10px; font-weight: 600;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v2M12 19v2M5 12H3M21 12h-2"></path></svg>
+          Темно
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f02.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f07.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="../img/f04.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+        <span style="position: absolute; right: 6px; top: 6px; width: 22px; height: 22px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg>
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 132px; background: linear-gradient(to top, #0B0B12 58%, rgba(11,11,18,0) 100%); pointer-events: none;"></div>
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 30px;">
+    <button type="button" style="width: 100%; height: 56px; border: none; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer; box-shadow: 0 12px 32px rgba(75,91,255,0.38); font-variant-numeric: tabular-nums;">
+      Дальше — 214 кадров
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+    </button>
+  </div>
+
+</div>
+</body>
+</html>

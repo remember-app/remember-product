@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Компонент: материала мало</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Onest', ui-sans-serif, system-ui, sans-serif; background: #16161F; color: #F5F3EE; -webkit-font-smoothing: antialiased; overflow: hidden; }
+html { overflow: hidden; }
+button { font-family: inherit; }
+</style>
+</head>
+<body>
+<!-- Отказ на заказе ролика: говорит, чего не хватает, и даёт это исправить -->
+<div style="width: 390px; height: 400px; box-sizing: border-box; background: #16161F; border-top: 1px solid #2C2C3A; border-radius: 28px 28px 0 0; padding: 12px 16px 30px; display: flex; flex-direction: column; gap: 18px;">
+
+  <span style="width: 40px; height: 4px; border-radius: 999px; background: #3A3747; align-self: center;"></span>
+
+  <div style="display: flex; align-items: center; gap: 14px;">
+    <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 16px; background: #22222E; color: #A4A1B2; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 9h16M9 4v16"></path></svg>
+    </span>
+    <h2 style="margin: 0; flex-grow: 1; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 21px; line-height: 25px; letter-spacing: -0.03em; color: #F5F3EE;">Материала пока мало</h2>
+  </div>
+
+  <p style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 400; color: #A4A1B2;">В воспоминании 3 кадра — из них истории не выйдет. Добавьте ещё несколько фото или видео, и заказ пройдёт.</p>
+
+  <span style="flex-grow: 1;"></span>
+
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <button type="button" style="width: 100%; height: 56px; border: none; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer; box-shadow: 0 12px 32px rgba(75,91,255,0.38);">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+      Добавить кадры
+    </button>
+    <button type="button" style="width: 100%; height: 48px; border: none; border-radius: 999px; background: transparent; color: #A4A1B2; font-size: 15px; font-weight: 600; cursor: pointer;">Позже</button>
+  </div>
+
+</div>
+</body>
+</html>

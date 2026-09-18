@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Кадры — по людям</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Onest', ui-sans-serif, system-ui, sans-serif; background: #0B0B12; color: #F5F3EE; -webkit-font-smoothing: antialiased; overflow: hidden; }
+html { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+</style>
+</head>
+<body>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0B0B12; position: relative; overflow: hidden;">
+
+  <div style="position: absolute; left: 0; top: 0; right: 0; padding: 52px 16px 0;">
+    <div style="display: flex; align-items: center; gap: 8px; height: 44px;">
+      <button type="button" aria-label="Назад" style="width: 44px; height: 44px; margin-left: -10px; border: none; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+      </button>
+      <h1 style="margin: 0; flex-grow: 1; min-width: 0; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 18px; line-height: 22px; letter-spacing: -0.03em; color: #F5F3EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Свадьба Лизы и Марка</h1>
+      <button type="button" aria-label="Выбрать кадры" style="width: 44px; height: 44px; margin-right: -10px; border: none; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="m8 12 3 3 5-6"></path></svg>
+      </button>
+    </div>
+
+    <div role="tablist" aria-label="Что показать" style="margin-top: 12px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 999px; background: #16161F; border: 1px solid #2C2C3A;">
+      <button type="button" aria-pressed="true" style="height: 36px; border: none; border-radius: 999px; background: #F5F3EE; color: #0B0B12; font-size: 14px; font-weight: 600; cursor: pointer;">Кадры</button>
+      <button type="button" aria-pressed="false" style="height: 36px; border: none; border-radius: 999px; background: transparent; color: #A4A1B2; font-size: 14px; font-weight: 600; cursor: pointer;">Ролики</button>
+      <button type="button" aria-pressed="false" style="height: 36px; border: none; border-radius: 999px; background: transparent; color: #A4A1B2; font-size: 14px; font-weight: 600; cursor: pointer;">Люди</button>
+    </div>
+
+  </div>
+
+  <!-- Те же кадры, разложенные по тем, кто их принёс -->
+  <div style="position: absolute; left: 0; top: 168px; right: 0; bottom: 0; padding: 0 16px; overflow: hidden;">
+
+    <div style="display: flex; align-items: center; gap: 10px; height: 48px;">
+      <span style="width: 26px; height: 26px; border-radius: 999px; background: #22222E; box-shadow: 0 0 0 2px #E4FF4F; color: #F5F3EE; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ЛМ</span>
+      <span style="font-size: 13px; font-weight: 600; color: #F5F3EE;">Лиза Морозова</span>
+      <span style="flex-grow: 1; height: 1px; background: #2C2C3A;"></span>
+      <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">112 фото</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px;">
+      <img src="../img/f03.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+      <img src="../img/f06.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+      <img src="../img/f01.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px; height: 48px;">
+      <span style="width: 26px; height: 26px; border-radius: 999px; background: #22222E; color: #F5F3EE; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">МК</span>
+      <span style="font-size: 13px; font-weight: 600; color: #F5F3EE;">Марк Ковалёв</span>
+      <span style="flex-grow: 1; height: 1px; background: #2C2C3A;"></span>
+      <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">84 фото</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px;">
+      <img src="../img/f11.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+      <img src="../img/f05.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+      <img src="../img/f08.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px; height: 48px;">
+      <span style="width: 26px; height: 26px; border-radius: 999px; background: #22222E; color: #F5F3EE; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">АП</span>
+      <span style="font-size: 13px; font-weight: 600; color: #F5F3EE;">Аня Петрова</span>
+      <span style="flex-grow: 1; height: 1px; background: #2C2C3A;"></span>
+      <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">51 фото</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px;">
+      <img src="../img/f12.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+      <img src="../img/f02.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+      <img src="../img/f04.jpg" alt="" style="width: 100%; height: 117px; object-fit: cover; border-radius: 4px; display: block;">
+    </div>
+
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 132px; background: linear-gradient(to top, #0B0B12 58%, rgba(11,11,18,0) 100%); pointer-events: none;"></div>
+  <!-- Тот же низ, но обе кнопки с искрой: отбор включён и разложено не по умолчанию -->
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 30px; display: flex; align-items: center; gap: 10px;">
+    <button type="button" aria-label="Фильтры, отбор включён" style="position: relative; width: 56px; height: 56px; border: 1px solid #2C2C3A; border-radius: 999px; background: #16161F; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8.2V20l-4-2.2v-4.6z"></path></svg>
+      <span style="position: absolute; right: 11px; top: 11px; width: 9px; height: 9px; border-radius: 999px; background: #E4FF4F; box-shadow: 0 0 0 2px #16161F;"></span>
+    </button>
+    <button type="button" style="flex-grow: 1; height: 56px; border: none; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer; box-shadow: 0 12px 32px rgba(75,91,255,0.38);">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+      Добавить ещё
+    </button>
+    <button type="button" aria-label="Сортировка: по людям" style="position: relative; width: 56px; height: 56px; border: 1px solid #2C2C3A; border-radius: 999px; background: #16161F; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20V4"></path><path d="m4 7 3-3 3 3"></path><path d="M17 4v16"></path><path d="m14 17 3 3 3-3"></path></svg>
+      <span style="position: absolute; right: 11px; top: 11px; width: 9px; height: 9px; border-radius: 999px; background: #E4FF4F; box-shadow: 0 0 0 2px #16161F;"></span>
+    </button>
+  </div>
+
+</div>
+</body>
+</html>
