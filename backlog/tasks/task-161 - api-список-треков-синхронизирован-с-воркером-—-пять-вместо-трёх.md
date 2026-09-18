@@ -4,7 +4,7 @@ title: 'api: список треков синхронизирован с вор�
 status: Done
 assignee: []
 created_date: '2026-09-18 14:39'
-updated_date: '2026-09-18 14:44'
+updated_date: '2026-09-18 15:28'
 labels:
   - from-lead
 milestone: m-23
@@ -24,10 +24,10 @@ TASK-157 (montage) заменил три синтезированных тона
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 musicTracks — пять id в порядке макета: bright, warm, calm, night, road
-- [ ] #2 Заказ с любым из пяти id принимается, сохраняется в params и виден в ответе на заказ и в списке роликов
-- [ ] #3 Поведение с прежними тремя id (warm, bright, calm) не изменилось
-- [ ] #4 Автотесты добавлены на два новых id, существующие не сломаны
+- [x] #1 musicTracks — пять id в порядке макета: bright, warm, calm, night, road
+- [x] #2 Заказ с любым из пяти id принимается, сохраняется в params и виден в ответе на заказ и в списке роликов
+- [x] #3 Поведение с прежними тремя id (warm, bright, calm) не изменилось
+- [x] #4 Автотесты добавлены на два новых id, существующие не сломаны
 <!-- AC:END -->
 
 ## Implementation Notes
