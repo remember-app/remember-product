@@ -20,7 +20,7 @@ PY := projects/montage/.venv/bin/python
 R2 ?= R2_ENDPOINT=http://localhost:9000 R2_BUCKET=remember R2_ACCESS_KEY_ID=remember R2_SECRET_ACCESS_KEY=remember-secret
 
 .DEFAULT_GOAL := help
-.PHONY: help install up down logs _kill db db-stop api migrate worker worker-init mobile test test-api test-mobile test-montage check
+.PHONY: help install up down logs _kill db db-stop api migrate worker worker-init mobile sim test test-api test-mobile test-montage check
 
 help: ## показать этот список
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) | awk -F':.*?## ' '{printf "  make %-14s %s\n", $$1, $$2}'
@@ -38,6 +38,7 @@ up: _kill db migrate ## поднять всё разом: база, API, вор�
 	@sleep 3; for n in api worker mobile; do \
 		kill -0 $$(cat .run/$$n.pid) 2>/dev/null || echo "!! $$n упал сразу после запуска — смотри .run/$$n.log"; \
 	done
+	@$(MAKE) sim
 	@echo 'поднято: api, воркер, приложение. логи — make logs, погасить — make down'
 
 down: _kill db-stop ## погасить всё
@@ -69,6 +70,11 @@ worker: ## запустить воркер
 
 mobile: ## запустить приложение (Expo)
 	cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start
+
+sim: ## открыть симулятор iOS (если ещё не запущен) и открыть в нём приложение
+	@xcrun simctl list devices booted | grep -q Booted || xcrun simctl boot "$$(xcrun simctl list devices available | grep -m1 iPhone | grep -oE '[0-9A-F-]{36}')"
+	@open -a Simulator 2>/dev/null || open "$$(dirname "$$(xcode-select -p)")/Applications/DeviceHub.app"
+	@sleep 2; xcrun simctl openurl booted "exp://127.0.0.1:8081" 2>/dev/null || true
 
 test: test-api test-mobile test-montage ## прогнать все тесты
 
