@@ -1,9 +1,12 @@
 # Мета-слой для запуска руками. Источник правды — сами сервисы:
 # projects/api/package.json, projects/mobile/package.json, projects/montage/README.md.
-# Здесь только короткие имена; своего эти цели не делают ничего — кроме test-montage, который
-# заводит базу под тесты воркера: она ничья, и завести её больше некому.
+# Здесь только короткие имена; своего эти цели не делают ничего — кроме db и test-montage,
+# которые заводят себе базу: их с этим никто больше не сведёт.
+#
+# Postgres — постоянный контейнер на localhost:5432, поднятый вручную и не входящий в этот
+# стенд: make его не поднимает и не гасит, только подключается и заводит в нём базу `remember`.
 
-DATABASE_URL ?= postgres://remember:remember@localhost:5432/remember
+DATABASE_URL ?= postgres://postgres:postgres@localhost:5432/remember
 # Своя база для тестов воркера, на том же Postgres. Они чистят jobs и разбирают очередь целиком,
 # так что общая с `make up` база означала бы драку за очередь с живым воркером. Выводится из
 # DATABASE_URL, чтобы другой порт или другой стенд уводил за собой и тесты, а не только стенд.
@@ -45,10 +48,11 @@ logs: ## смотреть логи поднятого (Ctrl-C — выйти)
 _kill:
 	@for f in .run/*.pid; do [ -f "$$f" ] || continue; kill -- -$$(cat $$f) 2>/dev/null || true; done; rm -f .run/*.pid
 
-db: ## поднять локальные Postgres и хранилище (общие для api и montage)
+db: ## поднять локальное хранилище, завести базу в постоянном Postgres
 	cd projects/api && docker compose up -d --wait
+	@DB_URL='$(DATABASE_URL)' $(PY) -c 'import os,psycopg,urllib.parse as u;from psycopg import sql;p=u.urlparse(os.environ["DB_URL"]);n=p.path.lstrip("/");c=psycopg.connect(u.urlunparse(p._replace(path="/postgres")),autocommit=True);c.execute("SELECT 1 FROM pg_database WHERE datname=%s",(n,)).fetchone() or c.execute(sql.SQL("CREATE DATABASE {}").format(sql.Identifier(n)))'
 
-db-stop: ## погасить локальные Postgres и хранилище
+db-stop: ## погасить локальное хранилище (Postgres — свой, постоянный, его не трогаем)
 	cd projects/api && docker compose down
 
 migrate: ## накатить миграции API
