@@ -30,8 +30,11 @@ install: ## поставить зависимости всех трёх серв
 	cd projects/mobile && npm install
 	python3 -m venv projects/montage/.venv && $(PY) -m pip install -r projects/montage/requirements.txt
 
+# Перед запуском — музыку библиотеки в бакет (`worker.py tracks`): без неё «Послушать» на экране
+# музыки молчит. Команда идемпотентна, лежащее не перезаливает; не вышла — говорим, стенд поднимаем.
 up: _kill db migrate ## поднять всё разом: база, API, воркер, приложение
 	@mkdir -p .run
+	@( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py tracks ) > .run/tracks.log 2>&1 || echo "!! музыка не выложена в хранилище, «Послушать» не заиграет — смотри .run/tracks.log"
 	@set -m; ( cd projects/api && npm run dev ) < /dev/null > .run/api.log 2>&1 & echo $$! > .run/api.pid
 	@set -m; ( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run ) < /dev/null > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
 	@set -m; ( cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start ) < /dev/null > .run/mobile.log 2>&1 & echo $$! > .run/mobile.pid
