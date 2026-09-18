@@ -1,10 +1,10 @@
 ---
 id: TASK-147
 title: 'mobile: просмотр кадра и видео во весь экран по макету'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-18 13:01'
-updated_date: '2026-09-18 14:14'
+updated_date: '2026-09-18 14:44'
 labels:
   - from-chief
 milestone: m-21

@@ -6,7 +6,7 @@ title: >-
 status: Done
 assignee: []
 created_date: '2026-09-18 13:59'
-updated_date: '2026-09-18 14:09'
+updated_date: '2026-09-18 14:10'
 labels:
   - from-chief
 milestone: m-23
@@ -49,3 +49,9 @@ TASK-154 и TASK-155 этой вехи завели в projects/montage/schema.s
 
 README дополнен в трёх местах: раздел про чужую таблицу jobs, абзац про материал, уходящий с участником, и абзац про DELETE медиа.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Отменено человеком 2026-09-18 (через chief): код под текст соглашения не подгоняем. Реализация была готова (коммит fe3a6e8 в ветке worktree-agent-ab73967ee9d3d4247 сабмодуля api, тесты зелёные) — не слита в main, ветка и worktree удалены. Веха возвращается к исходному фокусу: понимание, речь, треки, режиссёр, мастер заказа.
+<!-- SECTION:FINAL_SUMMARY:END -->
