@@ -4,6 +4,7 @@ title: 'mobile: ролики и участники воспоминания по
 status: To Do
 assignee: []
 created_date: '2026-09-18 13:01'
+updated_date: '2026-09-18 14:15'
 labels:
   - from-chief
 milestone: m-21
@@ -38,5 +39,5 @@ ordinal: 152000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Экраны: MemoryFilms, FilmsEmpty, MemoryPeople, SheetInvite, SheetConfirmMember (design/screens/). src/memory/films.tsx, src/memory/people.tsx — вычистить и собрать заново на новой библиотеке (TASK-142).
+Экраны: MemoryFilms, FilmsEmpty, MemoryPeople, SheetInvite, SheetConfirmMember (design/screens/). src/memory/films.tsx, src/memory/people.tsx — вычистить и собрать заново на новой библиотеке (TASK-142). src/memory/head.tsx — общая шапка трёх лиц воспоминания, её же может трогать соседняя задача TASK-144 (галерея кадров); меняй в ней только то, что необходимо для этого экрана, не переписывай ради чистоты — конфликт на слиянии разбирает лид.
 <!-- SECTION:NOTES:END -->
