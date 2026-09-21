@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Ролик — о чём он</title>
+<title>Ролик — как смонтировать</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap">
 <style>
 body { margin: 0; font-family: 'Onest', ui-sans-serif, system-ui, sans-serif; background: #0B0B12; color: #F5F3EE; -webkit-font-smoothing: antialiased; overflow: hidden; }
@@ -12,6 +12,7 @@ textarea { font-family: inherit; }
 </style>
 </head>
 <body>
+
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #0B0B12; position: relative; overflow: hidden;">
 
   <div style="position: absolute; left: 0; top: 0; right: 0; padding: 52px 16px 0;">
@@ -34,27 +35,20 @@ textarea { font-family: inherit; }
       <span style="height: 3px; border-radius: 999px; background: #2C2C3A;"></span>
     </div>
 
-    <h1 style="margin: 18px 0 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 26px; line-height: 29px; letter-spacing: -0.035em; color: #F5F3EE;">О чём этот ролик</h1>
+    <h1 style="margin: 18px 0 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 26px; line-height: 29px; letter-spacing: -0.035em; color: #F5F3EE;">Как смонтировать этот ролик</h1>
     <p style="margin: 10px 0 0; font-size: 13px; line-height: 19px; font-weight: 500; color: #A4A1B2;">Можно пропустить — тогда режиссёр решит сам.</p>
   </div>
 
-  <div style="position: absolute; left: 0; top: 206px; right: 0; bottom: 0; padding: 0 16px; display: flex; flex-direction: column; gap: 10px; overflow: hidden;">
+  <div style="position: absolute; left: 0; top: 238px; right: 0; bottom: 0; padding: 0 16px; display: flex; flex-direction: column; gap: 10px; overflow: hidden;">
 
+    <!-- Шаблон выбран на первом экране. Здесь — его текст, который можно поправить -->
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px 0 8px; border-radius: 999px; background: #1A1C33; border: 1px solid rgba(75,91,255,0.5); font-size: 12px; font-weight: 600; color: #F5F3EE;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-5h4v5"></path></svg>Шаблон «Для родителей»</span>
+    </div>
+
+    <!-- Текст выбранного шаблона целиком. Его можно отправить как есть или поправить — тогда шаблон станет «своим» -->
     <label for="story" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);">История ролика</label>
-    <textarea id="story" rows="8" placeholder="Начни со сборов утром, потом церемония, а финал — танцы." style="height: 240px; box-sizing: border-box; border-radius: 20px; background: #16161F; border: 1px solid #4B5BFF; outline: none; color: #F5F3EE; font-size: 16px; font-weight: 400; line-height: 24px; padding: 16px 18px; resize: none;">Свадьба Лизы и Марка. Начни со сборов утром, дальше церемония в саду, а финал — танцы до трёх ночи. Побольше бабушки: она приехала впервые за пять лет.</textarea>
-
-    <div style="display: flex; align-items: center; gap: 12px; padding: 0 4px;">
-      <span style="flex-grow: 1; font-size: 12px; font-weight: 500; color: #6E6B7D;">Чем точнее, тем меньше сюрпризов</span>
-      <span style="font-size: 12px; font-weight: 600; color: #A4A1B2; font-variant-numeric: tabular-nums;">186 / 600</span>
-    </div>
-
-    <!-- Затравки: не за человека, а вместо чистого листа -->
-    <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 10px;">
-      <button type="button" style="height: 44px; padding: 0 16px; border: 1px solid #2C2C3A; border-radius: 999px; background: transparent; color: #F5F3EE; font-size: 14px; font-weight: 500; cursor: pointer;">Начни с…</button>
-      <button type="button" style="height: 44px; padding: 0 16px; border: 1px solid #2C2C3A; border-radius: 999px; background: transparent; color: #F5F3EE; font-size: 14px; font-weight: 500; cursor: pointer;">Финал —…</button>
-      <button type="button" style="height: 44px; padding: 0 16px; border: 1px solid #2C2C3A; border-radius: 999px; background: transparent; color: #F5F3EE; font-size: 14px; font-weight: 500; cursor: pointer;">Побольше…</button>
-      <button type="button" style="height: 44px; padding: 0 16px; border: 1px solid #2C2C3A; border-radius: 999px; background: transparent; color: #F5F3EE; font-size: 14px; font-weight: 500; cursor: pointer;">Без…</button>
-    </div>
+    <textarea id="story" rows="7" style="height: 280px; box-sizing: border-box; border-radius: 20px; background: #16161F; border: 1px solid #4B5BFF; outline: none; color: #F5F3EE; font-size: 16px; font-weight: 400; line-height: 24px; padding: 16px 18px; resize: none; overflow: hidden;">Ролик для родителей о свадьбе Лизы и Марка. Спокойный темп, каждый кадр держится подольше, чтобы успеть рассмотреть. Главное — лица: жених, невеста, бабушки и дедушки. Начни с утренних сборов, в середине — клятвы и объятия с родными, финал — первый танец. Без резких склеек, мелькания и шумных кадров из бара.</textarea>
 
   </div>
 

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Настройки воспоминания</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Onest', ui-sans-serif, system-ui, sans-serif; background: #0B0B12; color: #F5F3EE; -webkit-font-smoothing: antialiased; overflow: hidden; }
+html { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+</style>
+</head>
+<body>
+
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #0B0B12; position: relative; overflow: hidden;">
+
+  <div style="position: absolute; left: 0; top: 0; right: 0; padding: 52px 16px 0;">
+    <div style="display: flex; align-items: center; gap: 8px; height: 44px;">
+      <button type="button" aria-label="Назад к кадрам" style="width: 44px; height: 44px; margin-left: -10px; border: none; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+      <h1 style="margin: 0; flex-grow: 1; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 18px; line-height: 22px; letter-spacing: -0.03em; color: #F5F3EE;">Воспоминание</h1>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; top: 112px; display: flex; flex-direction: column; gap: 22px;">
+
+    <!-- Что это за воспоминание: обложка, имя, даты. Правится одной кнопкой -->
+    <div style="display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 22px; background: #16161F; border: 1px solid #2C2C3A;">
+      <img src="../img/f01.jpg" alt="Обложка" style="width: 68px; height: 68px; border-radius: 14px; object-fit: cover; display: block; flex-shrink: 0;">
+      <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px;">
+        <span style="font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 17px; line-height: 21px; letter-spacing: -0.025em; color: #F5F3EE;">Свадьба Лизы и Марка</span>
+        <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">12–14 сентября · 486 кадров</span>
+      </div>
+      <button type="button" aria-label="Изменить название, даты и обложку" style="width: 44px; height: 44px; border: none; border-radius: 999px; background: #22222E; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></button>
+    </div>
+
+    <!-- Люди. Роли в строке не выделяем. Статус — только знаком справа, текстом не дублируется. Свой статус — кнопка: поменять можно в любой момент -->
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px; padding-left: 2px;">
+        <div style="flex-grow: 1; display: flex; align-items: baseline; gap: 8px;">
+          <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.02em; color: #F5F3EE;">Люди</h2>
+          <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">3 из 5 всё скинули</span>
+        </div>
+        <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #3A3747; border-radius: 999px; background: transparent; color: #F5F3EE; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Править состав</button>
+      </div>
+      <div style="border-radius: 22px; background: #16161F; border: 1px solid #2C2C3A; overflow: hidden;">
+      <div style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 14px;">
+        <span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 999px; background: #5B4B8A; border: 1.5px solid #16161F; box-sizing: border-box; color: #F5F3EE; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ЛМ</span>
+        <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 15px; font-weight: 600; color: #F5F3EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Лиза Морозова (вы)</span>
+          <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">128 кадров</span>
+        </div>
+        <button type="button" aria-label="Ваш статус: всё скинули. Изменить" style="width: 44px; height: 44px; margin-right: -8px; border: none; border-radius: 999px; background: transparent; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;"><span aria-hidden="true" style="width: 28px; height: 28px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+      </div><div style="height: 1px; background: #22222E; margin-left: 64px;"></div>
+      <div style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 14px;">
+        <span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 999px; background: #2F5E63; border: 1.5px solid #16161F; box-sizing: border-box; color: #F5F3EE; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">МК</span>
+        <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 15px; font-weight: 600; color: #F5F3EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Марк Ковалёв</span>
+          <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">96 кадров</span>
+        </div>
+        <span role="img" aria-label="Всё загрузил" style="width: 28px; height: 28px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span>
+      </div><div style="height: 1px; background: #22222E; margin-left: 64px;"></div>
+      <div style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 14px;">
+        <span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 999px; background: #7A4B3A; border: 1.5px solid #16161F; box-sizing: border-box; color: #F5F3EE; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">АП</span>
+        <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 15px; font-weight: 600; color: #F5F3EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Аня Петрова</span>
+          <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">54 кадра</span>
+        </div>
+        <span role="img" aria-label="Ещё будет" style="width: 28px; height: 28px; border-radius: 999px; border: 1.5px solid #45424F; box-sizing: border-box; color: #F5F3EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg></span>
+      </div><div style="height: 1px; background: #22222E; margin-left: 64px;"></div>
+      <div style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 14px;">
+        <span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 999px; background: #3E5A2E; border: 1.5px solid #16161F; box-sizing: border-box; color: #F5F3EE; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ВГ</span>
+        <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 15px; font-weight: 600; color: #F5F3EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Вера Гущина</span>
+          <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">62 кадра</span>
+        </div>
+        <span role="img" aria-label="Всё загрузил" style="width: 28px; height: 28px; border-radius: 999px; background: #E4FF4F; color: #14160A; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span>
+      </div><div style="height: 1px; background: #22222E; margin-left: 64px;"></div>
+      <div style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 14px;">
+        <span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 999px; background: #5A3E5E; border: 1.5px solid #16161F; box-sizing: border-box; color: #F5F3EE; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ДС</span>
+        <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 15px; font-weight: 600; color: #F5F3EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Дима Соколов</span>
+          <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">0 кадров</span>
+        </div>
+        <span role="img" aria-label="Ещё будет" style="width: 28px; height: 28px; border-radius: 999px; border: 1.5px solid #45424F; box-sizing: border-box; color: #F5F3EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg></span>
+      </div>
+      </div>
+    </div>
+
+    <!-- Зрители: у них нет своих кадров и статуса, поэтому они просто отдельно, под всеми -->
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: baseline; gap: 8px; padding-left: 2px;">
+        <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.02em; color: #F5F3EE;">Зрители</h2>
+        <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">1</span>
+      </div>
+      <div style="border-radius: 22px; background: #16161F; border: 1px solid #2C2C3A; overflow: hidden;">
+      <div style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 14px;">
+        <span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 999px; background: #3A4A6E; border: 1.5px solid #16161F; box-sizing: border-box; color: #F5F3EE; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">КК</span>
+        <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column;">
+          <span style="font-size: 15px; font-weight: 600; color: #F5F3EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Костя Ким</span>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Главное действие этого экрана — позвать ещё людей. Стоит внизу, как на всех экранах -->
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 132px; background: linear-gradient(to top, #0B0B12 58%, rgba(11,11,18,0) 100%); pointer-events: none;"></div>
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 30px;">
+    <button type="button" style="width: 100%; height: 56px; border: none; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer; box-shadow: 0 12px 32px rgba(75,91,255,0.38);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6M22 11h-6"></path></svg>Пригласить</button>
+  </div>
+
+</div>
+</body>
+</html>

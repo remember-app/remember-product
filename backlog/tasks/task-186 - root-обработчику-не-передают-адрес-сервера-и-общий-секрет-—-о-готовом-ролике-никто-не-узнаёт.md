@@ -1,0 +1,36 @@
+---
+id: TASK-186
+title: >-
+  root: обработчику не передают адрес сервера и общий секрет — о готовом ролике
+  никто не узнаёт
+status: In Progress
+assignee: []
+created_date: '2026-09-21 12:05'
+updated_date: '2026-09-21 12:10'
+labels:
+  - from-chief
+dependencies: []
+priority: high
+type: bug
+ordinal: 193000
+---
+
+## Description
+
+<!-- SECTION:DESCRIPTION:BEGIN -->
+В журнале обработчика прямая жалоба: адрес api и общий секрет не заданы, ролик готов и сервер об этом не извещён. Приложение узнаёт о ролике, только когда переспросит само; уведомление «ролик готов» не уходит.
+<!-- SECTION:DESCRIPTION:END -->
+
+## Acceptance Criteria
+<!-- AC:BEGIN -->
+- [ ] #1 После сборки обработчик сообщает серверу о готовом ролике, жалобы в журнале нет
+- [x] #2 Значения берутся из настроек сервиса, в репозиторий не попадают
+<!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+make up и make worker вносят воркеру API_URL и INTERNAL_WORKER_TOKEN из .env сервисов (projects/montage/.env, чего нет там — projects/api/.env), тем же способом, что и настройки модели: воркер читает только окружение. В Makefile ни секрета, ни заглушки; адрес стенда — знак API_URL (по умолчанию http://localhost:3000), файл его перебивает.
+
+AC#1 ждёт человека: INTERNAL_WORKER_TOKEN не задан нигде — ни у api, ни у воркера. Пока его нет, маршрут /internal/* у api заперт (401), и воркер пишет прежнее предупреждение. Нужно один раз дописать строку INTERNAL_WORKER_TOKEN=<openssl rand -base64 32> в projects/api/.env (файл кончается без перевода строки — дописывать с него) и перезапустить api и воркер.
+<!-- SECTION:NOTES:END -->

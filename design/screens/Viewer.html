@@ -11,27 +11,31 @@ button { font-family: inherit; }
 </style>
 </head>
 <body>
+
 <!-- Раскладка как в телефонных галереях: плавающие круглые кнопки, плёнка и панель действий -->
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #08080C; position: relative; overflow: hidden;">
 
-  <div style="position: absolute; left: 0; top: 116px; right: 0; bottom: 148px; display: flex; align-items: center; justify-content: center;">
+  <div style="position: absolute; left: 0; top: 116px; right: 0; bottom: 96px; display: flex; align-items: center; justify-content: center;">
     <img src="../img/f10.jpg" alt="Фото, 13 сентября" style="max-width: 100%; max-height: 100%; display: block;">
   </div>
 
-  <!-- Шапка: назад, когда и от кого, и «ещё» -->
+  <!-- Всё управление — три кнопки сверху: назад, сведения о кадре (по центру), действия (справа) -->
   <div style="position: absolute; left: 0; top: 52px; right: 0; padding: 0 12px; display: flex; align-items: center; gap: 10px;">
     <button type="button" aria-label="Закрыть" style="width: 48px; height: 48px; border: none; border-radius: 999px; background: rgba(245,243,238,0.10); color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
     </button>
 
     <div style="flex-grow: 1; display: flex; justify-content: center; min-width: 0;">
-      <div style="padding: 6px 18px; border-radius: 999px; background: rgba(245,243,238,0.10); display: flex; flex-direction: column; align-items: center; gap: 1px;">
-        <span style="font-size: 15px; font-weight: 600; color: #F5F3EE;">13 сентября</span>
-        <span style="font-size: 12px; font-weight: 500; color: rgba(245,243,238,0.66); font-variant-numeric: tabular-nums;">21:47 · Марк Ковалёв</span>
-      </div>
+      <button type="button" aria-label="Сведения о кадре: 13 сентября, 21:47 · Марк Ковалёв" style="height: 48px; padding: 0 14px 0 20px; border: 1px solid rgba(255,255,255,0.09); border-radius: 999px; background: rgba(245,243,238,0.10); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: #F5F3EE; display: flex; align-items: center; gap: 8px; cursor: pointer; box-sizing: border-box;">
+        <span style="display: flex; flex-direction: column; align-items: center; gap: 1px;">
+          <span style="font-size: 15px; font-weight: 600; color: #F5F3EE;">13 сентября</span>
+          <span style="font-size: 12px; font-weight: 500; color: rgba(245,243,238,0.66); font-variant-numeric: tabular-nums;">21:47 · Марк Ковалёв</span>
+        </span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(245,243,238,0.66)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+      </button>
     </div>
 
-    <button type="button" aria-label="Ещё" style="width: 48px; height: 48px; border: none; border-radius: 999px; background: rgba(245,243,238,0.10); color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+    <button type="button" aria-label="Действия: поделиться, сохранить, удалить" style="width: 48px; height: 48px; border: none; border-radius: 999px; background: rgba(245,243,238,0.10); color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
       <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.9"></circle><circle cx="12" cy="12" r="1.9"></circle><circle cx="19" cy="12" r="1.9"></circle></svg>
     </button>
   </div>
@@ -53,27 +57,6 @@ button { font-family: inherit; }
       <img src="../img/f04.jpg" alt="" style="width: 30px; height: 44px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45;">
     </div>
 
-    <!-- Действия: по краям то, что уводит кадр из воспоминания, в середине то, что с ним делают -->
-    <div style="padding: 0 16px; display: flex; align-items: center; gap: 10px;">
-      <button type="button" aria-label="Поделиться" style="width: 48px; height: 48px; border: none; border-radius: 999px; background: rgba(245,243,238,0.10); color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"></path><path d="M12 16V3"></path><path d="m7 8 5-5 5 5"></path></svg>
-      </button>
-
-      <div style="flex-grow: 1; display: flex; justify-content: center;">
-        <div style="height: 48px; padding: 0 6px; border-radius: 999px; background: rgba(245,243,238,0.10); display: flex; align-items: center; gap: 4px;">
-          <button type="button" aria-label="Сохранить в галерею телефона" style="width: 48px; height: 48px; border: none; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>
-          </button>
-          <button type="button" aria-label="Подробности кадра" style="width: 48px; height: 48px; border: none; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
-          </button>
-        </div>
-      </div>
-
-      <button type="button" aria-label="Удалить из воспоминания" style="width: 48px; height: 48px; border: none; border-radius: 999px; background: rgba(245,243,238,0.10); color: #FF8D8D; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path><path d="M6 7v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7"></path></svg>
-      </button>
-    </div>
 
   </div>
 
