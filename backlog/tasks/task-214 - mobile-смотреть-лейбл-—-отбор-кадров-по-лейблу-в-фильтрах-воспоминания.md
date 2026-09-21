@@ -1,10 +1,10 @@
 ---
 id: TASK-214
 title: 'mobile: смотреть лейбл — отбор кадров по лейблу в фильтрах воспоминания'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 12:50'
-updated_date: '2026-09-21 13:31'
+updated_date: '2026-09-21 14:46'
 labels:
   - from-chief
 milestone: m-25
