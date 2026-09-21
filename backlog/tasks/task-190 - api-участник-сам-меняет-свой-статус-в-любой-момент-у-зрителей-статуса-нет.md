@@ -1,9 +1,10 @@
 ---
 id: TASK-190
 title: 'api: участник сам меняет свой статус в любой момент, у зрителей статуса нет'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 12:25'
+updated_date: '2026-09-21 12:25'
 labels:
   - from-chief
 milestone: m-24

@@ -1,9 +1,10 @@
 ---
 id: TASK-191
 title: 'api: сведения о кадре — кто принёс, файл, камера, место, в каких роликах'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 12:25'
+updated_date: '2026-09-21 12:25'
 labels:
   - from-chief
 milestone: m-24
