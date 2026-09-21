@@ -1,10 +1,10 @@
 ---
 id: TASK-196
 title: 'montage: воркер записывает, где в готовом ролике стоит каждый кадр'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 12:26'
-updated_date: '2026-09-21 12:27'
+updated_date: '2026-09-21 12:41'
 labels:
   - from-chief
 milestone: m-24

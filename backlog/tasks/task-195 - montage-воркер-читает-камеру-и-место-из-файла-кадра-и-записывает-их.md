@@ -1,9 +1,10 @@
 ---
 id: TASK-195
 title: 'montage: воркер читает камеру и место из файла кадра и записывает их'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 12:26'
+updated_date: '2026-09-21 12:41'
 labels:
   - from-chief
 milestone: m-24
