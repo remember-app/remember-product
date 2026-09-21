@@ -11,7 +11,10 @@ DATABASE_URL ?= postgres://postgres:postgres@localhost:5432/remember
 # так что общая с `make up` база означала бы драку за очередь с живым воркером. Выводится из
 # DATABASE_URL, чтобы другой порт или другой стенд уводил за собой и тесты, а не только стенд.
 TEST_DATABASE_URL ?= $(DATABASE_URL)_test
-EXPO_PUBLIC_API_URL ?= http://localhost:3000
+# Адрес api на стенде один на всех: его получает приложение, по нему же воркер стучится о
+# готовом ролике.
+API_URL ?= http://localhost:3000
+EXPO_PUBLIC_API_URL ?= $(API_URL)
 PY := projects/montage/.venv/bin/python
 
 # Воркер читает только окружение — .env он не открывает. Значения те же, что в
@@ -19,11 +22,15 @@ PY := projects/montage/.venv/bin/python
 # make worker R2='R2_ENDPOINT=… R2_BUCKET=… R2_ACCESS_KEY_ID=… R2_SECRET_ACCESS_KEY=…'
 R2 ?= R2_ENDPOINT=http://localhost:9000 R2_BUCKET=remember R2_ACCESS_KEY_ID=remember R2_SECRET_ACCESS_KEY=remember-secret
 
-# Облачная модель: ключ и поставщика человек держит в projects/montage/.env (файл в репозиторий
-# не попадает), а воркер читает только окружение — вот мы их оттуда и вносим. Заданное в
-# окружении сильнее: из файла берётся лишь то, чего там нет. Нет файла или нет строк — воркер
-# идёт без модели, ровно как сейчас. Тестов это не касается: в сеть они не ходят.
-AI = eval "$$(sed -nE 's/^((AI|GEMINI|OPENAI)_[A-Z_]+)=(.*)/export \1="$${\1:-\3}"/p' .env 2>/dev/null)" &&
+# Воркер читает только окружение, а ключ облачной модели и общий секрет стука человек держит в
+# .env (файлы в репозиторий не попадают) — вот мы их оттуда и вносим: AI_PROVIDER/GEMINI_*/OPENAI_*
+# для модели, API_URL и INTERNAL_WORKER_TOKEN для стука «ролик готов». Сначала
+# projects/montage/.env, чего нет там — из projects/api/.env: секрет api читает оттуда сам, значит
+# лежит он в одном файле и разойтись двум сторонам нечем. Заданное в окружении сильнее файла;
+# адреса нет нигде — берётся API_URL выше; секрета нет нигде — воркер, как и сейчас, пишет в лог,
+# что ролик готов и сказать об этом некому (сам ролик собирается в любом случае). Тестов это не
+# касается: в сеть они не ходят.
+WORKER_ENV = eval "$$(sed -nE 's/^((AI|GEMINI|OPENAI)_[A-Z_]+|API_URL|INTERNAL_WORKER_TOKEN)=(.*)/export \1="$${\1:-\3}"/p' .env ../api/.env 2>/dev/null)" && export API_URL="$${API_URL:-$(API_URL)}" &&
 
 .DEFAULT_GOAL := help
 .PHONY: help install up down logs _kill db db-stop api migrate worker worker-init mobile sim test test-api test-mobile test-montage check
@@ -42,7 +49,7 @@ up: _kill db migrate ## поднять всё разом: база, API, вор�
 	@mkdir -p .run
 	@( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py tracks ) > .run/tracks.log 2>&1 || echo "!! музыка не выложена в хранилище, «Послушать» не заиграет — смотри .run/tracks.log"
 	@set -m; ( cd projects/api && npm run dev ) < /dev/null > .run/api.log 2>&1 & echo $$! > .run/api.pid
-	@set -m; ( cd projects/montage && $(AI) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run ) < /dev/null > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
+	@set -m; ( cd projects/montage && $(WORKER_ENV) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run ) < /dev/null > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
 	@set -m; ( cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start ) < /dev/null > .run/mobile.log 2>&1 & echo $$! > .run/mobile.pid
 	@sleep 3; for n in api worker mobile; do \
 		kill -0 $$(cat .run/$$n.pid) 2>/dev/null || echo "!! $$n упал сразу после запуска — смотри .run/$$n.log"; \
@@ -75,7 +82,7 @@ worker-init: ## создать таблицу задач для воркера
 	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' .venv/bin/python worker.py init
 
 worker: ## запустить воркер
-	cd projects/montage && $(AI) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run
+	cd projects/montage && $(WORKER_ENV) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run
 
 mobile: ## запустить приложение (Expo)
 	cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start
