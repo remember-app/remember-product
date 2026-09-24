@@ -1,9 +1,10 @@
 ---
 id: TASK-229
 title: 'review: ревью кода вехи «Монтаж в прямом эфире» — журнал, воркер, приложение'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 14:47'
+updated_date: '2026-09-24 06:42'
 labels:
   - from-chief
 milestone: m-27

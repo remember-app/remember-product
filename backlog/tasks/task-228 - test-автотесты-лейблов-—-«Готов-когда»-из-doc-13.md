@@ -4,11 +4,12 @@ title: 'test: автотесты лейблов — «Готов, когда» �
 status: To Do
 assignee: []
 created_date: '2026-09-21 14:46'
+updated_date: '2026-09-24 06:42'
 labels:
   - from-chief
 milestone: m-25
 dependencies:
-  - TASK-214
+  - TASK-227
 priority: medium
 type: feat
 ordinal: 235000
