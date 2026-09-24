@@ -1,14 +1,15 @@
 ---
-id: DRAFT-12
+id: TASK-252
 title: >-
   mobile: у большого ролика в «Как собирался» ранние этапы могут остаться без
   записей
-status: Draft
+status: To Do
 assignee: []
 created_date: '2026-09-24 07:34'
-updated_date: '2026-09-24 07:34'
+updated_date: '2026-09-24 09:32'
 labels:
   - from-lead
+milestone: m-27
 dependencies: []
 priority: low
 type: bug

@@ -1,12 +1,13 @@
 ---
-id: DRAFT-13
+id: TASK-253
 title: 'api: README журнала описывает заведение этапов не так, как делает воркер'
-status: Draft
+status: In Progress
 assignee: []
 created_date: '2026-09-24 07:34'
-updated_date: '2026-09-24 07:34'
+updated_date: '2026-09-24 09:33'
 labels:
   - from-lead
+milestone: m-27
 dependencies: []
 priority: low
 type: bug

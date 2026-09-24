@@ -1,12 +1,13 @@
 ---
-id: DRAFT-11
+id: TASK-251
 title: 'montage: битый ответ нейросети не должен пропадать после оплаты'
-status: Draft
+status: In Progress
 assignee: []
 created_date: '2026-09-24 07:34'
-updated_date: '2026-09-24 07:34'
+updated_date: '2026-09-24 09:33'
 labels:
   - from-lead
+milestone: m-27
 dependencies: []
 priority: medium
 type: bug
