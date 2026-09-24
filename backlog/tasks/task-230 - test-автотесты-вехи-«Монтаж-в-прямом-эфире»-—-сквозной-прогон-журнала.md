@@ -1,9 +1,10 @@
 ---
 id: TASK-230
 title: 'test: автотесты вехи «Монтаж в прямом эфире» — сквозной прогон журнала'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 14:47'
+updated_date: '2026-09-24 07:32'
 labels:
   - from-chief
 milestone: m-27
