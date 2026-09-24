@@ -1,13 +1,15 @@
 ---
-id: DRAFT-11
+id: TASK-263
 title: >-
   api+mobile: записанный сеанс журнала должен показывать этапы так, как их пишет
   воркер
-status: Draft
+status: In Progress
 assignee: []
 created_date: '2026-09-24 09:41'
+updated_date: '2026-09-24 10:25'
 labels:
   - from-lead
+milestone: m-27
 dependencies: []
 priority: medium
 type: bug
