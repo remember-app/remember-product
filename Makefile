@@ -1,5 +1,5 @@
 # Мета-слой для запуска руками. Источник правды — сами сервисы:
-# projects/api/package.json, projects/mobile/package.json, projects/montage/README.md.
+# projects/api/package.json, projects/mobile/package.json, projects/montage/docs/running.md.
 # Здесь только короткие имена; своего эти цели не делают ничего — кроме db и test-montage,
 # которые заводят себе базу: их с этим никто больше не сведёт.
 #
@@ -54,9 +54,9 @@ install: ## поставить зависимости всех трёх серв
 # музыки молчит. Команда идемпотентна, лежащее не перезаливает; не вышла — говорим, стенд поднимаем.
 up: _kill db migrate ## поднять всё разом: база, API, воркер, приложение
 	@mkdir -p .run
-	@( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py tracks ) > .run/tracks.log 2>&1 || echo "!! музыка не выложена в хранилище, «Послушать» не заиграет — смотри .run/tracks.log"
+	@( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python -m montage tracks ) > .run/tracks.log 2>&1 || echo "!! музыка не выложена в хранилище, «Послушать» не заиграет — смотри .run/tracks.log"
 	@set -m; ( cd projects/api && $(R2) npm run dev ) < /dev/null > .run/api.log 2>&1 & echo $$! > .run/api.pid
-	@set -m; ( cd projects/montage && $(WORKER_ENV) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run ) < /dev/null > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
+	@set -m; ( cd projects/montage && $(WORKER_ENV) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python -m montage run ) < /dev/null > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
 	@set -m; ( cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start ) < /dev/null > .run/mobile.log 2>&1 & echo $$! > .run/mobile.pid
 	@sleep 3; for n in api worker mobile; do \
 		kill -0 $$(cat .run/$$n.pid) 2>/dev/null || echo "!! $$n упал сразу после запуска — смотри .run/$$n.log"; \
@@ -95,10 +95,10 @@ api: ## запустить API в режиме разработки
 	cd projects/api && $(R2) npm run dev
 
 worker-init: ## создать таблицу задач для воркера
-	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' .venv/bin/python worker.py init
+	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' .venv/bin/python -m montage init
 
 worker: ## запустить воркер
-	cd projects/montage && $(WORKER_ENV) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run
+	cd projects/montage && $(WORKER_ENV) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python -m montage run
 
 mobile: ## запустить приложение (Expo)
 	cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start
@@ -124,3 +124,4 @@ test-montage: ## тесты воркера (в своей базе, поднят
 check: ## линт и типы
 	cd projects/api && npm run lint && npm run typecheck
 	cd projects/mobile && npm run typecheck
+	cd projects/montage && .venv/bin/ruff check . && .venv/bin/ruff format --check .
