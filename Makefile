@@ -123,5 +123,5 @@ test-montage: ## тесты воркера (в своей базе, поднят
 
 check: ## линт и типы
 	cd projects/api && npm run lint && npm run typecheck
-	cd projects/mobile && npm run typecheck
+	cd projects/mobile && npm run lint && npm run typecheck
 	cd projects/montage && .venv/bin/ruff check . && .venv/bin/ruff format --check .
