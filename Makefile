@@ -11,16 +11,23 @@ DATABASE_URL ?= postgres://postgres:postgres@localhost:5432/remember
 # так что общая с `make up` база означала бы драку за очередь с живым воркером. Выводится из
 # DATABASE_URL, чтобы другой порт или другой стенд уводил за собой и тесты, а не только стенд.
 TEST_DATABASE_URL ?= $(DATABASE_URL)_test
+# Хост стенда — один и тот же для api и для хранилища. Он уезжает не только в приложение: api
+# подписывает им ссылки на медиа, а подпись покрывает адрес — переписать его потом нельзя. С
+# localhost телефон не покажет ни кадра и ничего не загрузит, поэтому для телефона тут стоит
+# адрес мака в сети: `make phone` подставляет его сам, руками — make up HOST=192.168.1.125
+HOST ?= localhost
 # Адрес api на стенде один на всех: его получает приложение, по нему же воркер стучится о
 # готовом ролике.
-API_URL ?= http://localhost:3000
+API_URL ?= http://$(HOST):3000
 EXPO_PUBLIC_API_URL ?= $(API_URL)
 PY := projects/montage/.venv/bin/python
 
-# Воркер читает только окружение — .env он не открывает. Значения те же, что в
-# projects/montage/.env.example: локальный MinIO из docker-compose. Другое хранилище —
-# make worker R2='R2_ENDPOINT=… R2_BUCKET=… R2_ACCESS_KEY_ID=… R2_SECRET_ACCESS_KEY=…'
-R2 ?= R2_ENDPOINT=http://localhost:9000 R2_BUCKET=remember R2_ACCESS_KEY_ID=remember R2_SECRET_ACCESS_KEY=remember-secret
+# Хранилище стенда — локальный MinIO из docker-compose, значения те же, что в
+# projects/montage/.env.example. Их получают оба: воркер (он читает только окружение) и api —
+# переданное окружением сильнее его .env. Врозь им нельзя: api подписывает ссылки тем адресом,
+# по которому воркер кладёт превью, и разойдись они — ссылки ведут в пустой бакет. Другое
+# хранилище — make up R2='R2_ENDPOINT=… R2_BUCKET=… R2_ACCESS_KEY_ID=… R2_SECRET_ACCESS_KEY=…'
+R2 ?= R2_ENDPOINT=http://$(HOST):9000 R2_BUCKET=remember R2_ACCESS_KEY_ID=remember R2_SECRET_ACCESS_KEY=remember-secret
 
 # Воркер читает только окружение, а ключ облачной модели и общий секрет стука человек держит в
 # .env (файлы в репозиторий не попадают) — вот мы их оттуда и вносим: AI_PROVIDER/GEMINI_*/OPENAI_*
@@ -33,7 +40,7 @@ R2 ?= R2_ENDPOINT=http://localhost:9000 R2_BUCKET=remember R2_ACCESS_KEY_ID=reme
 WORKER_ENV = eval "$$(sed -nE 's/^((AI|GEMINI|OPENAI)_[A-Z_]+|API_URL|INTERNAL_WORKER_TOKEN)=(.*)/export \1="$${\1:-\3}"/p' .env ../api/.env 2>/dev/null)" && export API_URL="$${API_URL:-$(API_URL)}" &&
 
 .DEFAULT_GOAL := help
-.PHONY: help install up down logs _kill db db-stop api migrate worker worker-init mobile sim test test-api test-mobile test-montage check
+.PHONY: help install up phone down logs _kill db db-stop api migrate worker worker-init mobile sim test test-api test-mobile test-montage check
 
 help: ## показать этот список
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) | awk -F':.*?## ' '{printf "  make %-14s %s\n", $$1, $$2}'
@@ -48,14 +55,23 @@ install: ## поставить зависимости всех трёх серв
 up: _kill db migrate ## поднять всё разом: база, API, воркер, приложение
 	@mkdir -p .run
 	@( cd projects/montage && DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py tracks ) > .run/tracks.log 2>&1 || echo "!! музыка не выложена в хранилище, «Послушать» не заиграет — смотри .run/tracks.log"
-	@set -m; ( cd projects/api && npm run dev ) < /dev/null > .run/api.log 2>&1 & echo $$! > .run/api.pid
+	@set -m; ( cd projects/api && $(R2) npm run dev ) < /dev/null > .run/api.log 2>&1 & echo $$! > .run/api.pid
 	@set -m; ( cd projects/montage && $(WORKER_ENV) DATABASE_URL='$(DATABASE_URL)' $(R2) .venv/bin/python worker.py run ) < /dev/null > .run/worker.log 2>&1 & echo $$! > .run/worker.pid
 	@set -m; ( cd projects/mobile && EXPO_PUBLIC_API_URL='$(EXPO_PUBLIC_API_URL)' npm start ) < /dev/null > .run/mobile.log 2>&1 & echo $$! > .run/mobile.pid
 	@sleep 3; for n in api worker mobile; do \
 		kill -0 $$(cat .run/$$n.pid) 2>/dev/null || echo "!! $$n упал сразу после запуска — смотри .run/$$n.log"; \
 	done
-	@$(MAKE) sim
+# Симулятор — только когда стенд на localhost: для телефона он лишний, приложение открывают на нём.
+	@[ '$(HOST)' = localhost ] && $(MAKE) sim || true
 	@echo 'поднято: api, воркер, приложение. логи — make logs, погасить — make down'
+
+# Телефон не знает слова localhost — ни для сервера, ни для хранилища. Адрес мака в сети берётся
+# с Wi-Fi (en0) или с кабеля (en1), а не зашивается: сеть у мака меняется. Свой — make phone
+# HOST=192.168.1.125. Приложение с телефона открывается по адресу, который эта цель печатает.
+phone: ## то же, что up, но стенд виден с телефона в той же сети
+	@ip=$${HOST:-$$(ipconfig getifaddr en0 || ipconfig getifaddr en1)}; \
+	[ -n "$$ip" ] || { echo "!! мака нет в локальной сети (en0/en1) — включи Wi-Fi или задай make phone HOST=адрес"; exit 1; }; \
+	$(MAKE) up HOST=$$ip && echo "с телефона: приложение — exp://$$ip:8081 (Expo Go) или http://$$ip:8081 (dev-билд), сервер — http://$$ip:3000"
 
 down: _kill db-stop ## погасить всё
 
@@ -76,7 +92,7 @@ migrate: ## накатить миграции API
 	cd projects/api && npm run migrate
 
 api: ## запустить API в режиме разработки
-	cd projects/api && npm run dev
+	cd projects/api && $(R2) npm run dev
 
 worker-init: ## создать таблицу задач для воркера
 	cd projects/montage && DATABASE_URL='$(DATABASE_URL)' .venv/bin/python worker.py init
