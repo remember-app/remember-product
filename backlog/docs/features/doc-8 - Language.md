@@ -3,8 +3,8 @@ id: doc-8
 title: Language
 type: specification
 created_date: '2026-09-07 09:38'
+updated_date: '2026-09-24 06:26'
 ---
-
 # Language
 
 ## What it does

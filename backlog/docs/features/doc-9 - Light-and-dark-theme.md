@@ -3,8 +3,8 @@ id: doc-9
 title: Light and dark theme
 type: specification
 created_date: '2026-09-07 09:38'
+updated_date: '2026-09-24 06:26'
 ---
-
 # Light and dark theme
 
 ## What it does

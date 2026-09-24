@@ -3,7 +3,7 @@ id: doc-03
 title: AI Video Montage
 type: specification
 created_date: '2026-09-02 05:59'
-updated_date: '2026-09-21 12:28'
+updated_date: '2026-09-24 06:26'
 ---
 # AI Video Montage
 

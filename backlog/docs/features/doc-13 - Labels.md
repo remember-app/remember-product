@@ -3,7 +3,7 @@ id: doc-13
 title: Labels
 type: specification
 created_date: '2026-09-21 12:18'
-updated_date: '2026-09-21 12:18'
+updated_date: '2026-09-24 06:26'
 ---
 # Labels
 
