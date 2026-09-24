@@ -1,9 +1,10 @@
 ---
 id: TASK-239
 title: 'mobile: слова про права на лейблы сходятся с новым правилом'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-24 06:41'
+updated_date: '2026-09-24 06:42'
 labels:
   - from-human
 milestone: m-25
