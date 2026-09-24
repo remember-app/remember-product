@@ -1,10 +1,10 @@
 ---
 id: TASK-237
 title: 'mobile: ползунок длины ролика ходит по секунде'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-24 06:26'
-updated_date: '2026-09-24 06:40'
+updated_date: '2026-09-24 06:57'
 labels:
   - from-human
 dependencies: []
