@@ -1,10 +1,10 @@
 ---
 id: TASK-234
 title: 'test: автотесты вехи «Афиша 2»'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 14:47'
-updated_date: '2026-09-21 14:48'
+updated_date: '2026-09-24 08:19'
 labels:
   - from-chief
 milestone: m-24
