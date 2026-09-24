@@ -1,9 +1,10 @@
 ---
 id: TASK-233
 title: 'review: ревью кода вехи «Афиша 2» в приложении'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 14:47'
+updated_date: '2026-09-24 06:40'
 labels:
   - from-chief
 milestone: m-24

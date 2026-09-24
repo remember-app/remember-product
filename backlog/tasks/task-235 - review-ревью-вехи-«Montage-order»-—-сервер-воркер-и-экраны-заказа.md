@@ -1,9 +1,10 @@
 ---
 id: TASK-235
 title: 'review: ревью вехи «Montage order» — сервер, воркер и экраны заказа'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-21 15:04'
+updated_date: '2026-09-24 06:40'
 labels:
   - from-chief
 milestone: m-26
