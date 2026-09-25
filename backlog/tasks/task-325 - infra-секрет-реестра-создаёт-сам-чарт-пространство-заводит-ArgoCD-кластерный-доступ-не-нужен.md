@@ -3,11 +3,11 @@ id: TASK-325
 title: >-
   infra: секрет реестра создаёт сам чарт, пространство заводит ArgoCD
   (кластерный доступ не нужен)
-status: In Progress
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 07:48'
-updated_date: '2026-09-25 07:48'
+updated_date: '2026-09-25 07:58'
 labels:
   - from-chief
 milestone: m-29
@@ -40,3 +40,9 @@ ordinal: 322000
 <!-- SECTION:NOTES:BEGIN -->
 Решение человека 2026-09-25 (слово chief): доступа к кластеру нет и не будет. Токены чтения — по одному на проект (api, montage), значения в ~/.remember-secrets.env (REGISTRY_API_USER/TOKEN, REGISTRY_MONTAGE_USER/TOKEN) появятся позже отдельной карточкой; твоя работа — только шаблоны и пустые значения. Реестр git.dapp-devs.com:5050, образы .../nox-labs/nox/remember/{api,montage}. Продолжай в своей ветке remember-charts и в своём worktree; чужие чарты не менять. Секреты не читать и не писать.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Коммит e33abb9f на локальной ветке remember-charts (поверх 468101e8), не запушено, main репозитория инфраструктуры не тронут. Секрет реестра рендерит сам чарт из блока registry (у каждого чарта свой, права read_registry своего проекта); поля пусты в закоммиченном виде, рендер с пустыми падает понятной ошибкой намеренно; пространство заводит CreateNamespace=true; шагов kubectl в выкатке нет. В README — как наблюдать выкатку без доступа к кластеру (публичный /health, Prometheus с готовыми запросами, Loki в Grafana через Authentik).
+<!-- SECTION:FINAL_SUMMARY:END -->
