@@ -3,7 +3,7 @@ id: TASK-394
 title: >-
   mobile: свести экраны со спекой второго прохода (главная, создание, лента,
   настройки, аккаунт, вход, мастер)
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 21:08'
 updated_date: '2026-09-25 21:52'
