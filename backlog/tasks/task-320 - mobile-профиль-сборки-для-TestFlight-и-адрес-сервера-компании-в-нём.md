@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@coder'
 created_date: '2026-09-25 07:44'
-updated_date: '2026-09-25 07:44'
+updated_date: '2026-09-25 07:51'
 labels:
   - from-chief
 milestone: m-29
@@ -32,8 +32,8 @@ ordinal: 317000
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Коммит в ветке worktree сервиса, слияние в main — за лидом
-- [ ] #2 Автотесты приложения зелёные
+- [ ] #1 Автотесты приложения зелёные
+- [ ] #2 Коммит в ветке worktree сервиса, слияние в dev — за лидом
 <!-- DOD:END -->
 
 ## Implementation Notes

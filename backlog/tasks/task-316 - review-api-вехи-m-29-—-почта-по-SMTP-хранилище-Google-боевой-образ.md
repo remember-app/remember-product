@@ -1,11 +1,11 @@
 ---
 id: TASK-316
 title: 'review: api вехи m-29 — почта по SMTP, хранилище Google, боевой образ'
-status: In Progress
+status: Done
 assignee:
   - '@reviewer'
 created_date: '2026-09-25 07:33'
-updated_date: '2026-09-25 07:36'
+updated_date: '2026-09-25 07:53'
 labels:
   - from-chief
 milestone: m-29
@@ -33,8 +33,8 @@ ordinal: 313000
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Коммит в ветке worktree сервиса, слияние в main — за лидом
-- [ ] #2 Автотесты сервиса зелёные, в своей тестовой базе
+- [ ] #1 Автотесты сервиса зелёные, в своей тестовой базе
+- [ ] #2 Коммит в ветке worktree сервиса, слияние в dev — за лидом
 <!-- DOD:END -->
 
 ## Implementation Notes
