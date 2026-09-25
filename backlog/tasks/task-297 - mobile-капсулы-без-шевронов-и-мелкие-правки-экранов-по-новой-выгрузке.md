@@ -1,9 +1,10 @@
 ---
 id: TASK-297
 title: 'mobile: капсулы без шевронов и мелкие правки экранов по новой выгрузке'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 06:26'
+updated_date: '2026-09-25 06:42'
 labels:
   - from-chief
 milestone: m-28

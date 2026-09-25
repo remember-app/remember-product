@@ -1,9 +1,10 @@
 ---
 id: TASK-283
 title: 'design: в спецификации настроек воспоминания нет удаления'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-24 13:22'
+updated_date: '2026-09-25 06:42'
 labels:
   - from-chief
 dependencies: []
@@ -20,5 +21,11 @@ ordinal: 280000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Спецификация экрана настроек описывает удаление воспоминания и его подтверждение
+- [x] #1 Спецификация экрана настроек описывает удаление воспоминания и его подтверждение
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Закрыто вместе с TASK-288: в спеке настроек воспоминания теперь описаны корзина и SheetConfirmMemory.
+<!-- SECTION:NOTES:END -->

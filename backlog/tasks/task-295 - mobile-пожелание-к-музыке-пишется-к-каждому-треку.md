@@ -1,9 +1,10 @@
 ---
 id: TASK-295
 title: 'mobile: пожелание к музыке пишется к каждому треку'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 06:26'
+updated_date: '2026-09-25 06:42'
 labels:
   - from-chief
 milestone: m-28

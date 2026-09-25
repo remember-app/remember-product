@@ -1,9 +1,10 @@
 ---
 id: TASK-292
 title: 'mobile: «Даты между днями» берётся из аккаунта, а не из сортировки'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 06:26'
+updated_date: '2026-09-25 06:42'
 labels:
   - from-chief
 milestone: m-28
