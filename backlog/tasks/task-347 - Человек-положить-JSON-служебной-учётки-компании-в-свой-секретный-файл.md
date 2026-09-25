@@ -1,10 +1,11 @@
 ---
 id: TASK-347
 title: 'Человек: положить JSON служебной учётки компании в свой секретный файл'
-status: To Do
+status: Done
 assignee:
   - '@human'
 created_date: '2026-09-25 09:00'
+updated_date: '2026-09-25 09:10'
 labels:
   - from-chief
 milestone: m-29
@@ -35,3 +36,9 @@ ordinal: 340000
 <!-- SECTION:NOTES:BEGIN -->
 Команду копирования лид передал chief личным сообщением (в карточку не пишется). Без файла не стартует живая проверка подписи ссылок (TASK-328) и всё за ней: TASK-329, 330, 315, 343.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Файл ~/.remember-secrets.gcs.json на месте, права 600, размер ненулевой; положен по прямому слову человека (через chief). Проверено лидом 2026-09-25 только по правам и размеру, содержимое не читалось.
+<!-- SECTION:FINAL_SUMMARY:END -->

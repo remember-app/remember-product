@@ -1,11 +1,11 @@
 ---
 id: TASK-342
 title: 'api: учётка для рецензента Apple входит по постоянному коду'
-status: In Progress
+status: Done
 assignee:
   - '@coder-backend'
 created_date: '2026-09-25 08:44'
-updated_date: '2026-09-25 09:01'
+updated_date: '2026-09-25 09:10'
 labels:
   - from-human
 milestone: m-29
