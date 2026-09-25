@@ -1,11 +1,12 @@
 ---
-id: DRAFT-18
+id: TASK-337
 title: >-
-  mobile+montage: мелкие хвосты вехи m-28 — шаблон без music_wishes, потолок 50
-  треков, README треков
-status: Draft
+  mobile: шаблон без music_wishes не роняет приложение, выбор ограничен 50
+  треками
+status: In Progress
 assignee: []
 created_date: '2026-09-25 08:15'
+updated_date: '2026-09-25 08:19'
 labels:
   - from-lead
 milestone: m-28
@@ -22,7 +23,8 @@ type: bug
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Приложение не падает на шаблоне без music_wishes; выбор ограничен 50 треками с понятным ответом человеку; README треков воркера описывает music_tracks; про ячейки календаря дизайн ответил
+- [ ] #1 Приложение не падает на шаблоне ролика без поля music_wishes: пожеланий у шаблона просто нет
+- [ ] #2 Выбор треков ограничен 50 (потолок api): 51-й не добавляется, человеку сказано понятными словами на обоих языках; автотесты зелёные и покрывают оба случая
 <!-- AC:END -->
 
 ## Definition of Done
@@ -34,4 +36,6 @@ type: bug
 
 <!-- SECTION:NOTES:BEGIN -->
 Источник: отчёты тестировщиков TASK-323 и TASK-322. src/lib/montage/order.ts (fromTemplate), projects/montage/montage/video/tracks/README.md.
+
+Chief 2026-09-25: первое по срочности — падение на шаблоне без пожеланий (src/lib/montage/order.ts, fromTemplate). README треков воркера — отдельная карточка про montage; ячейки календаря 40 против 44 — вопрос дизайну, не здесь.
 <!-- SECTION:NOTES:END -->
