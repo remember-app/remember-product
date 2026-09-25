@@ -1,10 +1,11 @@
 ---
 id: TASK-348
 title: 'Человек: настроить Apple для TestFlight — ключи сборки и запись приложения'
-status: To Do
+status: Done
 assignee:
   - '@human'
 created_date: '2026-09-25 09:00'
+updated_date: '2026-09-25 10:21'
 labels:
   - from-chief
 milestone: m-29
@@ -36,3 +37,9 @@ ordinal: 341000
 <!-- SECTION:NOTES:BEGIN -->
 Основание — отчёт devops (TASK-341): у приложения в EAS есть ключ пушей и сертификат распространения, но только для Ad Hoc; конфигурации и профиля для магазина нет; ключ App Store Connect к приложению не назначен; без интерактивного входа eas сборку не создаёт. Шаги А: eas credentials -p ios → профиль testflight → «Do you want to log in to your Apple account?» Yes → Apple ID, пароль, код → «Build Credentials: Manage everything needed to build your project» → «All: Set up all the required credentials to build your project» → на «Reuse this distribution certificate?» ответить Yes → затем «App Store Connect: Manage your API Key» → «Use an existing API Key for EAS Submit» (или «Add a new API Key For EAS Submit») → Exit. Ключу App Store Connect лучше роль App Manager, не Admin. Шаги Б: см. критерий. После этого devops добавляет в eas.json блок submit с ascAppId (не секрет; разрешено лидом) и выполняет сборку и отправку с флагом --no-auto-testflight-setup (иначе eas сам создаст внутреннюю группу со всеми админами команды).
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Шаги сделаны человеком 2026-09-25 (слово chief): учётные данные в EAS настроены через eas credentials (сертификат распространения и ключ App Store Connect назначены), запись приложения в App Store Connect создана, Apple ID приложения — 6816034455 (не секрет).
+<!-- SECTION:FINAL_SUMMARY:END -->

@@ -1,11 +1,11 @@
 ---
 id: TASK-341
 title: 'mobile: собрать приложение для TestFlight и отправить в App Store Connect'
-status: To Do
+status: In Progress
 assignee:
   - '@devops'
 created_date: '2026-09-25 08:42'
-updated_date: '2026-09-25 09:01'
+updated_date: '2026-09-25 10:21'
 labels:
   - from-chief
 milestone: m-29
