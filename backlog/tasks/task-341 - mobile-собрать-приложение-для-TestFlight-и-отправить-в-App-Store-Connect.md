@@ -1,11 +1,11 @@
 ---
 id: TASK-341
 title: 'mobile: собрать приложение для TestFlight и отправить в App Store Connect'
-status: To Do
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 08:42'
-updated_date: '2026-09-25 10:23'
+updated_date: '2026-09-25 10:45'
 labels:
   - from-chief
 milestone: m-29
@@ -42,3 +42,9 @@ ordinal: 334000
 <!-- SECTION:NOTES:BEGIN -->
 Основание: слово человека 2026-09-25 через chief. Приложение: projects/mobile, ветка dev (стабильна, TASK-320 профиль testflight слит; README, раздел «Раздача через TestFlight» — порядок и команды). Вход в Expo уже выполнен на этой машине (сессия eas CLI), ключ App Store Connect лежит в учётных данных проекта на expo.dev (owner nox-labs, projectId в app.json) — на диске его нет и не нужно. Сервер пока не выкачен: сборка не зависит от его наличия. Список почт друзей человек даст позже — не спрашивать. Тестировщиков в команду человека не заводим — группа внешняя. Живой проход на телефоне (вход по письму, кадры, пуш — TASK-18) делает человек.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Собрана и отправлена сборка 2 (версия 0.1.0, профиль testflight, https://dev-api-remember.noxlabs.xyz вшит) из ветки на свежем dev с правкой ExpiredToken и способами входа от сервера. Apple: processingState VALID, внутреннее READY_FOR_BETA_TESTING, внешнее READY_FOR_BETA_SUBMISSION, Missing Compliance нет; сборка истекает через 90 дней (~24.12.2026). Использованы: команда M8WF924972, сертификат распространения 12BCF0F6…7A20, профиль App Store JPYX48L6Y2, ключ пушей K566WQB6A5, ключ App Store Connect 5M3RPD7S3V, ascAppId 6816034455. На проверку Apple не отправлялась, группы не создавались (до выкатки сервера). Открытое: внешняя группа, Test Information и заметка рецензенту — TASK-367.
+<!-- SECTION:FINAL_SUMMARY:END -->
