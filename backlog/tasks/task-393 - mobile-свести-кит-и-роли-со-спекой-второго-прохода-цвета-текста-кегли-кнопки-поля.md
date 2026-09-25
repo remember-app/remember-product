@@ -3,9 +3,10 @@ id: TASK-393
 title: >-
   mobile: свести кит и роли со спекой второго прохода (цвета текста, кегли,
   кнопки, поля)
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 21:08'
+updated_date: '2026-09-25 21:08'
 labels:
   - from-chief
 milestone: m-28

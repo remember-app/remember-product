@@ -1,9 +1,10 @@
 ---
 id: TASK-392
 title: 'mobile: свести эфир монтажа и «Ваши кадры» со спекой второго прохода'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 21:08'
+updated_date: '2026-09-25 21:08'
 labels:
   - from-chief
 milestone: m-28
