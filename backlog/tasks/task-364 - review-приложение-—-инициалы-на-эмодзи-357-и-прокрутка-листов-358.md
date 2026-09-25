@@ -1,9 +1,10 @@
 ---
 id: TASK-364
 title: 'review: приложение — инициалы на эмодзи (357) и прокрутка листов (358)'
-status: In Progress
+status: To Do
 assignee: []
 created_date: '2026-09-25 10:33'
+updated_date: '2026-09-25 11:10'
 labels:
   - from-chief
 milestone: m-28
@@ -38,4 +39,6 @@ ordinal: 356000
 
 <!-- SECTION:NOTES:BEGIN -->
 Сервис projects/mobile, ветка dev. Коммиты 8c32f31 (TASK-357), 3cf855e (TASK-358) и слияния (git log f3830b0..dev).
+
+Ждёт TASK-365 (остановлена по слову chief); запускать вместе с ней или отдельно по слову chief.
 <!-- SECTION:NOTES:END -->
