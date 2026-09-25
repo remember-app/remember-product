@@ -3,11 +3,11 @@ id: TASK-361
 title: >-
   infra: чарты под драйвер Google, дверь рецензента, остановку по сигналу и
   Apple-настройки
-status: In Progress
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 10:12'
-updated_date: '2026-09-25 10:12'
+updated_date: '2026-09-25 10:17'
 labels:
   - from-chief
 milestone: m-29
@@ -40,3 +40,9 @@ ordinal: 353000
 <!-- SECTION:NOTES:BEGIN -->
 Решение decision-16: хранилище временно — общий бакет cdn.dapp-devs.com, префиксы remember/dev-media и remember/dev-check; НО бакет публично перечисляем — вопрос к человеку открыт (листинг или отдельное хранилище); если выберут R2, вернёт R2_* и STORAGE_DRIVER=s3 — правка мелкая. Ветка remember-charts, worktree /Users/kubik/Nox/infra/nox-infra-dev/.claude/worktrees/remember-charts (последний коммит a1fafb0c). Имена настроек — в docs/running.md api и montage в dev. Секреты не читать и не писать; ключ Google в файле не открывать.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Коммит a6e07014 на локальной ветке remember-charts (поверх a1fafb0c), не запушено, не слито. Оба чарта: STORAGE_DRIVER=google, GOOGLE_STORAGE_BUCKET, GOOGLE_STORAGE_PREFIX=remember/dev-media, GOOGLE_STORAGE_CREDENTIALS в secretEnv (пусто); R2_* убраны; сервер: REVIEW_LOGIN в secretEnv (пусто), APPLE/GOOGLE_CLIENT_ID не заданы; обработчик: exec-форма команд, terminationGracePeriodSeconds 45, uid 10001, ресурсы 1/2 ГиБ до TASK-327. helm lint и template проходят, kubeconform 8/8. Заметка: main репозитория инфраструктуры ушёл вперёд (b70f3aee, чужие коммиты про qe-life, по файлам не пересекаются) — перед слиянием ветку перебазировать на свежий main.
+<!-- SECTION:FINAL_SUMMARY:END -->
