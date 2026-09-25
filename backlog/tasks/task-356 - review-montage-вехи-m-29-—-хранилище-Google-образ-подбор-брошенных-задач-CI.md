@@ -3,11 +3,11 @@ id: TASK-356
 title: >-
   review: montage вехи m-29 — хранилище Google, образ, подбор брошенных задач,
   CI
-status: In Progress
+status: Done
 assignee:
   - '@reviewer'
 created_date: '2026-09-25 09:49'
-updated_date: '2026-09-25 09:50'
+updated_date: '2026-09-25 10:11'
 labels:
   - from-chief
 milestone: m-29
