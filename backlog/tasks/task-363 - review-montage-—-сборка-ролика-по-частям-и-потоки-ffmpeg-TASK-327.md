@@ -1,10 +1,11 @@
 ---
 id: TASK-363
 title: 'review: montage — сборка ролика по частям и потоки ffmpeg (TASK-327)'
-status: To Do
+status: Done
 assignee:
   - '@reviewer'
 created_date: '2026-09-25 10:32'
+updated_date: '2026-09-25 11:09'
 labels:
   - from-chief
 milestone: m-29
