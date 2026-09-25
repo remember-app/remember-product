@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - '@human'
 created_date: '2026-09-25 07:24'
-updated_date: '2026-09-25 07:36'
+updated_date: '2026-09-25 07:48'
 labels:
   - from-chief
 milestone: m-29
@@ -37,3 +37,9 @@ ordinal: 309000
 <!-- SECTION:NOTES:BEGIN -->
 СТОП 2026-09-25 (отчёт devops): доступа к кластеру нет — на маке нет kubeconfig (kubectl без контекстов), gcloud не установлен, сессия argocd просрочена. Три пути: (A) человек ставит gcloud и gke-gcloud-auth-plugin и делает gcloud auth login + gcloud container clusters get-credentials lumos-cluster (зона и проект — у владельца GCP) — тогда devops повторяет карточку; (B) человек или коллега выполняет три команды: kubectl create namespace dev-remember; kubectl get secret regcred -n default -o json | jq '{apiVersion, kind, type, data, metadata: {name: .metadata.name}}' | kubectl apply -n dev-remember -f - ; проверка kubectl get secret regcred -n dev-remember; откат kubectl delete namespace dev-remember; (C) секрет реестра создаёт сам чарт из токена чтения реестра (deploy token в GitLab-проектах api и montage) — тогда доступа к кластеру не нужно вовсе, но токен лёг бы открытым текстом в значения dev (как остальные секреты); требует слова человека на создание токена.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Снята 2026-09-25: у человека нет и не будет доступа к кластеру (слово chief). Вместо копии секрета реестра руками — секрет реестра создаёт сам чарт из токена чтения, пространство заводит ArgoCD при синке (CreateNamespace). См. TASK-321, TASK-322.
+<!-- SECTION:FINAL_SUMMARY:END -->
