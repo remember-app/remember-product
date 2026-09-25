@@ -1,11 +1,12 @@
 ---
-id: DRAFT-17
+id: TASK-357
 title: >-
   mobile: инициалы ломаются на эмодзи — от имени остаётся половина суррогатной
   пары
-status: Draft
+status: In Progress
 assignee: []
 created_date: '2026-09-25 09:50'
+updated_date: '2026-09-25 09:51'
 labels:
   - from-specialist
 milestone: m-28
