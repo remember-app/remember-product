@@ -3,11 +3,11 @@ id: TASK-301
 title: >-
   api: хранилище на Google S3-совместимом — ссылки, докачка кусками, обрыв
   загрузок
-status: In Progress
+status: Done
 assignee:
   - '@coder-backend'
 created_date: '2026-09-25 06:59'
-updated_date: '2026-09-25 07:00'
+updated_date: '2026-09-25 07:32'
 labels:
   - from-chief
 milestone: m-29

@@ -5,6 +5,7 @@ status: To Do
 assignee:
   - '@human'
 created_date: '2026-09-25 07:24'
+updated_date: '2026-09-25 07:30'
 labels:
   - from-chief
 milestone: m-29
@@ -22,8 +23,8 @@ ordinal: 308000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 В зоне noxlabs.xyz есть проксированная запись (оранжевое облако) dev-api-remember, указывающая туда же, куда соседние dev-хосты (тип и цель — скопировать у записи соседа, например dev-deppa или dev-api-assist)
-- [ ] #2 Лид проверил, что имя резолвится и отвечает по https снаружи
+- [ ] #1 В зоне noxlabs.xyz в Cloudflare есть проксированная запись dev-api-remember, того же типа и с тем же содержимым, что у соседнего dev-хоста (скопировано у существующей записи, соседи не изменены); до создания проверено, что такого имени не было
+- [ ] #2 Имя резолвится на адреса Cloudflare и отвечает по https (ответ ingress до выкатки может быть 404 — это нормально); записано созданное и как снести
 <!-- AC:END -->
 
 ## Definition of Done
@@ -34,5 +35,5 @@ ordinal: 308000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Имя хоста: dev-api-remember.noxlabs.xyz (по образцу соседей dev-api-assist.noxlabs.xyz, dev-deppa.noxlabs.xyz). Шаги: Cloudflare → зона noxlabs.xyz → DNS → Records → найти запись dev-deppa (или dev-api-assist) → посмотреть её Type и Content/Target → Add record: тот же Type, Name = dev-api-remember, тот же Content, Proxy status = Proxied → Save. Сертификат выдаёт Cloudflare (режим Full), cert-manager в кластере нет. Отдельно проверяется, не закрыт ли хост правилом доступа «только офис и VPN» (docs/SPLIT_DNS_AUTHENTIK.md в репозитории инфраструктуры): решающая проверка с телефона по мобильной сети — открыть https://dev-api-remember.noxlabs.xyz/health, ждём {"status":"ok"}.
+СТОП 2026-09-25 (слово chief): доступа к DNS у человека нет — noxlabs.xyz не его зона, свой домен ещё не куплен. Devops запись сам не заводит и обходных путей (чужие зоны, туннели) не ищет. Нужна запись для имени dev-api-remember.noxlabs.xyz: проксированная, того же типа и с тем же содержимым, что у соседнего dev-хоста (адрес входного балансировщика кластера) — её заведёт тот, у кого есть доступ к зоне noxlabs.xyz; либо то же по форме в собственном домене человека, когда он будет. Пока записи нет: сервисы можно поднять в кластере (правило входа для неизвестного имени бездействует), но вход снаружи, проверка с телефона и адрес в сборке для TestFlight ждут её.
 <!-- SECTION:NOTES:END -->

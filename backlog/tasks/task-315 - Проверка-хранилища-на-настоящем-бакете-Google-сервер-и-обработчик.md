@@ -5,12 +5,14 @@ status: To Do
 assignee:
   - '@tester'
 created_date: '2026-09-25 07:25'
+updated_date: '2026-09-25 07:32'
 labels:
   - from-chief
 milestone: m-29
 dependencies:
   - TASK-300
   - TASK-301
+  - TASK-302
 priority: high
 type: feat
 ordinal: 312000
@@ -38,5 +40,5 @@ ordinal: 312000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Ключи бакета для проверок — в ~/.remember-secrets.env (R2_CHECK_BUCKET, R2_CHECK_ACCESS_KEY_ID, R2_CHECK_SECRET_ACCESS_KEY; R2_ENDPOINT=https://storage.googleapis.com, регион auto); подставляются в окружение только на время прогона. Запуск живого контроля обработчика: python -m pytest tests/test_storage.py с R2_* на этот бакет (базы не нужно); живой контроль сервера — по docs/running.md api после слияния TASK-301. Ключ нужен с правами на чтение, запись, удаление и список объектов и незавершённых загрузок. Стенд человека на маке и его бакет remember не использовать.
+Ключи бакета для проверок — в ~/.remember-secrets.env (R2_CHECK_BUCKET, R2_CHECK_ACCESS_KEY_ID, R2_CHECK_SECRET_ACCESS_KEY; R2_ENDPOINT=https://storage.googleapis.com). Живой контроль сервера: npm run storage:check в projects/api с переменными STORAGE_CHECK_ENDPOINT/STORAGE_CHECK_BUCKET/STORAGE_CHECK_ACCESS_KEY_ID/STORAGE_CHECK_SECRET_ACCESS_KEY (значения из R2_CHECK_* только на время прогона); контроль обработчика: python -m pytest tests/test_storage.py в projects/montage с R2_* на этот бакет (базы не нужно). Особенно ждут ответа три вещи: статус ответа Google на просроченную подписанную ссылку (приложение сегодня докачивает заново только по 403 — если Google отвечает иначе, например 400, это карточка from-lead на mobile), HEAD и DELETE без длины, повторный обрыв уже оборванной загрузки. Стенд человека на маке и его бакет remember не использовать. Линтер внутри worktree молча не проверяет ничего (biome.json исключает .claude): проверять npx biome check src scripts.
 <!-- SECTION:NOTES:END -->

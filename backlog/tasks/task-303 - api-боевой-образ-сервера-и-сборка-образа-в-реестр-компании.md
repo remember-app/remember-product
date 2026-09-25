@@ -1,11 +1,11 @@
 ---
 id: TASK-303
 title: 'api: боевой образ сервера и сборка образа в реестр компании'
-status: In Progress
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 07:17'
-updated_date: '2026-09-25 07:18'
+updated_date: '2026-09-25 07:32'
 labels:
   - from-chief
 milestone: m-29
