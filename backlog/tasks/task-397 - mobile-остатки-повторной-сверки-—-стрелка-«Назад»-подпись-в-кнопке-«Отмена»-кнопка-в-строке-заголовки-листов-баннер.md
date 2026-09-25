@@ -3,9 +3,10 @@ id: TASK-397
 title: >-
   mobile: остатки повторной сверки — стрелка «Назад», подпись в кнопке,
   «Отмена», кнопка в строке, заголовки листов, баннер
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 23:17'
+updated_date: '2026-09-25 23:17'
 labels:
   - from-chief
 milestone: m-28
