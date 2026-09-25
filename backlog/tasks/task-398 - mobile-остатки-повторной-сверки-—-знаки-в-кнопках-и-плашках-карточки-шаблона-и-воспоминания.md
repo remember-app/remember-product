@@ -3,9 +3,10 @@ id: TASK-398
 title: >-
   mobile: остатки повторной сверки — знаки в кнопках и плашках, карточки шаблона
   и воспоминания
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 23:17'
+updated_date: '2026-09-25 23:53'
 labels:
   - from-chief
 milestone: m-28
