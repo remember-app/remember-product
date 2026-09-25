@@ -1,11 +1,11 @@
 ---
 id: TASK-327
 title: 'montage: сборка ролика укладывается в память пода и не растёт с длиной ролика'
-status: In Progress
+status: Done
 assignee:
   - '@coder-backend'
 created_date: '2026-09-25 08:01'
-updated_date: '2026-09-25 08:01'
+updated_date: '2026-09-25 10:31'
 labels:
   - from-chief
 milestone: m-29
