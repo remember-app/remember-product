@@ -3,10 +3,11 @@ id: TASK-344
 title: >-
   test: выкаченный dev-контур — вход рецензента, демонстрационное воспоминание,
   ролик, письмо, пуш
-status: To Do
+status: In Progress
 assignee:
   - '@tester'
 created_date: '2026-09-25 08:46'
+updated_date: '2026-09-25 12:20'
 labels:
   - from-chief
 milestone: m-29
