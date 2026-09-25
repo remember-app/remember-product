@@ -1,11 +1,11 @@
 ---
 id: TASK-368
 title: 'test: api вехи m-29 перед выкаткой — весь набор, образ, миграции, сценарии'
-status: In Progress
+status: Done
 assignee:
   - '@tester'
 created_date: '2026-09-25 11:09'
-updated_date: '2026-09-25 11:09'
+updated_date: '2026-09-25 11:17'
 labels:
   - from-chief
 milestone: m-29
