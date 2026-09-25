@@ -1,10 +1,11 @@
 ---
 id: TASK-350
 title: 'api: сервер отдаёт страницу /privacy с политикой конфиденциальности'
-status: To Do
+status: In Progress
 assignee:
   - '@coder-backend'
 created_date: '2026-09-25 09:11'
+updated_date: '2026-09-25 09:18'
 labels:
   - from-chief
 milestone: m-29

@@ -3,11 +3,11 @@ id: TASK-349
 title: >-
   Текст страницы «Политика конфиденциальности» — по-человечески, по-русски и
   по-английски
-status: In Progress
+status: Done
 assignee:
   - '@copywriter'
 created_date: '2026-09-25 09:11'
-updated_date: '2026-09-25 09:12'
+updated_date: '2026-09-25 09:18'
 labels:
   - from-chief
 milestone: m-29
@@ -40,3 +40,9 @@ ordinal: 342000
 <!-- SECTION:NOTES:BEGIN -->
 Материал для копирайтера — в брифе диспетчера. Готовый текст затем встраивает кодер в страницу /privacy сервера api (TASK-350).
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Текст политики (RU+EN) написан копирайтером и одобрен человеком как есть (2026-09-25, через chief): без строки про общее хранилище и без пояснения про лейблы. Встраивается в /privacy — TASK-350.
+<!-- SECTION:FINAL_SUMMARY:END -->

@@ -3,11 +3,11 @@ id: TASK-351
 title: >-
   mobile: просроченная ссылка на часть загрузки (Google отвечает 400
   ExpiredToken) запрашивает новые ссылки, как раньше 403
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-09-25 09:12'
-updated_date: '2026-09-25 09:13'
+updated_date: '2026-09-25 09:21'
 labels:
   - from-chief
 milestone: m-29
