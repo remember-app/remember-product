@@ -6,6 +6,7 @@ title: >-
 status: To Do
 assignee: []
 created_date: '2026-09-25 19:50'
+updated_date: '2026-09-25 21:08'
 labels:
   - from-chief
 milestone: m-28
@@ -39,4 +40,6 @@ ordinal: 381000
 
 <!-- SECTION:NOTES:BEGIN -->
 Пакет SHEETS (волна 3 — после слияния TASK-386, лист «Новый лейбл», и пакета мастера). Файлы: src/kit/sheet.tsx, confirm.tsx, src/screens/memory/invite-sheet.tsx, label-sheets.tsx, frames-sheets.tsx (детали), kit/toggle.tsx. Не трогай: wizard/order, upload, montage-live. Источники: измерение макета /private/tmp/m28-mock-measure/<Имя>.json и .png (ПРАВДА — design/README.md); отчёты сверки /private/tmp/m28-visual-compare/{A,B}/ (README.md — общие корни; <Имя>.md — таблица расхождений; <Имя>-side.png — склейка); снимки приложения /private/tmp/m28-visual-stand/shots/ (ДО правок пакетов 382–385, 377, 380, 381). Правила: макет побеждает; «сознательное» и «данные-среда» не дефекты; safe-area 47/52 и нижний отступ 34/30 не правятся; адаптивность (тесты type-rules, scroll, rows-wrap, board-flow, large-type зелёные). Слитые пакеты: вход/онбординг (eyebrow 16, banner, spinner, новые роли — смотри src/theme/tokens.ts на dev), главная, мастер (в работе), лента.
+
+Обновление после TASK-391: спека design/spec.md слита с макетом (раздел 10.11 «Сведено с макетом, второй проход» — «было → стало», ответы, сознательные отступления). Для листов источники — макет И раздел 10.11 (где они расходятся сознательно — по спеке): SheetFrameInfo шаг 41 и строка 42; SheetAskAll абзац 15/22, две кнопки 56; SheetRejected абзац 14/20 «Вернуть» 40; SheetTooLittle «Позже» 48; SheetInvite — чипы контактов и «Получить» (в приложении «Получить ссылку», в макете и спеке «Получить»); лист — обводка только сверху, содержимое 358 от x16, ручка в 13 от края; меню действий 278. Тумблер 52×32 уже слит (TASK-387). Ветку TASK-386 дождись слитой — перебазируйся на актуальный dev.
 <!-- SECTION:NOTES:END -->
