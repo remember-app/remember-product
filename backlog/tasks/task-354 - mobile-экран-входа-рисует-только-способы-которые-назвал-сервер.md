@@ -1,11 +1,11 @@
 ---
 id: TASK-354
 title: 'mobile: экран входа рисует только способы, которые назвал сервер'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-09-25 09:26'
-updated_date: '2026-09-25 09:27'
+updated_date: '2026-09-25 09:33'
 labels:
   - from-chief
 milestone: m-29
