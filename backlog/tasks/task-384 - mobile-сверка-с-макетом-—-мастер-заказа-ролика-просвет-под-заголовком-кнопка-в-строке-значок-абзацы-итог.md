@@ -3,9 +3,10 @@ id: TASK-384
 title: >-
   mobile: сверка с макетом — мастер заказа ролика (просвет под заголовком,
   кнопка в строке, значок, абзацы, итог)
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 19:15'
+updated_date: '2026-09-25 19:15'
 labels:
   - from-chief
 milestone: m-28

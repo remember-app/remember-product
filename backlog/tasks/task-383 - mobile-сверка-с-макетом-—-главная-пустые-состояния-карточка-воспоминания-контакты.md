@@ -3,9 +3,10 @@ id: TASK-383
 title: >-
   mobile: сверка с макетом — главная, пустые состояния, карточка воспоминания,
   контакты
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 19:15'
+updated_date: '2026-09-25 19:15'
 labels:
   - from-chief
 milestone: m-28
