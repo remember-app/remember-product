@@ -3,10 +3,10 @@ id: TASK-334
 title: >-
   mobile: мелкие расхождения просмотра кадра, видео и ленты с выгрузкой 25
   сентября
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 07:10'
-updated_date: '2026-09-25 08:18'
+updated_date: '2026-09-25 08:32'
 labels:
   - from-specialist
 milestone: m-28

@@ -1,10 +1,10 @@
 ---
 id: TASK-335
 title: 'mobile: отступы листов подтверждения и сортировки по нарисованным значениям'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 07:10'
-updated_date: '2026-09-25 08:18'
+updated_date: '2026-09-25 08:32'
 labels:
   - from-specialist
 milestone: m-28
