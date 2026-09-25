@@ -3,10 +3,10 @@ id: TASK-390
 title: >-
   mobile: сверка с макетом — листы (тумблер, шаг строк, «+», день недели,
   ширина)
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 19:50'
-updated_date: '2026-09-25 21:08'
+updated_date: '2026-09-25 21:45'
 labels:
   - from-chief
 milestone: m-28
