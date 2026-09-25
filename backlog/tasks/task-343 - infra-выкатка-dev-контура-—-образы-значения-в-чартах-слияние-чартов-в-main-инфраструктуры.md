@@ -3,10 +3,11 @@ id: TASK-343
 title: >-
   infra: выкатка dev-контура — образы, значения в чартах, слияние чартов в main
   инфраструктуры
-status: To Do
+status: In Progress
 assignee:
   - '@devops'
 created_date: '2026-09-25 08:46'
+updated_date: '2026-09-25 11:29'
 labels:
   - from-chief
 milestone: m-29
