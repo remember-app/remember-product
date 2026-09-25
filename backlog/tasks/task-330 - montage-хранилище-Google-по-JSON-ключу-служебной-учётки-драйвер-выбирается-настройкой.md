@@ -3,11 +3,11 @@ id: TASK-330
 title: >-
   montage: хранилище Google по JSON-ключу служебной учётки, драйвер выбирается
   настройкой
-status: In Progress
+status: Done
 assignee:
   - '@coder-backend'
 created_date: '2026-09-25 08:04'
-updated_date: '2026-09-25 09:13'
+updated_date: '2026-09-25 09:44'
 labels:
   - from-chief
 milestone: m-29
