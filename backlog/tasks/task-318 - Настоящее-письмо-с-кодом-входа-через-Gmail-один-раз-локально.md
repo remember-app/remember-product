@@ -1,11 +1,11 @@
 ---
 id: TASK-318
 title: 'Настоящее письмо с кодом входа через Gmail: один раз, локально'
-status: In Progress
+status: Done
 assignee:
   - '@tester'
 created_date: '2026-09-25 07:35'
-updated_date: '2026-09-25 07:36'
+updated_date: '2026-09-25 07:41'
 labels:
   - from-chief
 milestone: m-29
@@ -40,3 +40,9 @@ ordinal: 315000
 <!-- SECTION:NOTES:BEGIN -->
 Сервер: projects/api (main, слияние TASK-299). Окружение: SMTP_HOST=smtp.gmail.com, SMTP_PORT=587, SMTP_SECURE=false, SMTP_USER=dev@noxlabs.xyz, MAIL_FROM='Remember <dev@noxlabs.xyz>' (Gmail подставит сам ящик, если адрес отличается от SMTP_USER — проверить, что отправитель именно dev@noxlabs.xyz), SMTP_PASSWORD — из /Users/kubik/Nox/infra/nox-infra-dev/ioc-helm/qe-life/backend/values-dev.yaml (блок secretEnv, поле SMTP_PASSWORD; это тот же ящик dev@noxlabs.xyz и тот же пароль приложения, о которых говорил человек). Вход: POST /auth/email/start с адресом получателя (без обхода test.test, NODE_ENV не задавать production — иначе локально ничего страшного, но и не нужно), язык — оба варианта по одному запросу нельзя: одно письмо, язык по умолчанию. Один запрос, не больше двух в сумме (плюс один с испорченным паролем — на локальном процессе с другим окружением, на тот же адрес письмо не уходит, так как вход не пройдёт).
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Одно настоящее письмо ушло через Gmail (smtp.gmail.com:587, STARTTLS, TLS 1.3) на kubikrubik0x@gmail.com 2026-09-25 в 10:39:51 MSK; Gmail принял письмо за 1,96 с (250 OK); сервер api ответил 200. Отправитель Remember <dev@noxlabs.xyz>, тема «Вход в Remember», обычный текст. Второй запрос с испорченным паролем: 502, в логе error без пароля. Доставку и вид письма подтверждает человек (поиск from:dev@noxlabs.xyz).
+<!-- SECTION:FINAL_SUMMARY:END -->

@@ -5,7 +5,7 @@ status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 07:24'
-updated_date: '2026-09-25 07:37'
+updated_date: '2026-09-25 07:39'
 labels:
   - from-chief
 milestone: m-29
@@ -42,5 +42,5 @@ SQL (пароль подставить свой, только буквы и ци
 ## Final Summary
 
 <!-- SECTION:FINAL_SUMMARY:BEGIN -->
-Создано на общем Postgres компании (10.127.128.3:5432, Google Cloud SQL, PostgreSQL 15.18): база remember и роль remember (LOGIN, не суперпользователь, владелец только своей базы; PUBLIC лишён доступа к базе и к схеме public). Строка подключения — только в ~/.remember-secrets.env (DATABASE_URL, права 600). Откат: DROP DATABASE remember; DROP ROLE remember. Замечено: роль может подключаться к чужим базам (по умолчанию у PUBLIC есть CONNECT на 51 из 60 баз) — закрыть можно только правкой чужих баз, не делалось; шифрования до сервера нет; лимита подключений у роли нет.
+Создано на общем Postgres компании (10.127.128.3:5432, Google Cloud SQL, PostgreSQL 15.18): база remember и роль remember (LOGIN, не суперпользователь, владелец только своей базы, лимит 30 подключений; PUBLIC лишён доступа к базе и к схеме public). Строка подключения — только в ~/.remember-secrets.env (DATABASE_URL, права 600). Откат: DROP DATABASE remember; DROP ROLE remember (лимит снимается ALTER ROLE remember CONNECTION LIMIT -1). Замечено: роль может подключаться к чужим базам (по умолчанию у PUBLIC есть CONNECT на 51 из 60 баз) — закрыть можно только правкой чужих баз, не делалось; шифрования до сервера нет.
 <!-- SECTION:FINAL_SUMMARY:END -->
