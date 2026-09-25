@@ -5,7 +5,7 @@ status: To Do
 assignee:
   - '@human'
 created_date: '2026-09-25 06:59'
-updated_date: '2026-09-25 07:54'
+updated_date: '2026-09-25 09:00'
 labels:
   - from-chief
 milestone: m-29
@@ -39,3 +39,9 @@ ordinal: 297000
 <!-- SECTION:NOTES:BEGIN -->
 СТОП 2026-09-25 по S3-ключам: коллега HMAC не выдаёт (у qe-life ему отказали в том же). Просьба к коллеге — той же формы, что для qe-life: два закрытых бакета (remember-dev-media и remember-dev-check, europe-north1, публичный доступ выключен), служебная учётка remember-storage с ролью Storage Object User только на эти бакеты, её JSON-ключ файлом (не в чат). Мягкое удаление у новых бакетов включено на 7 дней по умолчанию. Реализация: собственный доступ по JSON-ключу вместо S3-протокола — карточки api и montage появятся после короткой живой проверки подписи ссылок на куски закрытым ключом (карточка проверки).
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Снята 2026-09-25 решением человека (decision-16): отдельные бакеты не создаются — временно живём на общем бакете компании cdn.dapp-devs.com, в директориях remember/dev-media (основная) и remember/dev-check (проверки). Доступ — JSON служебной учётки компании; человек кладёт его в свой секретный файл (TASK-345). Перенос на своё хранилище — потом и, возможно.
+<!-- SECTION:FINAL_SUMMARY:END -->
