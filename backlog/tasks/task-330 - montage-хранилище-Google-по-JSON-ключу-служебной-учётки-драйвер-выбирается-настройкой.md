@@ -7,6 +7,7 @@ status: To Do
 assignee:
   - '@coder-backend'
 created_date: '2026-09-25 08:04'
+updated_date: '2026-09-25 09:01'
 labels:
   - from-chief
 milestone: m-29
@@ -30,6 +31,7 @@ ordinal: 327000
 - [ ] #3 Битый или отсутствующий ключ в режиме google — громкая ошибка при создании клиента; ключ и токен не попадают в логи и исключения
 - [ ] #4 Автотесты обработчика: прежние зелёные на MinIO; для режима google — тесты формы запросов с подменой сети; один запускаемый живой контроль режима google на бакете для проверок (по образцу существующего в tests/test_storage.py)
 - [ ] #5 docs/running.md обработчика описывает режим google (настройки без значений, права, живой контроль); зависимость google-auth добавлена в requirements.txt и в боевой образ, образ собирается
+- [ ] #6 Все операции драйвера google идут ТОЛЬКО под настроенным префиксом (по умолчанию remember/dev-media/): префикс добавляется в одном месте, ключ вне префикса отклоняется громко до обращения к Google — и удаление, и обрыв загрузок, и ежечасная уборка; закреплено тестом, который краснеет, если операция выйдет за префикс
 <!-- AC:END -->
 
 ## Definition of Done
@@ -42,4 +44,6 @@ ordinal: 327000
 
 <!-- SECTION:NOTES:BEGIN -->
 НЕ начинать, пока живая проверка (карточка про подпись ссылок на куски) не показала, что схема работает. Сервис: projects/montage, montage/storage.py (сегодня boto3, 5 операций: download_file, upload_file, head_object, delete_object, abort_multipart_upload) и потребители в sweeps.py, media/preview.py, media/screening.py, media/understanding.py, media/frame_info.py, media/speech.py, video/montage.py, video/music.py, video/library.py; раскладка после TASK-302: storage.missing(), storage.free(). Основа — чтение документации Google (2026-09-25): XML API принимает Authorization: Bearer; токен из JSON-ключа со scope devstorage.read_write; роль Storage Object User на бакете покрывает все операции обработчика (включая multipartUploads.abort); эмулятора нет. Стенд человека на маке и его MinIO/базу не трогать; параллельно другой кодер правит worker.py и video/assembly (подбор брошенных задач, память сборки) — файлы разные.
+
+РЕШЕНИЕ decision-16 (2026-09-25): хранилище ВРЕМЕННОЕ — общий бакет компании cdn.dapp-devs.com; всё наше строго под префиксами remember/dev-media/ (основная) и remember/dev-check/ (проверки), ни одного объекта вне них — чужое рядом, промах дорогой. Бакет публичный, поэтому единственная защита кадра — длина и случайность пути: имена объектов — только неугадываемые (uuid), никаких порядковых имён. Ключ — JSON служебной учётки компании в ~/.remember-secrets.gcs.json (кладёт человек, TASK-347); настройки: GOOGLE_STORAGE_BUCKET=cdn.dapp-devs.com, префикс основной remember/dev-media, префикс проверок remember/dev-check. Перенос на своё хранилище — потом и, возможно: поэтому префикс задаётся настройкой и добавляется в одном месте драйвера (в БД остаются прежние логические ключи).
 <!-- SECTION:NOTES:END -->
