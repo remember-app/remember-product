@@ -3,11 +3,11 @@ id: TASK-371
 title: >-
   review: приложение вехи m-29 — просроченная ссылка Google, способы входа от
   сервера, профиль TestFlight
-status: In Progress
+status: Done
 assignee:
   - '@reviewer'
 created_date: '2026-09-25 11:10'
-updated_date: '2026-09-25 11:10'
+updated_date: '2026-09-25 11:19'
 labels:
   - from-chief
 milestone: m-29
