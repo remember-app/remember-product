@@ -3,11 +3,11 @@ id: TASK-305
 title: >-
   infra: заготовка чартов и приложений ArgoCD для api и обработчика (без
   выкатки)
-status: In Progress
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 07:17'
-updated_date: '2026-09-25 07:25'
+updated_date: '2026-09-25 07:37'
 labels:
   - from-chief
 milestone: m-29
@@ -42,3 +42,9 @@ ordinal: 302000
 <!-- SECTION:NOTES:BEGIN -->
 Репозиторий: /Users/kubik/Nox/infra/nox-infra-dev. Разбор — TASK-298 (принят): namespace предлагается dev-remember (project dev в ArgoCD пускает только dev и dev-*), секрет реестра regcred заведён руками только в default — копия в dev-remember делается человеком; хост вида dev-api-remember.noxlabs.xyz — DNS в Cloudflare заводит человек; ingress: tls: [] и без аннотации cert-manager (cert-manager в кластере нет, https даёт Cloudflare, режим Full); образец Application — argocd-apps/apps/dev/dev-qe-life-redis.yaml (project dev, автосинк, prune, selfHeal, CreateNamespace, ServerSideApply); образец чарта — ioc-helm/qe-life/backend; хук миграций — ioc-helm/deppa/templates/database-migration-job.yaml. Образы: git.dapp-devs.com:5050/nox-labs/nox/remember/api и .../montage, тег по SHA (пока заглушка-плейсхолдер, не выдуманное значение). Команды образов: api — node src/server.ts (npm start) и npm run migrate; обработчик — python -m montage run, python -m montage init (до старта, таблицу jobs создаёт он, не api), python -m montage tracks (разовая выкладка музыки). Окружение api: DATABASE_URL, PORT, NODE_ENV=production, R2_ENDPOINT/R2_BUCKET/R2_ACCESS_KEY_ID/R2_SECRET_ACCESS_KEY/R2_REGION, SMTP_HOST/SMTP_PORT/SMTP_SECURE/SMTP_USER/SMTP_PASSWORD/MAIL_FROM, INTERNAL_WORKER_TOKEN, EXPO_PUSH_URL по умолчанию; обработчика: DATABASE_URL, R2_*, AI_PROVIDER=gemini, GEMINI_API_KEY, API_URL, INTERNAL_WORKER_TOKEN. Где лежит база — пока не решено человеком (общая, своя в кластере или отдельный экземпляр GCP): чарты берут DATABASE_URL из Secret и от вида базы не зависят. Ёмкость: на узлах пула dev свободно ~1.4 ГиБ памяти, CPU простаивает. Значения секретов не читать и не писать; в репозитории продуктов ничего не менять. Промежуточные чарты: без HPA и PDB, пока не нужны.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Коммит 468101e на локальной ветке remember-charts репозитория инфраструктуры (worktree /Users/kubik/Nox/infra/nox-infra-dev/.claude/worktrees/remember-charts), не запушено, main репозитория не тронут. Файлы: ioc-helm/nox/remember/{README.md, api/, montage/}, argocd-apps/apps/dev/dev-remember-{api,montage}.yaml. Секреты в шаблонах пустые. Перед слиянием (= выкатка): значения (тег образа, имя бакета, секреты), namespace dev-remember и копия regcred, образы в реестре, DNS.
+<!-- SECTION:FINAL_SUMMARY:END -->

@@ -1,11 +1,11 @@
 ---
 id: TASK-312
 title: 'Человек: копия секрета реестра образов в пространство dev-remember'
-status: In Progress
+status: To Do
 assignee:
-  - '@devops'
+  - '@human'
 created_date: '2026-09-25 07:24'
-updated_date: '2026-09-25 07:30'
+updated_date: '2026-09-25 07:36'
 labels:
   - from-chief
 milestone: m-29
@@ -35,5 +35,5 @@ ordinal: 309000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Копия делается после того, как пространство существует (создаётся синком приложения или командой kubectl create namespace dev-remember). Точную команду и порядок даёт devops в карточке выкатки; секрет реестра к нам не приходит и в отчётах не значится.
+СТОП 2026-09-25 (отчёт devops): доступа к кластеру нет — на маке нет kubeconfig (kubectl без контекстов), gcloud не установлен, сессия argocd просрочена. Три пути: (A) человек ставит gcloud и gke-gcloud-auth-plugin и делает gcloud auth login + gcloud container clusters get-credentials lumos-cluster (зона и проект — у владельца GCP) — тогда devops повторяет карточку; (B) человек или коллега выполняет три команды: kubectl create namespace dev-remember; kubectl get secret regcred -n default -o json | jq '{apiVersion, kind, type, data, metadata: {name: .metadata.name}}' | kubectl apply -n dev-remember -f - ; проверка kubectl get secret regcred -n dev-remember; откат kubectl delete namespace dev-remember; (C) секрет реестра создаёт сам чарт из токена чтения реестра (deploy token в GitLab-проектах api и montage) — тогда доступа к кластеру не нужно вовсе, но токен лёг бы открытым текстом в значения dev (как остальные секреты); требует слова человека на создание токена.
 <!-- SECTION:NOTES:END -->

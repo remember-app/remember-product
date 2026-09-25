@@ -1,11 +1,11 @@
 ---
 id: TASK-300
 title: 'Человек: бакет Google для Remember и ключи доступа к нему'
-status: In Progress
+status: To Do
 assignee:
-  - '@devops'
+  - '@human'
 created_date: '2026-09-25 06:59'
-updated_date: '2026-09-25 07:30'
+updated_date: '2026-09-25 07:36'
 labels:
   - from-chief
 milestone: m-29
@@ -38,5 +38,5 @@ ordinal: 297000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Почему не cdn.dapp-devs.com: он общий со статикой лендингов, а там будут личные кадры друзей. Почему HMAC-ключи: у qe-life в инфраструктуре хранилище открывается родным ключом сервисного аккаунта Google, а не по S3 — наш код говорит по S3, ему нужна именно пара «ключ/секрет». Названия переменных в нашем коде остаются прежними (R2_*): их же читает стенд человека на маке.
+СТОП 2026-09-25 (отчёт devops): доступа нет. Единственный путь в Google Cloud с мака — JSON-ключ чужого сервисного аккаунта из репозитория инфраструктуры; система разрешений запретила им пользоваться, обходить это нельзя, снять запрет может только владелец. gcloud не установлен, логина нет. Создать нужно человеку (или тому, у кого есть доступ к проекту GCP) — консоль Google Cloud: (1) Cloud Storage → создать два бакета: основной (имя вида noxlabs-remember-dev-media) и для проверок (noxlabs-remember-dev-check), регион europe-north1, класс Standard, единый доступ на уровне бакета, запрет публичного доступа включён; (2) IAM → Service Accounts → создать remember-storage; на каждый из двух бакетов выдать ей роль «Storage Object User» на уровне бакета (вкладка Permissions), не на проект; (3) Cloud Storage → Settings → Interoperability → Create a key for a service account → remember-storage → записать пару Access key / Secret; (4) в основном бакете Lifecycle → правило «Abort incomplete multipart uploads» age 7 дней; в бакете проверок — правило «Delete object» age 1 день; (5) значения — в ~/.remember-secrets.env (права 600), строками R2_ENDPOINT=https://storage.googleapis.com, R2_BUCKET, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_CHECK_BUCKET, R2_CHECK_ACCESS_KEY_ID, R2_CHECK_SECRET_ACCESS_KEY (можно одна пара на оба бакета). Мягкое удаление у новых бакетов включено на 7 дней по умолчанию — удалённые файлы физически лежат неделю.
 <!-- SECTION:NOTES:END -->
