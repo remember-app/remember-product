@@ -27,15 +27,21 @@ button { font-family: inherit; }
   </div>
 
   <div style="position: absolute; left: 16px; right: 16px; top: 206px; display: flex; flex-direction: column; gap: 18px;">
-    <!-- Пока ни одного трека: наверху выбрано «Без музыки». Добавили трек — этот блок заменяется выбранными -->
-    <button type="button" aria-pressed="true" style="width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 20px; background: #1A1C33; border: 1.5px solid #4B5BFF; color: #F5F3EE; text-align: left; cursor: pointer;">
-      <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"></path><path d="m16 9 5 6M21 9l-5 6"></path></svg></span>
-      <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
-        <span style="font-size: 15px; font-weight: 600;">Без музыки</span>
-        <span style="font-size: 12px; font-weight: 500; color: #A4A1B2;">Только живой звук из видео</span>
-      </span>
-      <span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"></path></svg></span>
-    </button>
+    <!-- Пока ни одного трека. Это не выбор, а состояние: место «Выбрано» пустует, и ролик пойдёт без музыки.
+         Нажал «+» у любого трека — этот блок заменяется списком выбранного -->
+    <div style="border-radius: 20px; background: #16161F; border: 1px solid #2C2C3A; padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: baseline; gap: 8px;">
+        <span style="flex-grow: 1; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A4A1B2;">Выбрано</span>
+        <span style="font-size: 12px; font-weight: 500; color: #6E6B7D;">ничего не добавлено</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 999px; background: #22222E; color: #A4A1B2; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"></path><path d="m16 9 5 6M21 9l-5 6"></path></svg></span>
+        <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 15px; font-weight: 600; color: #F5F3EE;">Ролик будет без музыки</span>
+          <span style="font-size: 12px; font-weight: 500; color: #A4A1B2;">Только живой звук из видео</span>
+        </span>
+      </div>
+    </div>
 
     <!-- Библиотека: отдельный блок. «+» добавляет трек наверх, в выбранные; можно несколько -->
     <div style="display: flex; flex-direction: column; gap: 10px;">
