@@ -3,10 +3,11 @@ id: TASK-331
 title: >-
   infra: чарты Remember живут в пространстве default с готовым секретом реестра
   — как у соседей
-status: To Do
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 08:07'
+updated_date: '2026-09-25 08:13'
 labels:
   - from-chief
 milestone: m-29
@@ -41,3 +42,9 @@ ordinal: 328000
 <!-- SECTION:NOTES:BEGIN -->
 Основание: argocd-apps/apps/dev/dev-sms-frontend.yaml (project sms, destination namespace default), ioc-helm/deppa/README.md («в default должен лежать regcred»), коммит dd92e1f5 (второй комплект в namespace dev не работал: нет учётных данных реестра), values соседей imagePullSecrets: regcred. Проект dev в ArgoCD пускает только dev и dev-*, поэтому для default берём проект default; свой AppProject применить нельзя — нужен kubectl, которого у людей нет. Токены чтения реестра (TASK-324) отпадают. Хост dev-api-remember.noxlabs.xyz и остальное — без изменений. Ветка remember-charts, worktree /Users/kubik/Nox/infra/nox-infra-dev/.claude/worktrees/remember-charts.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Коммит a1fafb0c на локальной ветке remember-charts (поверх e33abb9f), не запушено, main репозитория инфраструктуры не тронут. Приложения ArgoCD: проект default, пространство default; секрет реестра — существующий regcred; шаблонов секрета реестра нет. Проверено по открытому Prometheus и репозиторию: имена dev-remember-* и хост dev-api-remember не заняты и не пересекаются. Не проверить без кластера: годится ли regcred для пути nox-labs/nox/remember (по соседям из nox-labs/nox — да), порядок волн Argo CD. README: шагов для человека нет, кроме подстановки значений и слияния.
+<!-- SECTION:FINAL_SUMMARY:END -->
