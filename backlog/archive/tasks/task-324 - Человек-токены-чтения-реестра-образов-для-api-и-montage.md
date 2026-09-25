@@ -5,6 +5,7 @@ status: To Do
 assignee:
   - '@human'
 created_date: '2026-09-25 07:48'
+updated_date: '2026-09-25 08:07'
 labels:
   - from-chief
 milestone: m-29
@@ -36,3 +37,9 @@ ordinal: 321000
 <!-- SECTION:NOTES:BEGIN -->
 Где: GitLab → проект remember/api → Settings → Repository → Deploy tokens → Create deploy token: имя remember-cluster-pull, срок — без срока (или год), галочка только read_registry → значения имя пользователя и токен показываются один раз. То же в проекте remember/montage. Роль Maintainer у человека на обоих проектах есть (по разбору TASK-298). Реестр: git.dapp-devs.com:5050.
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Снята 2026-09-25: разбор показал, что у соседей образы скачиваются секретом regcred в пространстве default (заведён один раз руками); Remember разворачивается туда же — токены не нужны. См. TASK-331.
+<!-- SECTION:FINAL_SUMMARY:END -->

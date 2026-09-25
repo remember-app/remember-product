@@ -3,11 +3,11 @@ id: TASK-319
 title: >-
   montage: обработчик подбирает задачи, брошенные убитым процессом, и отдаёт
   свою по сигналу остановки
-status: In Progress
+status: Done
 assignee:
   - '@coder-backend'
 created_date: '2026-09-25 07:36'
-updated_date: '2026-09-25 07:51'
+updated_date: '2026-09-25 08:08'
 labels:
   - from-chief
 milestone: m-29
