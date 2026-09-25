@@ -3,9 +3,10 @@ id: TASK-389
 title: >-
   mobile: сверка с макетом — «Ваши кадры» (шапка, заголовок дня, плитки, пустое
   состояние)
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 19:50'
+updated_date: '2026-09-25 20:01'
 labels:
   - from-chief
 milestone: m-28
