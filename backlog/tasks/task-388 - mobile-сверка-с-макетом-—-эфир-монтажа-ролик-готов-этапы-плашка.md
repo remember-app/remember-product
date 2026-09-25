@@ -1,9 +1,10 @@
 ---
 id: TASK-388
 title: 'mobile: сверка с макетом — эфир монтажа (ролик готов, этапы, плашка)'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 19:50'
+updated_date: '2026-09-25 19:51'
 labels:
   - from-chief
 milestone: m-28
