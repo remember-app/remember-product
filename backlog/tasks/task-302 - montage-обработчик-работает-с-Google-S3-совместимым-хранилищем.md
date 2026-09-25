@@ -1,11 +1,11 @@
 ---
 id: TASK-302
 title: 'montage: обработчик работает с Google S3-совместимым хранилищем'
-status: In Progress
+status: Done
 assignee:
   - '@coder-backend'
 created_date: '2026-09-25 07:00'
-updated_date: '2026-09-25 07:00'
+updated_date: '2026-09-25 07:25'
 labels:
   - from-chief
 milestone: m-29
