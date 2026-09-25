@@ -1,16 +1,15 @@
 ---
 id: TASK-364
 title: 'review: приложение — инициалы на эмодзи (357) и прокрутка листов (358)'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 10:33'
-updated_date: '2026-09-25 11:10'
+updated_date: '2026-09-25 12:11'
 labels:
   - from-chief
 milestone: m-28
 dependencies:
-  - TASK-357
-  - TASK-358
+  - TASK-365
 priority: medium
 type: feat
 ordinal: 356000
@@ -41,4 +40,6 @@ ordinal: 356000
 Сервис projects/mobile, ветка dev. Коммиты 8c32f31 (TASK-357), 3cf855e (TASK-358) и слияния (git log f3830b0..dev).
 
 Ждёт TASK-365 (остановлена по слову chief); запускать вместе с ней или отдельно по слову chief.
+
+Объём ревью включает TASK-365 (a061a43): перенос рядов с кнопками, детали кита (чип, лейбл, плитка дня, палитра, баннер, панель действий, строка контакта), четыре кнопки на обычном шрифте переведены в узкие, тест-перебор рядов rows-wrap.test.ts.
 <!-- SECTION:NOTES:END -->
