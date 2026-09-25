@@ -3,11 +3,11 @@ id: TASK-343
 title: >-
   infra: выкатка dev-контура — образы, значения в чартах, слияние чартов в main
   инфраструктуры
-status: In Progress
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 08:46'
-updated_date: '2026-09-25 11:29'
+updated_date: '2026-09-25 12:19'
 labels:
   - from-chief
 milestone: m-29
@@ -46,3 +46,9 @@ ordinal: 336000
 <!-- SECTION:NOTES:BEGIN -->
 Выполнять только после: живой проверки родного доступа Google и переписывания хранилища (TASK-328–330), памяти сборки ролика (TASK-327), двери рецензента (TASK-342), ревью и тестов; слово человека на пуш dev api/montage и слияние чартов — через chief с конкретным списком. Чарты: локальная ветка remember-charts репозитория инфраструктуры (/Users/kubik/Nox/infra/nox-infra-dev/.claude/worktrees/remember-charts), обновить под родной доступ Google (STORAGE_DRIVER=google, GOOGLE_STORAGE_BUCKET, GOOGLE_STORAGE_CREDENTIALS вместо R2_*), ресурсы обработчика по итогам TASK-327, exec-форма команды и terminationGracePeriodSeconds не меньше 30 (подбор брошенных задач TASK-319). Секрет реестра — существующий regcred в default. Значения секретов — открытым текстом в values-dev, как у qe-life (decision-15).
 <!-- SECTION:NOTES:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Выкатка dev-контура 2026-09-25: dev запушен (api b84f197, montage 8cb12d0; пайплайны 17828/17829, dev_build зелёные), ветка чартов слита в main инфраструктуры владельцем (b70f3aee → 08d8a89a, быстрая перемотка; сам пуш система прав исполнителю запретила из-за секретов в значениях — decision-15). ArgoCD подхватил за 3 минуты: приложения dev-remember-api и dev-remember-montage в пространстве default; миграции прошли, init обработчика отработал, выкладка музыки прошла (bright.mp3 в бакете под remember/dev-media/tracks), оба пода Running и готовы, перезапусков нет; https://dev-api-remember.noxlabs.xyz /health, /auth/methods, /privacy отвечают верно. Откат: git revert c80c655e^..08d8a89a в main инфраструктуры (миграции в базе remember, треки в бакете и секреты в истории откат не отменяет). Риск: наши поды попали на узел пула gitlab (109 из 110 подов), где живут раннеры CI, — нужен nodeSelector на пул dev.
+<!-- SECTION:FINAL_SUMMARY:END -->
