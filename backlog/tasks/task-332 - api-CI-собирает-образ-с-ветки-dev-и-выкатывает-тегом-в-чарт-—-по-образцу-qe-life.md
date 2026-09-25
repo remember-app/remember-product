@@ -3,11 +3,11 @@ id: TASK-332
 title: >-
   api: CI собирает образ с ветки dev и выкатывает тегом в чарт — по образцу
   qe-life
-status: In Progress
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 08:13'
-updated_date: '2026-09-25 08:13'
+updated_date: '2026-09-25 08:30'
 labels:
   - from-chief
 milestone: m-29
