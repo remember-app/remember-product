@@ -1,11 +1,11 @@
 ---
 id: TASK-304
 title: 'montage: боевой образ обработчика и сборка образа в реестр компании'
-status: In Progress
+status: Done
 assignee:
   - '@devops'
 created_date: '2026-09-25 07:17'
-updated_date: '2026-09-25 07:51'
+updated_date: '2026-09-25 08:01'
 labels:
   - from-chief
 milestone: m-29

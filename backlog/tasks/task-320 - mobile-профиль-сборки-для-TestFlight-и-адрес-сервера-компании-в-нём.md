@@ -1,11 +1,11 @@
 ---
 id: TASK-320
 title: 'mobile: профиль сборки для TestFlight и адрес сервера компании в нём'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-09-25 07:44'
-updated_date: '2026-09-25 07:51'
+updated_date: '2026-09-25 08:01'
 labels:
   - from-chief
 milestone: m-29
