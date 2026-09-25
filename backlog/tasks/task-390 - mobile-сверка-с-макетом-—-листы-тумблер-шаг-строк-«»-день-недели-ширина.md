@@ -3,10 +3,10 @@ id: TASK-390
 title: >-
   mobile: сверка с макетом — листы (тумблер, шаг строк, «+», день недели,
   ширина)
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-25 19:50'
-updated_date: '2026-09-25 21:45'
+updated_date: '2026-09-25 22:19'
 labels:
   - from-chief
 milestone: m-28
@@ -25,15 +25,15 @@ ordinal: 381000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Листы SheetInvite, SheetLabelNew, SheetLabels, SheetFrameInfo, SheetFilter, SheetSort, SheetConfirm*, SheetFrame: ширина/отступ содержимого 358 при x=16 (sheet.tsx, R9), тумблер 52×32, шаг строк 41 (FrameInfo), «+» у «Новый лейбл», ручка листа по макету, eyebrow muted в листах (invite-sheet, label-sheets)
-- [ ] #2 Значения приведены к макету (числа из JSON макета и таблиц сверки) и держатся токенами/ролями кита; исправленные значения закреплены тестами, читающими значения макета/спеки; сознательные отступления и данные-среда не тронуты
-- [ ] #3 Ничего сверх пакета: не исправленное названо в отчёте с причиной; адаптивность цела (тесты type-rules, scroll, rows-wrap, board-flow, large-type зелёные)
+- [x] #1 Листы SheetInvite, SheetLabelNew, SheetLabels, SheetFrameInfo, SheetFilter, SheetSort, SheetConfirm*, SheetFrame: ширина/отступ содержимого 358 при x=16 (sheet.tsx, R9), тумблер 52×32, шаг строк 41 (FrameInfo), «+» у «Новый лейбл», ручка листа по макету, eyebrow muted в листах (invite-sheet, label-sheets)
+- [x] #2 Значения приведены к макету (числа из JSON макета и таблиц сверки) и держатся токенами/ролями кита; исправленные значения закреплены тестами, читающими значения макета/спеки; сознательные отступления и данные-среда не тронуты
+- [x] #3 Ничего сверх пакета: не исправленное названо в отчёте с причиной; адаптивность цела (тесты type-rules, scroll, rows-wrap, board-flow, large-type зелёные)
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Коммит в ветке worktree сервиса, слияние в dev — за лидом
-- [ ] #2 Автотесты приложения зелёные
+- [x] #1 Коммит в ветке worktree сервиса, слияние в dev — за лидом
+- [x] #2 Автотесты приложения зелёные
 <!-- DOD:END -->
 
 ## Implementation Notes
