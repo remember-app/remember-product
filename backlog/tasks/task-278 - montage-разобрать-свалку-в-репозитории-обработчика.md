@@ -1,9 +1,10 @@
 ---
 id: TASK-278
 title: 'montage: разобрать свалку в репозитории обработчика'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-24 12:04'
+updated_date: '2026-09-25 06:29'
 labels:
   - from-human
 dependencies: []

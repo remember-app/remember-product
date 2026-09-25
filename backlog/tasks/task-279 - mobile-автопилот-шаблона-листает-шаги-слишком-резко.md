@@ -1,9 +1,10 @@
 ---
 id: TASK-279
 title: 'mobile: автопилот шаблона листает шаги слишком резко'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-24 12:08'
+updated_date: '2026-09-25 06:29'
 labels:
   - from-human
 dependencies: []

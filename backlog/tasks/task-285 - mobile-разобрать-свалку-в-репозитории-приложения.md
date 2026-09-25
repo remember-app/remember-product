@@ -1,9 +1,10 @@
 ---
 id: TASK-285
 title: 'mobile: разобрать свалку в репозитории приложения'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-24 13:47'
+updated_date: '2026-09-25 06:29'
 labels:
   - from-human
 dependencies: []

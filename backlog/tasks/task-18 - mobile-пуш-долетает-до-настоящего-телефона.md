@@ -4,9 +4,10 @@ title: 'mobile: пуш долетает до настоящего телефон
 status: To Do
 assignee: []
 created_date: '2026-09-03 12:59'
-updated_date: '2026-09-04 12:02'
+updated_date: '2026-09-25 06:54'
 labels:
   - from-chief
+milestone: m-29
 dependencies: []
 priority: high
 type: feat

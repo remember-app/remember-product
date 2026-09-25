@@ -1,9 +1,10 @@
 ---
 id: TASK-281
 title: воспоминание можно удалить целиком
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-24 12:39'
+updated_date: '2026-09-25 06:29'
 labels:
   - from-human
 dependencies: []
