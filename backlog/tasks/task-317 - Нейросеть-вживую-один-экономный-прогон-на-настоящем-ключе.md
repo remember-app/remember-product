@@ -1,11 +1,11 @@
 ---
 id: TASK-317
 title: 'Нейросеть вживую: один экономный прогон на настоящем ключе'
-status: To Do
+status: In Progress
 assignee:
   - '@tester'
 created_date: '2026-09-25 07:33'
-updated_date: '2026-09-25 08:31'
+updated_date: '2026-09-25 10:32'
 labels:
   - from-chief
 milestone: m-29
