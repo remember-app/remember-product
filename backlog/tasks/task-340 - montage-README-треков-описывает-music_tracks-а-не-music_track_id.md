@@ -1,10 +1,10 @@
 ---
 id: TASK-340
 title: 'montage: README треков описывает music_tracks, а не music_track_id'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-25 08:19'
-updated_date: '2026-09-25 08:19'
+updated_date: '2026-09-25 08:21'
 labels:
   - from-chief
 milestone: m-28
@@ -22,12 +22,12 @@ ordinal: 333000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 README каталога треков воркера описывает вход так, как он есть сейчас (music_tracks, music_wishes), без music_track_id; больше нигде в описании воркера прежнее поле не названо входом
+- [x] #1 README каталога треков воркера описывает вход так, как он есть сейчас (music_tracks, music_wishes), без music_track_id; больше нигде в описании воркера прежнее поле не названо входом
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Коммит в ветке worktree сервиса, слияние в dev — за лидом
+- [x] #1 Коммит в ветке worktree сервиса, слияние в dev — за лидом
 <!-- DOD:END -->
 
 ## Implementation Notes
