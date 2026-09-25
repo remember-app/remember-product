@@ -3,14 +3,14 @@ id: TASK-395
 title: >-
   test: повторная сверка с макетом после правок — «было / стало» по всем 57
   состояниям
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 22:28'
+updated_date: '2026-09-25 22:28'
 labels:
   - from-chief
 milestone: m-28
-dependencies:
-  - TASK-375
+dependencies: []
 priority: high
 type: feat
 ordinal: 386000
