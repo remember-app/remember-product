@@ -1,10 +1,10 @@
 ---
 id: TASK-293
 title: 'mobile: экран аккаунта по новой выгрузке'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-25 06:26'
-updated_date: '2026-09-25 06:45'
+updated_date: '2026-09-25 07:01'
 labels:
   - from-chief
 milestone: m-28
