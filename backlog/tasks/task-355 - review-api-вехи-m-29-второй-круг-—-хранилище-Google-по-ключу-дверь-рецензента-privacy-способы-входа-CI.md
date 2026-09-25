@@ -3,11 +3,11 @@ id: TASK-355
 title: >-
   review: api вехи m-29, второй круг — хранилище Google по ключу, дверь
   рецензента, /privacy, способы входа, CI
-status: In Progress
+status: Done
 assignee:
   - '@reviewer'
 created_date: '2026-09-25 09:49'
-updated_date: '2026-09-25 09:50'
+updated_date: '2026-09-25 10:08'
 labels:
   - from-chief
 milestone: m-29
