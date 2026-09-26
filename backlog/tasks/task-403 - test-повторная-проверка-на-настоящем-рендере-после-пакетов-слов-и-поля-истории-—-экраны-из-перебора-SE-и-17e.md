@@ -3,10 +3,10 @@ id: TASK-403
 title: >-
   test: повторная проверка на настоящем рендере после пакетов слов и поля
   истории — экраны из перебора, SE и 17e
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-26 10:21'
-updated_date: '2026-09-26 10:21'
+updated_date: '2026-09-26 13:34'
 labels:
   - from-chief
 milestone: m-28
@@ -26,14 +26,14 @@ ordinal: 394000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Перебор экранов из корней R1–R4 отчёта /private/tmp/m28-sweep/report/summary.md (Account, MemorySettings, Contacts, SheetFrameInfo, Viewer, ViewerVideo, SheetLiveFile, SheetConfirmMemory, SheetFilter, шапки лент, MontageLiveDone, Main, MontageSummary, MontageMusic, MontageMusicNone, MontageStory, MontageTemplate, InviteDead, UploadQueue, UploadAccess, SheetRejected, HomeOffline, FramesPicking, MemoryDated, MemoryScrub) на iPhone SE и 17e и 17 Pro Max, ступени L, XXXL, AX-XL, AX-XXXL, ru и en (для MontageStory и экранов с полями — клавиатура вверх/вниз); нарушения классов word-broken, text-truncated (кроме оставленных по спеке — список в отчёте TASK-400) и unreachable — нет, либо названы с классом и корнем
-- [ ] #2 Регрессия на обычном размере: все 56 состояний на 17e (ночь, ru) заново сняты и сверены с раундом 2 (/private/tmp/m28-visual-compare/round2/): число расхождений с макетом не выросло, новых нет; отличия названы
-- [ ] #3 Ничего не правится тестером; после себя не оставлено устройств вне стенда, процессов, worktree и временных файлов в репозиториях; раздача стендом проверяемого checkout подтверждена
+- [x] #1 Перебор экранов из корней R1–R4 отчёта /private/tmp/m28-sweep/report/summary.md (Account, MemorySettings, Contacts, SheetFrameInfo, Viewer, ViewerVideo, SheetLiveFile, SheetConfirmMemory, SheetFilter, шапки лент, MontageLiveDone, Main, MontageSummary, MontageMusic, MontageMusicNone, MontageStory, MontageTemplate, InviteDead, UploadQueue, UploadAccess, SheetRejected, HomeOffline, FramesPicking, MemoryDated, MemoryScrub) на iPhone SE и 17e и 17 Pro Max, ступени L, XXXL, AX-XL, AX-XXXL, ru и en (для MontageStory и экранов с полями — клавиатура вверх/вниз); нарушения классов word-broken, text-truncated (кроме оставленных по спеке — список в отчёте TASK-400) и unreachable — нет, либо названы с классом и корнем
+- [x] #2 Регрессия на обычном размере: все 56 состояний на 17e (ночь, ru) заново сняты и сверены с раундом 2 (/private/tmp/m28-visual-compare/round2/): число расхождений с макетом не выросло, новых нет; отличия названы
+- [x] #3 Ничего не правится тестером; после себя не оставлено устройств вне стенда, процессов, worktree и временных файлов в репозиториях; раздача стендом проверяемого checkout подтверждена
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Отчёт передан лиду
+- [x] #1 Отчёт передан лиду
 <!-- DOD:END -->
 
 ## Implementation Notes
