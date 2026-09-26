@@ -3,10 +3,10 @@ id: TASK-400
 title: >-
   mobile: подписи и имена переносятся, а не режутся; слова в ряду с соседом не
   рвутся по буквам
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-26 06:23'
-updated_date: '2026-09-26 06:23'
+updated_date: '2026-09-26 10:21'
 labels:
   - from-chief
 milestone: m-28
@@ -25,15 +25,15 @@ ordinal: 391000
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Корень R1: имена, даты, меты и подписи на экранах Account, MemorySettings, Contacts, SheetFrameInfo, Viewer, SheetLiveFile, SheetConfirmMemory, SheetFilter, шапках лент (MemoryFrames, MemoryDated, MemoryScrub, FramesByPeople, FramesEmpty, FilmsEmpty), MontageLiveDone, Main, MontageSummary переносятся на следующую строку, а не режутся многоточием, на iPhone SE (375×667), 17e и 17 Pro Max на ступенях XS, L, XXXL, AX-XL, AX-XXXL, ru и en; многоточие остаётся только там, где спека прямо его требует и на строке лежит вторичное представление — такие места названы списком в отчёте для решения дизайнера
-- [ ] #2 Корень R2: слова не рвутся по буквам — «Сохранить»/«Поделиться» и плитки-числа («просмотрел», «склейки») на MontageLiveDone, «Проявляем…» в плитке ленты (MemoryFrames, MemoryDated, MemoryScrub, FramesPicking), «Отправляем» в карточке очереди (UploadQueue, UploadAccess), метка «ВЫБРАНО» на MontageMusicNone, заголовок InviteDead; общее правило в ките (перестройка «WordRoom» по факту разрыва для любых слов в ряду с соседом; потолок роста заголовка пустого состояния под 375), а не заплатки по экранам
-- [ ] #3 Подтверждено повторным перебором на стенде тех же экранов, устройств, ступеней и языков: нарушений классов word-broken и defect/text-truncated по перечисленным экранам нет; на обычном размере текста раскладка на 390×844 не изменилась; полный npm test зелёный, тесты адаптивности не ослаблены и падают при возврате дыры (намеренная порча)
+- [x] #1 Корень R1: имена, даты, меты и подписи на экранах Account, MemorySettings, Contacts, SheetFrameInfo, Viewer, SheetLiveFile, SheetConfirmMemory, SheetFilter, шапках лент (MemoryFrames, MemoryDated, MemoryScrub, FramesByPeople, FramesEmpty, FilmsEmpty), MontageLiveDone, Main, MontageSummary переносятся на следующую строку, а не режутся многоточием, на iPhone SE (375×667), 17e и 17 Pro Max на ступенях XS, L, XXXL, AX-XL, AX-XXXL, ru и en; многоточие остаётся только там, где спека прямо его требует и на строке лежит вторичное представление — такие места названы списком в отчёте для решения дизайнера
+- [x] #2 Корень R2: слова не рвутся по буквам — «Сохранить»/«Поделиться» и плитки-числа («просмотрел», «склейки») на MontageLiveDone, «Проявляем…» в плитке ленты (MemoryFrames, MemoryDated, MemoryScrub, FramesPicking), «Отправляем» в карточке очереди (UploadQueue, UploadAccess), метка «ВЫБРАНО» на MontageMusicNone, заголовок InviteDead; общее правило в ките (перестройка «WordRoom» по факту разрыва для любых слов в ряду с соседом; потолок роста заголовка пустого состояния под 375), а не заплатки по экранам
+- [x] #3 Подтверждено повторным перебором на стенде тех же экранов, устройств, ступеней и языков: нарушений классов word-broken и defect/text-truncated по перечисленным экранам нет; на обычном размере текста раскладка на 390×844 не изменилась; полный npm test зелёный, тесты адаптивности не ослаблены и падают при возврате дыры (намеренная порча)
 <!-- AC:END -->
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 Коммит в ветке worktree сервиса, слияние в dev — за лидом
-- [ ] #2 Автотесты приложения зелёные
+- [x] #1 Коммит в ветке worktree сервиса, слияние в dev — за лидом
+- [x] #2 Автотесты приложения зелёные
 <!-- DOD:END -->
 
 ## Implementation Notes
