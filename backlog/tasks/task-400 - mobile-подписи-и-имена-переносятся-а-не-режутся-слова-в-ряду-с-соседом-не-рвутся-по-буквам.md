@@ -3,9 +3,10 @@ id: TASK-400
 title: >-
   mobile: подписи и имена переносятся, а не режутся; слова в ряду с соседом не
   рвутся по буквам
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-26 06:23'
+updated_date: '2026-09-26 06:23'
 labels:
   - from-chief
 milestone: m-28

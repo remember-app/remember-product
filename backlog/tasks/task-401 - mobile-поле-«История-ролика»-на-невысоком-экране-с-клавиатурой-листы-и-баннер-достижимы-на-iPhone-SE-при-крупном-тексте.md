@@ -3,9 +3,10 @@ id: TASK-401
 title: >-
   mobile: поле «История ролика» на невысоком экране с клавиатурой; листы и
   баннер достижимы на iPhone SE при крупном тексте
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-09-26 06:23'
+updated_date: '2026-09-26 06:23'
 labels:
   - from-chief
 milestone: m-28
