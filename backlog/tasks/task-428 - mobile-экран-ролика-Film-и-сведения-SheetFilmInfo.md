@@ -1,11 +1,11 @@
 ---
 id: TASK-428
 title: 'mobile: экран ролика Film и сведения SheetFilmInfo'
-status: In Progress
+status: Done
 assignee:
   - '@specialist'
 created_date: '2026-09-27 10:37'
-updated_date: '2026-09-27 12:04'
+updated_date: '2026-09-27 12:33'
 labels:
   - from-chief
 milestone: m-30
@@ -42,5 +42,7 @@ ordinal: 417000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Репозиторий mobile (worktree), ветка dev. Опирается на design/spec.md (TASK-421, экраны Film, SheetFilmInfo, MontageSummary) и на TASK-423 (api) — имя/переименование, «кто посмотрел» и удаление ролика должны быть в dev api. MontageSummary уже существует и уже показывает заголовок-имя по умолчанию как статичный текст (TASK-191) — сделай его тем самым редактируемым полем, не новым экраном.
+Сделано (коммит a08360e, смержен в mobile/dev без конфликтов поверх TASK-425/426/427/434): экран Film (постер PosterFilm, шапка Назад/капсула с именем/Поделиться, этапы сборки крупными строками, «Сохранить на телефон», markWatched при открытии готового ролика), SheetFilmInfo (FilmInfoSheet на RowCard/RowProp/RowDo — шаблон, музыка, кадры, файл, кем/когда собран, кто посмотрел), переименование (общий FilmNameSheet — и на итоге заказа новым NameHeading с автоподбором кегля, и в сведениях), удаление (существующий confirm-лист). api-слой (src/api/montage.ts) обновлён под новую форму (name/template/size_bytes/ordered_by-объект/watched_by, +renameMontage/markWatched/deleteMontage). Полный прогон после слияния со всей веткой m-30 зелёный: 124 файла/2156 тестов, tsc чист (после локальной регенерации кеша типов роутера — не код).
+Продуктовый вопрос от коддера, не мой: в SheetFilmInfo «Кадры» не тапается (экран ленты с выбранными кадрами ролика не нарисован) — оставил недоступным, не выдумал; лист удаления без абзаца «что исчезнет вместе с роликом» — тоже открытый вопрос макета (10.9 п.12).
+Мелкие хвосты не по вехе, заведены отдельно: tests/recorded-api устарели под новую форму ролика (низкий приоритет).
 <!-- SECTION:NOTES:END -->

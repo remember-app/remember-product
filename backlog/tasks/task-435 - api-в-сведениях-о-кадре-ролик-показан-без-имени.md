@@ -1,9 +1,10 @@
 ---
 id: TASK-435
 title: 'api: в сведениях о кадре ролик показан без имени'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-27 12:08'
+updated_date: '2026-09-27 12:30'
 labels:
   - from-lead
 dependencies: []
@@ -26,5 +27,5 @@ ordinal: 424000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Найдено при ревью m-30 (TASK-422/423/430). Место — src/media/frame.ts:156-163, тип InMontage. Новое поле в ответе — приложению нужно будет его читать, поэтому не мелочь для реализации в ревью.
+Сделано вместе с TASK-436 (коммит 8f1102f): «В роликах» в сведениях о кадре теперь показывает имя ролика (то же, что в списке роликов — своё или дефолт по языку). Рефактор: montageName вынесена в src/montages/view.ts, переиспользуется в обоих местах.
 <!-- SECTION:NOTES:END -->
