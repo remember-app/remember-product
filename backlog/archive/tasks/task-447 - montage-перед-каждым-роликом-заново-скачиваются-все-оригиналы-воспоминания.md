@@ -4,6 +4,7 @@ title: 'montage: перед каждым роликом заново скачи�
 status: To Do
 assignee: []
 created_date: '2026-09-27 13:05'
+updated_date: '2026-09-27 13:16'
 labels:
   - from-chief
 dependencies: []
@@ -22,3 +23,9 @@ ordinal: 436000
 <!-- AC:BEGIN -->
 - [ ] #1 Повторный заказ ролика не качает то, что уже считали
 <!-- AC:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Отменено человеком 2026-09-27: основной случай — воспоминание на 20 кадров и 4 видео, там перекачка стоит секунды. Вернуться, если появятся большие воспоминания.
+<!-- SECTION:FINAL_SUMMARY:END -->
