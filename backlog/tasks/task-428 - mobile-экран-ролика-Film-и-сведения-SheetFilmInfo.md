@@ -4,7 +4,7 @@ title: 'mobile: экран ролика Film и сведения SheetFilmInfo'
 status: To Do
 assignee: []
 created_date: '2026-09-27 10:37'
-updated_date: '2026-09-27 11:09'
+updated_date: '2026-09-27 11:26'
 labels:
   - from-chief
 milestone: m-30
@@ -12,6 +12,7 @@ dependencies:
   - TASK-421
   - TASK-423
   - TASK-430
+  - TASK-432
 priority: medium
 type: feat
 ordinal: 417000
