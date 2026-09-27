@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Компонент: сведения о ролике</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Onest', ui-sans-serif, system-ui, sans-serif; background: #16161F; color: #F5F3EE; -webkit-font-smoothing: antialiased; overflow: hidden; }
+html { overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+</style>
+</head>
+<body>
+
+<!-- Поднимается из центральной кнопки на экране ролика: всё, чем один ролик отличается от соседнего, и правка его самого -->
+<div style="width: 390px; height: 560px; box-sizing: border-box; background: #16161F; border-top: 1px solid #2C2C3A; border-radius: 28px 28px 0 0; padding: 12px 16px 30px; display: flex; flex-direction: column; gap: 16px;">
+
+  <span style="width: 40px; height: 4px; border-radius: 999px; background: #3A3747; align-self: center;"></span>
+
+  <div style="display: flex; flex-direction: column; gap: 4px; padding: 0 2px;">
+    <h2 style="margin: 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 21px; line-height: 25px; letter-spacing: -0.03em; color: #F5F3EE;">Ролик на 1:00</h2>
+    <span style="font-size: 13px; font-weight: 500; color: #A4A1B2;">Свадьба Лизы и Марка</span>
+  </div>
+
+  <div style="border-radius: 20px; background: #0B0B12; border: 1px solid #2C2C3A; overflow: hidden;">
+      <div style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 16px;">
+        <span style="width: 92px; flex-shrink: 0; font-size: 13px; font-weight: 500; color: #A4A1B2;">Шаблон</span>
+        <span style="flex-grow: 1; min-width: 0; font-size: 14px; font-weight: 600; color: #F5F3EE; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Для родителей</span>
+      </div>
+      <div style="height: 1px; background: #22222E; margin-left: 16px;"></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 16px;">
+        <span style="width: 92px; flex-shrink: 0; font-size: 13px; font-weight: 500; color: #A4A1B2;">Музыка</span>
+        <span style="flex-grow: 1; min-width: 0; font-size: 14px; font-weight: 600; color: #F5F3EE; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">«Тёплая», «Спокойная»</span>
+      </div>
+      <div style="height: 1px; background: #22222E; margin-left: 16px;"></div>
+      <a href="FramesPicking.html" style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 16px;">
+        <span style="width: 92px; flex-shrink: 0; font-size: 13px; font-weight: 500; color: #A4A1B2;">Кадры</span>
+        <span style="flex-grow: 1; min-width: 0; font-size: 14px; font-weight: 600; color: #F5F3EE; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">61 из 486</span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#6E6B7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="m9 18 6-6-6-6"></path></svg>
+      </a>
+      <div style="height: 1px; background: #22222E; margin-left: 16px;"></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 16px;">
+        <span style="width: 92px; flex-shrink: 0; font-size: 13px; font-weight: 500; color: #A4A1B2;">Файл</span>
+        <span style="flex-grow: 1; min-width: 0; font-size: 14px; font-weight: 600; color: #F5F3EE; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">1:00 · 16:9 · 84 МБ</span>
+      </div>
+      <div style="height: 1px; background: #22222E; margin-left: 16px;"></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 16px;">
+        <span style="width: 92px; flex-shrink: 0; font-size: 13px; font-weight: 500; color: #A4A1B2;">Собран</span>
+        <span style="flex-grow: 1; min-width: 0; font-size: 14px; font-weight: 600; color: #F5F3EE; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">14 сентября · Лиза</span>
+      </div>
+      <div style="height: 1px; background: #22222E; margin-left: 16px;"></div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 50px; padding: 0 16px;">
+        <span style="width: 92px; flex-shrink: 0; font-size: 13px; font-weight: 500; color: #A4A1B2;">Посмотрели</span>
+        <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 5px;"><span style="width: 26px; height: 26px; border-radius: 999px; background: #2F5E63; color: #F5F3EE; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">МК</span><span style="width: 26px; height: 26px; border-radius: 999px; background: #7A4B3A; color: #F5F3EE; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">АП</span><span style="width: 26px; height: 26px; border-radius: 999px; background: #3E5A2E; color: #F5F3EE; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ВГ</span><span style="width: 26px; height: 26px; border-radius: 999px; background: #22222E; color: #A4A1B2; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-variant-numeric: tabular-nums;">+1</span></span><span style="font-size: 13px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums; flex-shrink: 0;">4 из 6</span>
+      </div>
+  </div>
+
+  <div style="border-radius: 20px; background: #0B0B12; border: 1px solid #2C2C3A; overflow: hidden; display: flex; flex-direction: column;">
+      <button type="button" style="height: 52px; border: none; background: transparent; color: #F5F3EE; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 12px; padding: 0 16px; cursor: pointer; text-align: left;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>Переименовать</button>
+      <div style="height: 1px; background: #22222E; margin-left: 16px;"></div>
+      <button type="button" style="height: 52px; border: none; background: transparent; color: #FF8D8D; font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 12px; padding: 0 16px; cursor: pointer; text-align: left;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M3 6h18"></path><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"></path><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6M14 11v6"></path></svg>Удалить ролик</button>
+  </div>
+
+</div>
+</body>
+</html>
