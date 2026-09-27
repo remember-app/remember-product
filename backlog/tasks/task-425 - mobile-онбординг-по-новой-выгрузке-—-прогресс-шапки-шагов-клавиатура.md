@@ -1,11 +1,11 @@
 ---
 id: TASK-425
 title: 'mobile: онбординг по новой выгрузке — прогресс, шапки шагов, клавиатура'
-status: In Progress
+status: Done
 assignee:
   - '@specialist'
 created_date: '2026-09-27 10:36'
-updated_date: '2026-09-27 11:11'
+updated_date: '2026-09-27 12:02'
 labels:
   - from-chief
 milestone: m-30
@@ -39,5 +39,6 @@ ordinal: 414000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Репозиторий mobile (worktree), ветка dev. Смотри design/spec.md (уже обновлён TASK-421) — экраны Login, LoginEmail, LoginCode, LoginCodeKeys, Consent, Username. LoginCodeKeys — тот же шаг LoginCode, но с поднятой клавиатурой; проверь, можно ли обойтись одним экраном с двумя состояниями вместо двух роутов. Проверь src/kit на готовый компонент прогресс-полосы, прежде чем городить новый.
+Сделано (коммит 0e8bb0b, смержен в mobile/dev поверх TASK-427 — один конфликт add/add в src/kit/block-head.tsx, решён в пользу версии TASK-425 — надмножество с tone): полоса прогресса (StepScale, рисует корневой layout, а не экраны — только так гасится сегмент на «Назад» и заливаются 2-4 одним движением после Apple/Google), своя шапка на каждом шаге (StepHead + картинки), клавиатура двигает только кнопку (ActionBar keyboardGap), LoginCodeKeys — то же состояние login/code, не отдельный роут. Полный прогон после объединения с TASK-427 зелёный (2127 тестов).
+Продуктовый вопрос от коддера, не мой: «Назад» на экране согласия закрывает сессию и возвращает на шаг 1 (код уже потрачен, откатывать некуда) — коддер сам выбрал это поведение и просит подтверждения chief/человека, не решаю за них.
 <!-- SECTION:NOTES:END -->

@@ -1,11 +1,11 @@
 ---
 id: TASK-427
 title: 'mobile: единая шапка фильтров и ось «Ориентация»'
-status: In Progress
+status: Done
 assignee:
   - '@specialist'
 created_date: '2026-09-27 10:37'
-updated_date: '2026-09-27 11:11'
+updated_date: '2026-09-27 12:02'
 labels:
   - from-chief
 milestone: m-30
@@ -39,5 +39,5 @@ ordinal: 416000
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-Репозиторий mobile (worktree), ветка dev. Опирается на design/spec.md (TASK-421, SheetFilter) и на поле ориентации из TASK-422 (api) — без него фильтр рисуется, но не фильтрует по-настоящему.
+Сделано (коммит 8b08e41, смержен в mobile/dev): единая шапка (BlockHead) на всех пяти группах фильтра (Кто принёс/Тип/Ориентация/Лейблы/День), новая группа «Ориентация» между Тип и Лейблы, значения landscape/portrait/square/null учтены (square и null видны только под «Все»), «Сбросить» очищает всё разом включая ориентацию. Кит: BlockHead (новый), Segment с необязательным onClear, Chip с toggle/name. Полный прогон зелёный.
 <!-- SECTION:NOTES:END -->

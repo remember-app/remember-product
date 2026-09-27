@@ -1,10 +1,11 @@
 ---
 id: TASK-428
 title: 'mobile: экран ролика Film и сведения SheetFilmInfo'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@specialist'
 created_date: '2026-09-27 10:37'
-updated_date: '2026-09-27 11:26'
+updated_date: '2026-09-27 12:04'
 labels:
   - from-chief
 milestone: m-30
