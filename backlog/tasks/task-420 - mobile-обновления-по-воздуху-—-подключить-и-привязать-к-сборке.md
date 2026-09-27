@@ -1,9 +1,11 @@
 ---
 id: TASK-420
 title: 'mobile: обновления по воздуху — подключить и привязать к сборке'
-status: To Do
-assignee: []
+status: Done
+assignee:
+  - '@specialist'
 created_date: '2026-09-27 10:24'
+updated_date: '2026-09-27 10:54'
 labels:
   - from-human
 dependencies: []
@@ -24,3 +26,10 @@ ordinal: 409000
 - [ ] #2 Канал дев-контура отделён от будущего боевого
 - [ ] #3 В описании приложения сказано, что уходит по воздуху, а что требует сборки
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Сделано: expo-updates подключён (app.json updates.url + runtimeVersion policy fingerprint), eas.json testflight-профиль получил канал "dev" и environment "preview", хук useLaunchUpdate перезапускает приложение при найденном обновлении, README описывает воздух/сборку. Проверено: expo config introspect (нативные плисты/манифест верны), fingerprint стабилен к смене buildNumber, публикация через eas update, curl-запросы как у телефона (канал+рантайм совпадают → 200 с нужным хешем; чужой канал → 404; чужой рантайм → 204), тестовые группы обновлений удалены после проверки. Не проверено и не может быть проверено раньше: приём обновления на реальном телефоне — сборка 5 без expo-updates, первая способная сборка — следующая (её закажет человек).
+Смержено в dev коммитом merge (18e427d → dev), worktree и его ветка удалены, npm install в основном checkout выполнен (новая нативная зависимость).
+<!-- SECTION:NOTES:END -->
