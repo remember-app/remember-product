@@ -41,19 +41,19 @@ button { font-family: inherit; }
     </div>
   </div>
 
-  <!-- Стержень во всю высоту экрана: виден, только пока листают, его можно тянуть.
+  <!-- Стержень у левого края во всю высоту экрана: виден, только пока листают, его можно тянуть.
        Метки дат одинаковые и тихие, каждая стоит ровно на шве между рядами, где начинается день, — не посреди снимка -->
-  <div aria-hidden="true" style="position: absolute; right: 12px; top: 0; bottom: 0; width: 1px; background: rgba(245,243,238,0.22);"></div>
-  <div style="position: absolute; right: 12px; top: 0; bottom: 0; width: 1px;">
-    <div style="position: absolute; right: 0; top: 195px; height: 16px; display: flex; align-items: center;">
+  <div aria-hidden="true" style="position: absolute; left: 12px; top: 0; bottom: 0; width: 1px; background: rgba(245,243,238,0.22);"></div>
+  <div style="position: absolute; left: 12px; top: 0; bottom: 0; width: 1px;">
+    <div style="position: absolute; left: 0; top: 195px; height: 16px; display: flex; align-items: center;">
+      <span style="width: 4px; height: 4px; margin-left: -1.5px; border-radius: 999px; background: rgba(245,243,238,0.6);"></span>
+      <span style="width: 8px; height: 1px; background: rgba(245,243,238,0.35);"></span>
       <span style="height: 16px; padding: 0 6px; border-radius: 999px; background: rgba(11,11,18,0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: rgba(245,243,238,0.72); font-size: 10px; line-height: 16px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums;">13 сен</span>
-      <span style="width: 8px; height: 1px; background: rgba(245,243,238,0.35);"></span>
-      <span style="width: 4px; height: 4px; margin-right: -1.5px; border-radius: 999px; background: rgba(245,243,238,0.6);"></span>
     </div>
-    <div style="position: absolute; right: 0; top: 588px; height: 16px; display: flex; align-items: center;">
-      <span style="height: 16px; padding: 0 6px; border-radius: 999px; background: rgba(11,11,18,0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: rgba(245,243,238,0.72); font-size: 10px; line-height: 16px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums;">12 сен</span>
+    <div style="position: absolute; left: 0; top: 588px; height: 16px; display: flex; align-items: center;">
+      <span style="width: 4px; height: 4px; margin-left: -1.5px; border-radius: 999px; background: rgba(245,243,238,0.6);"></span>
       <span style="width: 8px; height: 1px; background: rgba(245,243,238,0.35);"></span>
-      <span style="width: 4px; height: 4px; margin-right: -1.5px; border-radius: 999px; background: rgba(245,243,238,0.6);"></span>
+      <span style="height: 16px; padding: 0 6px; border-radius: 999px; background: rgba(11,11,18,0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: rgba(245,243,238,0.72); font-size: 10px; line-height: 16px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums;">12 сен</span>
     </div>
   </div>
 

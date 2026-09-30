@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Кадр — телефон горизонтально, кадр горизонтальный</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap">
+<style>
+body { margin: 0; font-family: 'Onest', ui-sans-serif, system-ui, sans-serif; background: #08080C; color: #F5F3EE; -webkit-font-smoothing: antialiased; overflow: hidden; }
+html { overflow: hidden; }
+button { font-family: inherit; }
+</style>
+</head>
+<body>
+
+<!-- Телефон повёрнут под горизонтальный кадр: тот занимает всю высоту, поля остаются узкими по бокам -->
+<div style="width: 844px; height: 390px; box-sizing: border-box; background: #08080C; position: relative; overflow: hidden;">
+
+  <!-- В повороте кадру достаётся вся высота, а незаполненное поле уходит по бокам -->
+  <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+    <div style="width: 585px; height: 390px; overflow: hidden;">
+      <img src="../img/f11.jpg" alt="Фото, 13 сентября" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 0; top: 0; right: 0; height: 110px; background: linear-gradient(to bottom, rgba(8,8,12,0.72) 0%, rgba(8,8,12,0) 100%); pointer-events: none;"></div>
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(to top, rgba(8,8,12,0.8) 0%, rgba(8,8,12,0) 100%); pointer-events: none;"></div>
+
+  <!-- Те же три кнопки, но ниже и уже: в повороте высота дороже ширины. По бокам 44 px под вырез и жест «домой» -->
+  <div style="position: absolute; left: 44px; top: 18px; right: 44px; display: flex; align-items: center; gap: 10px;">
+    <button type="button" aria-label="Закрыть" style="width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.09); box-sizing: border-box; border-radius: 999px; background: rgba(22,22,31,0.62); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+    </button>
+    <div style="flex-grow: 1; display: flex; justify-content: center; min-width: 0;">
+      <button type="button" aria-label="Сведения о кадре: 13 сентября, 21:47 · Марк Ковалёв" style="max-width: 100%; height: 44px; padding: 0 20px; border: 1px solid rgba(255,255,255,0.09); box-sizing: border-box; border-radius: 999px; background: rgba(22,22,31,0.62); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); color: #F5F3EE; display: flex; align-items: center; gap: 9px; cursor: pointer;">
+        <span style="font-size: 15px; font-weight: 600; color: #F5F3EE; white-space: nowrap;">13 сентября</span>
+        <span style="width: 3px; height: 3px; border-radius: 999px; background: rgba(245,243,238,0.4); flex-shrink: 0;"></span>
+        <span style="font-size: 13px; font-weight: 500; color: rgba(245,243,238,0.66); font-variant-numeric: tabular-nums; white-space: nowrap;">21:47 · Марк Ковалёв</span>
+      </button>
+    </div>
+    <button type="button" aria-label="Действия: поделиться, сохранить, удалить" style="width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.09); box-sizing: border-box; border-radius: 999px; background: rgba(22,22,31,0.62); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.9"></circle><circle cx="12" cy="12" r="1.9"></circle><circle cx="19" cy="12" r="1.9"></circle></svg>
+    </button>
+  </div>
+
+  <!-- Плёнка во всю ширину экрана: в повороте её видно дальше по ленте, чем в вертикальном -->
+  <div style="position: absolute; left: 10px; right: 0; bottom: 14px; display: flex; align-items: center; justify-content: center; gap: 2px; height: 40px; overflow: hidden; width: 822px"><img src="../img/f02.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f12.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f03.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f06.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f01.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f11.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f09.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f08.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f04.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f10.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f07.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f05.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f02.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f12.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.6; flex-shrink: 0;"><img src="../img/f03.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.75; flex-shrink: 0;"><img src="../img/f05.jpg" alt="" style="width: 38px; height: 40px; object-fit: cover; border-radius: 5px; display: block; flex-shrink: 0;"><img src="../img/f01.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.75; flex-shrink: 0;"><img src="../img/f11.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.6; flex-shrink: 0;"><img src="../img/f09.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f08.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f04.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f10.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f07.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f05.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f02.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f12.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f03.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f06.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f01.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f11.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"><img src="../img/f09.jpg" alt="" style="width: 26px; height: 36px; object-fit: cover; border-radius: 3px; display: block; opacity: 0.45; flex-shrink: 0;"></div>
+
+</div>
+</body>
+</html>
