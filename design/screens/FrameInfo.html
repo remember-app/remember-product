@@ -12,18 +12,10 @@ button { font-family: inherit; }
 </head>
 <body>
 
-<!-- Это не лист поверх экрана, а сам экран просмотра в другом состоянии: кадр ужимается кверху, панель приезжает снизу и листается.
-     Доска выше телефона (1030 вместо 844) нарочно — чтобы видеть всю панель целиком, в жизни нижняя часть доскроливается -->
 <div style="width: 390px; height: 962px; box-sizing: border-box; background: #08080C; position: relative; overflow: hidden">
-
-  <!-- Кадр ужат к верху: та же картинка, что была во весь экран, только в отведённой высоте -->
   <div style="position: absolute; left: 0; top: 0; right: 0; height: 289px; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 394px; box-sizing: border-box; max-width: none; max-height: none; flex-grow: 0; flex-shrink: 0; flex-basis: auto">
-    
   </div>
-
   <div style="position: absolute; left: 0; top: 0; right: 0; height: 140px; background: linear-gradient(to bottom, rgba(8,8,12,0.72) 0%, rgba(8,8,12,0) 100%); pointer-events: none;"></div>
-
-  <!-- Кнопки те же, что в просмотре: центральная теперь нажата — она и открыла эту панель -->
   <div style="position: absolute; left: 0; top: 52px; right: 0; padding: 0 12px; display: flex; align-items: center; gap: 10px;">
     <button type="button" aria-label="Закрыть" style="width: 48px; height: 48px; border: 1px solid rgba(255,255,255,0.09); box-sizing: border-box; border-radius: 999px; background: rgba(22,22,31,0.62); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
@@ -38,13 +30,7 @@ button { font-family: inherit; }
       <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.9"></circle><circle cx="12" cy="12" r="1.9"></circle><circle cx="19" cy="12" r="1.9"></circle></svg>
     </button>
   </div>
-
-  <!-- Панель: приезжает снизу, накрывает низ кадра и листается вместе со всем, что в ней -->
   <div style="position: absolute; left: 0; right: 0; top: 292px; bottom: 0; box-sizing: border-box; background: #16161F; border-top: 1px solid #2C2C3A; border-radius: 0px; padding: 12px 16px 30px; display: flex; flex-direction: column; gap: 14px; overflow: hidden; height: 685px">
-
-  
-
-  <!-- Разговор про кадр стоит первым: это единственное здесь, что человек пишет сам. Всё, что ниже, записал телефон -->
   <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 12px;">
     <div style="display: flex; align-items: baseline; gap: 8px;">
       <span style="flex-grow: 1; font-size: 12px; font-weight: 500; color: #A4A1B2;">Комментарии</span>
@@ -59,38 +45,27 @@ button { font-family: inherit; }
     </div>
     <div style="display: flex; align-items: center; gap: 8px; height: 48px; box-sizing: border-box; padding: 0 6px 0 16px; border-radius: 999px; background: #0B0B12; border: 1px solid #2C2C3A;">
       <span style="flex-grow: 1; min-width: 0; font-size: 14px; font-weight: 400; color: #6E6B7D;">Написать про этот кадр…</span>
-      
     </div>
   </div>
-
-  <!-- Лейблы: чем этот кадр помечен. Общие видят все, свой — только хозяин, поэтому у него замок -->
   <div style="display: flex; flex-direction: column; gap: 10px;">
     <span style="font-size: 12px; font-weight: 500; color: #A4A1B2;">Лейблы</span>
     <div style="display: flex; align-items: center; gap: 6px; overflow: hidden;">
       <button type="button" style="height: 34px; padding: 0 10px; border: 1px solid #2C2C3A; border-radius: 999px; background: #0B0B12; color: #F5F3EE; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer; flex-shrink: 0;"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 999px; background: #E4552B; flex-shrink: 0;"></span>Церемония</button><button type="button" style="height: 34px; padding: 0 10px; border: 1px solid #2C2C3A; border-radius: 999px; background: #0B0B12; color: #F5F3EE; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer; flex-shrink: 0;"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 999px; background: #12B981; flex-shrink: 0;"></span>Бабушки</button><button type="button" aria-label="Положить в лейбл" style="width: 34px; height: 34px; border: 1px dashed #3A3747; border-radius: 999px; background: transparent; color: #A4A1B2; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
     </div>
   </div>
-
   <div style="border-radius: 20px; background: #0B0B12; border: 1px solid #2C2C3A; overflow: hidden;">
-
-    <!-- Когда снято — главная строка: по ней кадр встаёт в ленту, поэтому её и правят -->
     <div style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px 12px;">
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
         <span style="font-size: 15px; line-height: 20px; font-weight: 600; color: #F5F3EE; font-variant-numeric: tabular-nums;">Суббота, 13 сентября 2026<br>в 21:47</span>
-        
       </div>
       <button type="button" style="height: 28px; padding: 0; border: none; background: transparent; color: #A7AEFF; font-size: 14px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Изменить</button>
     </div>
-
     <div style="height: 1px; background: #22222E; margin-left: 16px;"></div>
-
     <div style="display: flex; align-items: center; gap: 10px; padding: 13px 16px;">
       <span style="flex-grow: 1; min-width: 0; font-size: 15px; font-weight: 600; color: #F5F3EE; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Apple iPhone 15 Pro</span>
       <span style="height: 22px; padding: 0 9px; border-radius: 999px; background: #22222E; color: #A4A1B2; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; display: flex; align-items: center; flex-shrink: 0;">HEIF</span>
     </div>
-
     <div style="height: 1px; background: #22222E; margin-left: 16px;"></div>
-
     <div style="display: flex; align-items: flex-start; gap: 10px; padding: 13px 16px;">
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
         <span style="font-size: 13px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">Основная камера — 24 mm ƒ/1,8</span>
@@ -98,8 +73,6 @@ button { font-family: inherit; }
       </div>
       <span style="height: 22px; padding: 0 9px; border-radius: 999px; background: #22222E; color: #A4A1B2; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; display: flex; align-items: center; flex-shrink: 0;">СТАНДАРТ</span>
     </div>
-
-    <!-- Настройки съёмки строкой: их читают те, кто понимает, остальным они не мешают -->
     <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: #16161F; border-top: 1px solid #22222E;">
       <span style="padding: 11px 0; text-align: center; font-size: 12px; font-weight: 600; color: #A4A1B2; font-variant-numeric: tabular-nums;">ISO 400</span>
       <span style="padding: 11px 0; text-align: center; font-size: 12px; font-weight: 600; color: #A4A1B2; font-variant-numeric: tabular-nums; border-left: 1px solid #22222E;">24 mm</span>
@@ -107,20 +80,13 @@ button { font-family: inherit; }
       <span style="padding: 11px 0; text-align: center; font-size: 12px; font-weight: 600; color: #A4A1B2; font-variant-numeric: tabular-nums; border-left: 1px solid #22222E;">ƒ/1,8</span>
       <span style="padding: 11px 0; text-align: center; font-size: 12px; font-weight: 600; color: #A4A1B2; font-variant-numeric: tabular-nums; border-left: 1px solid #22222E;">1/60 с</span>
     </div>
-
-    
-
-    <!-- Кто принёс — наша строка, не телефонная: в общем воспоминании это важнее камеры -->
     <div style="display: flex; align-items: center; gap: 12px; height: 52px; padding: 0 16px;"><span style="width: 88px; flex-shrink: 0; font-size: 13px; font-weight: 500; color: rgb(164, 161, 178)"><br></span>
       <span style="flex-grow: 1; min-width: 0px; display: flex; align-items: center; gap: 9px">
         <span aria-hidden="true" style="width: 26px; height: 26px; border-radius: 999px; background: rgb(47, 94, 99); color: rgb(245, 243, 238); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">МК</span>
         <span style="min-width: 0px; font-size: 14px; font-weight: 500; color: rgb(245, 243, 238); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Марк Ковалёв</span>
       </span>
     </div>
-
   </div>
-
-  <!-- Место — картой, а не строкой: по названию улицы никто ничего не вспомнит, а по карте вспомнит -->
   <div style="position: relative; height: 118px; border-radius: 20px; overflow: hidden; background: #101018; border: 1px solid #2C2C3A;">
     <svg width="358" height="118" viewBox="0 0 358 118" aria-hidden="true" style="position: absolute; inset: 0; display: block;">
       <rect width="358" height="118" fill="#101018"></rect>
@@ -136,11 +102,11 @@ button { font-family: inherit; }
     <span aria-hidden="true" style="position: absolute; left: 50%; top: 46px; margin-left: -13px; width: 26px; height: 26px; border-radius: 999px; background: #4B5BFF; border: 2.5px solid #F5F3EE; box-sizing: border-box; box-shadow: 0 6px 16px rgba(0,0,0,0.55);"></span>
     <span style="position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 14px 11px; background: linear-gradient(to top, rgba(11,11,18,0.92) 30%, rgba(11,11,18,0) 100%); font-size: 13px; font-weight: 600; color: #F5F3EE;">Усадьба «Остафьево»</span>
   </div>
-
   </div>
-
 </div>
 <div style="width: 391px; height: 291px; overflow: hidden; position: absolute; left: 0px; top: 0px">
       <img src="../img/f10.jpg" alt="Фото, 13 сентября" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-    </div></body>
+    </div>
+
+</body>
 </html>

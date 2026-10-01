@@ -14,7 +14,6 @@ button { font-family: inherit; }
 <body>
 
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #0B0B12; position: relative; overflow: hidden;">
-
   <div style="position: absolute; left: 0; top: 0; right: 0; padding: 52px 16px 0;">
     <div style="display: flex; align-items: center; height: 44px;">
       <div style="width: 74px; display: flex;"><button type="button" aria-label="Назад" style="width: 44px; height: 44px; margin-left: -10px; border: none; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button></div>
@@ -25,13 +24,9 @@ button { font-family: inherit; }
     <h1 style="margin: 18px 0 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 26px; line-height: 29px; letter-spacing: -0.035em; color: #F5F3EE;">Под что монтировать</h1>
     <p style="margin: 10px 0 0; font-size: 13px; line-height: 19px; font-weight: 500; color: #A4A1B2;">Без музыки или один-несколько треков.</p>
   </div>
-
   <div style="position: absolute; left: 16px; right: 16px; top: 206px; display: flex; flex-direction: column; gap: 18px;">
-    <!-- Выбранные треки. Цветом не выделяем: сам факт, что трек здесь, и значит, что он выбран.
-         У каждого своя кнопка с карандашом — пожелание к этому треку; поле раскрывается по ней и сворачивается в строку под названием -->
     <div style="border-radius: 20px; background: #16161F; border: 1px solid #2C2C3A; overflow: hidden;">
       <div style="display: flex; align-items: baseline; gap: 8px; padding: 12px 14px 6px;"><span style="flex-grow: 1; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A4A1B2;">Выбрано</span><span style="font-size: 12px; font-weight: 500; color: #6E6B7D; font-variant-numeric: tabular-nums;">2 трека · 3:45</span></div>
-      
         <div style="height: 60px; display: flex; align-items: center; gap: 10px; padding: 0 8px 0 12px;">
           <button type="button" aria-label="Послушать «Тёплая»" style="width: 36px; height: 36px; border: none; border-radius: 999px; background: #22222E; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg></button>
           <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
@@ -49,8 +44,6 @@ button { font-family: inherit; }
           <button type="button" aria-label="Убрать «Спокойная»" style="width: 36px; height: 36px; border: none; border-radius: 999px; background: transparent; color: #6E6B7D; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
         </div>
     </div>
-
-    <!-- Библиотека: отдельный блок. «+» добавляет трек наверх, в выбранные; можно несколько -->
     <div style="display: flex; flex-direction: column; gap: 10px;">
       <div style="display: flex; align-items: center; gap: 8px; padding-left: 2px;">
         <span style="flex-grow: 1; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A4A1B2;">Музыка</span>
@@ -85,12 +78,11 @@ button { font-family: inherit; }
       </div>
     </div>
   </div>
-
   <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 132px; background: linear-gradient(to top, #0B0B12 58%, rgba(11,11,18,0) 100%); pointer-events: none;"></div>
   <div style="position: absolute; left: 16px; right: 16px; bottom: 30px;">
     <button type="button" style="width: 100%; height: 56px; border: none; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer; box-shadow: 0 12px 32px rgba(75,91,255,0.38);">Дальше<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
   </div>
-
 </div>
+
 </body>
 </html>

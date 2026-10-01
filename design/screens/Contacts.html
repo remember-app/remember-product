@@ -15,8 +15,6 @@ input { font-family: inherit; }
 <body>
 
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #0B0B12; position: relative; overflow: hidden;">
-
-  <!-- Поле прибито к шапке: это и поиск, и способ добавить -->
   <div style="position: absolute; left: 0; top: 0; right: 0; padding: 52px 16px 0;">
     <div style="display: flex; align-items: center; gap: 8px; height: 44px;">
       <button type="button" aria-label="Назад" style="width: 44px; height: 44px; margin-left: -10px; border: none; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;">
@@ -24,7 +22,6 @@ input { font-family: inherit; }
       </button>
       <h1 style="margin: 0; flex-grow: 1; font-family: 'Unbounded', sans-serif; font-weight: 600; font-size: 18px; line-height: 22px; letter-spacing: -0.03em; color: #F5F3EE;">Контакты</h1>
     </div>
-
     <label for="handle" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);">Ник</label>
     <div style="margin-top: 12px; height: 52px; border-radius: 16px; background: #16161F; border: 1px solid #2C2C3A; display: flex; align-items: center; gap: 10px; padding: 0 14px; box-sizing: border-box;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A4A1B2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
@@ -32,10 +29,7 @@ input { font-family: inherit; }
       <input id="handle" type="text" value="mari" placeholder="ник" autocomplete="off" style="flex-grow: 1; min-width: 0; background: transparent; border: none; outline: none; color: #F5F3EE; font-size: 16px; font-weight: 500; padding: 0;">
     </div>
   </div>
-
   <div style="position: absolute; left: 0; top: 184px; right: 0; bottom: 0; padding: 0 16px; overflow: hidden;">
-
-    <!-- Найденный в Remember, но ещё не сохранённый: одна строка и одно действие -->
     <div style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 18px;">
       <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A4A1B2;">Не в контактах</span>
       <div style="display: flex; align-items: center; gap: 12px; padding: 10px 12px 10px 10px; border-radius: 18px; background: #16161F; border: 1px solid #2C2C3A;">
@@ -47,13 +41,11 @@ input { font-family: inherit; }
         <button type="button" style="height: 44px; padding: 0 18px; border: none; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; font-size: 14px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Сохранить</button>
       </div>
     </div>
-
     <div style="display: flex; align-items: center; gap: 12px; height: 34px;">
       <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A4A1B2;">Сохранённые</span>
       <span style="flex-grow: 1; height: 1px; background: #2C2C3A;"></span>
       <span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">8</span>
     </div>
-
     <div style="display: flex; align-items: center; gap: 12px; padding: 11px 0;">
       <span style="width: 42px; height: 42px; border-radius: 999px; background: #22222E; color: #F5F3EE; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">МК</span>
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
@@ -64,10 +56,7 @@ input { font-family: inherit; }
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
       </button>
     </div>
-
     <div style="height: 1px; background: #2C2C3A;"></div>
-
-    <!-- Убранный, но ещё стоящий на месте: пять секунд на «Вернуть», без листа подтверждения -->
     <div style="display: flex; align-items: center; gap: 12px; padding: 11px 0;">
       <span style="width: 42px; height: 42px; border-radius: 999px; background: #1B1B24; color: #6E6B7D; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ПЛ</span>
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
@@ -76,9 +65,7 @@ input { font-family: inherit; }
       </div>
       <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #45424F; border-radius: 999px; background: transparent; color: #F5F3EE; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Вернуть</button>
     </div>
-
     <div style="height: 1px; background: #2C2C3A;"></div>
-
     <div style="display: flex; align-items: center; gap: 12px; padding: 11px 0;">
       <span style="width: 42px; height: 42px; border-radius: 999px; background: #22222E; color: #F5F3EE; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">АП</span>
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
@@ -89,9 +76,7 @@ input { font-family: inherit; }
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
       </button>
     </div>
-
     <div style="height: 1px; background: #2C2C3A;"></div>
-
     <div style="display: flex; align-items: center; gap: 12px; padding: 11px 0;">
       <span style="width: 42px; height: 42px; border-radius: 999px; background: #22222E; color: #F5F3EE; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ВГ</span>
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
@@ -102,9 +87,7 @@ input { font-family: inherit; }
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
       </button>
     </div>
-
     <div style="height: 1px; background: #2C2C3A;"></div>
-
     <div style="display: flex; align-items: center; gap: 12px; padding: 11px 0;">
       <span style="width: 42px; height: 42px; border-radius: 999px; background: #22222E; color: #F5F3EE; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ДС</span>
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
@@ -115,9 +98,7 @@ input { font-family: inherit; }
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
       </button>
     </div>
-
     <div style="height: 1px; background: #2C2C3A;"></div>
-
     <div style="display: flex; align-items: center; gap: 12px; padding: 11px 0;">
       <span style="width: 42px; height: 42px; border-radius: 999px; background: #22222E; color: #F5F3EE; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">КК</span>
       <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
@@ -128,9 +109,8 @@ input { font-family: inherit; }
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
       </button>
     </div>
-
   </div>
-
 </div>
+
 </body>
 </html>

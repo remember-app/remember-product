@@ -14,7 +14,6 @@ button { font-family: inherit; }
 <body>
 
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #0B0B12; position: relative; overflow: hidden;">
-
   <div style="position: absolute; left: 0; right: 0; top: -58px;">
     <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px;">
       <div style="position: relative; height: 129px; overflow: hidden;"><img src="../img/f11.jpg" alt="" style="width: 100%; height: 129px; object-fit: cover; display: block;"></div>
@@ -40,9 +39,6 @@ button { font-family: inherit; }
       <div style="position: relative; height: 129px; overflow: hidden;"><img src="../img/f04.jpg" alt="" style="width: 100%; height: 129px; object-fit: cover; display: block;"></div>
     </div>
   </div>
-
-  <!-- Стержень у левого края во всю высоту экрана: виден, только пока листают, его можно тянуть.
-       Метки дат одинаковые и тихие, каждая стоит ровно на шве между рядами, где начинается день, — не посреди снимка -->
   <div aria-hidden="true" style="position: absolute; left: 12px; top: 0; bottom: 0; width: 1px; background: rgba(245,243,238,0.22);"></div>
   <div style="position: absolute; left: 12px; top: 0; bottom: 0; width: 1px;">
     <div style="position: absolute; left: 0; top: 195px; height: 16px; display: flex; align-items: center;">
@@ -56,8 +52,6 @@ button { font-family: inherit; }
       <span style="height: 16px; padding: 0 6px; border-radius: 999px; background: rgba(11,11,18,0.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: rgba(245,243,238,0.72); font-size: 10px; line-height: 16px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums;">12 сен</span>
     </div>
   </div>
-
-  <!-- Верх: затемнение по фото, три кнопки. Средняя — имя воспоминания и вход в его настройки -->
   <div style="position: absolute; left: 0; top: 0; right: 0; height: 176px; background: linear-gradient(to bottom, rgba(11,11,18,0.94) 0%, rgba(11,11,18,0.72) 38%, rgba(11,11,18,0) 100%); pointer-events: none;"></div>
   <div style="position: absolute; left: 12px; right: 12px; top: 52px; display: flex; align-items: center; gap: 8px;">
     <button type="button" aria-label="Назад" style="position: relative; width: 48px; height: 48px; border-radius: 999px; background: rgba(22,22,31,0.62); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border: 1px solid rgba(255,255,255,0.09); box-sizing: border-box; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
@@ -69,16 +63,13 @@ button { font-family: inherit; }
     </button>
     <button type="button" aria-label="Выбрать" style="position: relative; width: 48px; height: 48px; border-radius: 999px; background: rgba(22,22,31,0.62); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border: 1px solid rgba(255,255,255,0.09); box-sizing: border-box; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></svg></button>
   </div>
-
-
-  <!-- Низ как был: слева отбор, справа раскладка, между ними главное действие -->
   <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 190px; background: linear-gradient(to top, rgba(11,11,18,0.96) 0%, rgba(11,11,18,0.78) 40%, rgba(11,11,18,0) 100%); pointer-events: none;"></div>
   <div style="position: absolute; left: 16px; right: 16px; bottom: 30px; display: flex; align-items: center; gap: 10px;">
     <button type="button" aria-label="Фильтры" style="position: relative; width: 56px; height: 56px; border-radius: 999px; background: rgba(22,22,31,0.62); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border: 1px solid rgba(255,255,255,0.09); box-sizing: border-box; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8.2V20l-4-2.2v-4.6z"></path></svg></button>
     <button type="button" style="flex-grow: 1; height: 56px; border: none; border-radius: 999px; background: #4B5BFF; color: #FFFFFF; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer; box-shadow: 0 12px 32px rgba(75,91,255,0.38);"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Добавить ещё</button>
     <button type="button" aria-label="Сортировка" style="position: relative; width: 56px; height: 56px; border-radius: 999px; background: rgba(22,22,31,0.62); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border: 1px solid rgba(255,255,255,0.09); box-sizing: border-box; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20V4"></path><path d="m4 7 3-3 3 3"></path><path d="M17 4v16"></path><path d="m14 17 3 3 3-3"></path></svg></button>
   </div>
-
 </div>
+
 </body>
 </html>
