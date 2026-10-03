@@ -1,10 +1,10 @@
 ---
 id: TASK-478
 title: 'mobile: сведения о кадре — экран, а не лист'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-03 16:58'
-updated_date: '2026-10-03 20:45'
+updated_date: '2026-10-03 21:30'
 labels:
   - from-lead
 milestone: m-34
