@@ -1,10 +1,10 @@
 ---
 id: TASK-485
 title: 'mobile: на повороте кадр не ужимается под панель сведений'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-03 21:59'
-updated_date: '2026-10-03 22:00'
+updated_date: '2026-10-03 22:33'
 labels:
   - from-lead
 milestone: m-34

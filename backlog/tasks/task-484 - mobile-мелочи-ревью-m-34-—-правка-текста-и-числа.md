@@ -1,10 +1,10 @@
 ---
 id: TASK-484
 title: 'mobile: мелочи ревью m-34 — правка текста и числа'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-03 21:58'
-updated_date: '2026-10-03 22:00'
+updated_date: '2026-10-03 22:33'
 labels:
   - from-lead
 milestone: m-34
