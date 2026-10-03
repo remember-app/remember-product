@@ -4,11 +4,12 @@ title: 'mobile: падают два теста аккаунта — наслед
 status: To Do
 assignee: []
 created_date: '2026-10-03 22:33'
+updated_date: '2026-10-03 22:35'
 labels:
   - from-lead
-milestone: m-28
+milestone: m-34
 dependencies: []
-priority: medium
+priority: high
 type: bug
 ordinal: 474000
 ---
