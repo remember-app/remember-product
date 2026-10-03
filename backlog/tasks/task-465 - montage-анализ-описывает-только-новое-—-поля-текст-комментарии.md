@@ -1,9 +1,11 @@
 ---
 id: TASK-465
 title: 'montage: анализ описывает только новое — поля, текст, комментарии'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@coder'
 created_date: '2026-10-01 08:34'
+updated_date: '2026-10-03 13:01'
 labels:
   - from-chief
 milestone: m-33
@@ -32,4 +34,6 @@ ordinal: 454000
 
 <!-- SECTION:NOTES:BEGIN -->
 Комментарии не строить: только seam frame_comments(conn, media_ids) -> {media_id: [text]}, возвращающий пустое, пока m-32 не заведёт хранилище.
+
+Решение chief 2026-10-03: пустое место под комментарии в карточке анализа — это «пока никто не написал». Настоящие комментарии придут только после m-32 (backlog/milestones/m-32 - frame-comments.md). Своего ничего туда не придумывать.
 <!-- SECTION:NOTES:END -->

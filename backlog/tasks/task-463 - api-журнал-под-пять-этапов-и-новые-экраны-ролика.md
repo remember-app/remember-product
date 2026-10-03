@@ -1,10 +1,10 @@
 ---
 id: TASK-463
 title: 'api: журнал под пять этапов и новые экраны ролика'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-01 08:34'
-updated_date: '2026-10-01 08:35'
+updated_date: '2026-10-03 11:18'
 labels:
   - from-chief
 milestone: m-33

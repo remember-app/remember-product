@@ -1,10 +1,10 @@
 ---
 id: TASK-458
 title: 'montage: отсев брака выбрасывает кадр, который человек вернул руками'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-27 17:22'
-updated_date: '2026-10-01 08:34'
+updated_date: '2026-10-03 13:00'
 labels:
   - from-human
 milestone: m-33

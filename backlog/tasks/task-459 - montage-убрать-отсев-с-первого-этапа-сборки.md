@@ -1,10 +1,10 @@
 ---
 id: TASK-459
 title: 'montage: убрать отсев с первого этапа сборки'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-09-27 17:26'
-updated_date: '2026-10-01 08:34'
+updated_date: '2026-10-03 13:00'
 labels:
   - from-human
 milestone: m-33
