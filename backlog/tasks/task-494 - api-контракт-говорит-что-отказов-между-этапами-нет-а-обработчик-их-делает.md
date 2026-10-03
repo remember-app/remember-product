@@ -1,13 +1,15 @@
 ---
-id: DRAFT-35
+id: TASK-494
 title: 'api: контракт говорит, что отказов между этапами нет, а обработчик их делает'
-status: Draft
+status: To Do
 assignee: []
 created_date: '2026-10-03 23:26'
-updated_date: '2026-10-03 23:28'
+updated_date: '2026-10-03 23:35'
 labels:
   - from-lead
+milestone: m-33
 dependencies: []
+priority: high
 ---
 
 ## Description
