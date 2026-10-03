@@ -1,9 +1,10 @@
 ---
 id: TASK-479
 title: 'mobile: тип FrameInfo знает о лейблах'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-03 17:14'
+updated_date: '2026-10-03 18:00'
 labels:
   - from-lead
 milestone: m-34

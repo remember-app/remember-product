@@ -1,10 +1,10 @@
 ---
 id: TASK-475
 title: 'mobile: четыре состояния просмотра по макетам'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-03 16:54'
-updated_date: '2026-10-03 17:01'
+updated_date: '2026-10-03 18:00'
 labels:
   - from-human
 milestone: m-34

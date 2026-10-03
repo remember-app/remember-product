@@ -1,11 +1,11 @@
 ---
 id: TASK-453
 title: 'montage: скрытие/удаление/правка даты кадра не пересчитывает «Дубль»'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-09-27 14:48'
-updated_date: '2026-10-03 17:30'
+updated_date: '2026-10-03 17:53'
 labels:
   - from-lead
 milestone: m-33
@@ -29,8 +29,8 @@ TASK-452 пересчитывает серии дублей при каждом 
 
 ## Definition of Done
 <!-- DOD:BEGIN -->
-- [ ] #1 ревью пройдено
-- [ ] #2 автотесты зелёные
+- [x] #1 ревью пройдено
+- [x] #2 автотесты зелёные
 <!-- DOD:END -->
 
 ## Comments
