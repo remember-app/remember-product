@@ -1,10 +1,10 @@
 ---
 id: TASK-476
 title: 'mobile: тап по кадру прячет интерфейс и возвращает его'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-03 16:54'
-updated_date: '2026-10-03 18:21'
+updated_date: '2026-10-03 19:39'
 labels:
   - from-human
 milestone: m-34
