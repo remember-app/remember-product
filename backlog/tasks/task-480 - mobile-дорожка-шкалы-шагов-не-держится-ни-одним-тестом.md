@@ -1,10 +1,11 @@
 ---
 id: TASK-480
 title: 'mobile: дорожка шкалы шагов не держится ни одним тестом'
-status: To Do
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-03 18:28'
+updated_date: '2026-10-03 21:10'
 labels:
   - from-chief
 milestone: m-33
