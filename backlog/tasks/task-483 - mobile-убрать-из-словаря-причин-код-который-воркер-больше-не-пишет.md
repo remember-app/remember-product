@@ -1,10 +1,11 @@
 ---
 id: TASK-483
 title: 'mobile: убрать из словаря причин код, который воркер больше не пишет'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@coder'
 created_date: '2026-10-03 21:57'
-updated_date: '2026-10-03 21:58'
+updated_date: '2026-10-03 23:51'
 labels:
   - from-lead
 milestone: m-32
