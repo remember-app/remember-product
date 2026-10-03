@@ -4,8 +4,10 @@ title: 'montage: убрать отсев с первого этапа сборк
 status: To Do
 assignee: []
 created_date: '2026-09-27 17:26'
+updated_date: '2026-10-01 08:34'
 labels:
   - from-human
+milestone: m-33
 dependencies: []
 priority: high
 type: feat

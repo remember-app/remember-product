@@ -4,9 +4,10 @@ title: 'montage: скрытие/удаление/правка даты кадр�
 status: To Do
 assignee: []
 created_date: '2026-09-27 14:48'
+updated_date: '2026-10-01 08:34'
 labels:
   - from-lead
-milestone: m-31
+milestone: m-33
 dependencies:
   - TASK-452
 priority: low
