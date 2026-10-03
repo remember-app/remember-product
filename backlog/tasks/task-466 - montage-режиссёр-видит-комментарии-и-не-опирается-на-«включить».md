@@ -1,11 +1,11 @@
 ---
 id: TASK-466
 title: 'montage: режиссёр видит комментарии и не опирается на «включить»'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-01 08:34'
-updated_date: '2026-10-03 20:47'
+updated_date: '2026-10-03 21:52'
 labels:
   - from-chief
 milestone: m-33
