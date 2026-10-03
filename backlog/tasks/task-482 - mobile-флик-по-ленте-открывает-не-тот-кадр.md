@@ -1,9 +1,10 @@
 ---
 id: TASK-482
 title: 'mobile: флик по ленте открывает не тот кадр'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-10-03 21:58'
+updated_date: '2026-10-03 22:00'
 labels:
   - from-lead
 milestone: m-34
