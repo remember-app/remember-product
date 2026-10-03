@@ -1,10 +1,10 @@
 ---
 id: TASK-474
 title: 'mobile: свайп по ленте листает кадры — как на айфоне'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-03 16:53'
-updated_date: '2026-10-03 18:02'
+updated_date: '2026-10-03 18:21'
 labels:
   - from-human
 milestone: m-34
