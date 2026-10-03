@@ -4,9 +4,13 @@ title: 'montage: ролик, сборка которого упала один �
 status: To Do
 assignee: []
 created_date: '2026-10-03 22:27'
+updated_date: '2026-10-03 22:29'
 labels:
   - from-lead
+milestone: m-33
 dependencies: []
+priority: high
+type: bug
 ---
 
 ## Description
