@@ -1,10 +1,10 @@
 ---
 id: TASK-488
 title: 'mobile: падают два теста аккаунта — наследие TASK-400'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-10-03 22:33'
-updated_date: '2026-10-03 22:35'
+updated_date: '2026-10-03 22:36'
 labels:
   - from-lead
 milestone: m-34
