@@ -1,9 +1,10 @@
 ---
 id: TASK-477
 title: 'mobile: жесты назад — с левого края, сверху вниз, листы смахиванием'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-10-03 16:58'
+updated_date: '2026-10-03 19:40'
 labels:
   - from-human
 milestone: m-34
