@@ -1,11 +1,11 @@
 ---
 id: TASK-467
 title: 'montage: музыка отдельным этапом — ритм склеек и доли звука'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-01 08:34'
-updated_date: '2026-10-03 21:53'
+updated_date: '2026-10-03 22:32'
 labels:
   - from-chief
 milestone: m-33
