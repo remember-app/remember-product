@@ -1,11 +1,11 @@
 ---
 id: TASK-468
 title: 'montage: шаги сборки и примерный процент, причина остановки'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-01 08:34'
-updated_date: '2026-10-03 22:32'
+updated_date: '2026-10-04 00:57'
 labels:
   - from-chief
 milestone: m-33
