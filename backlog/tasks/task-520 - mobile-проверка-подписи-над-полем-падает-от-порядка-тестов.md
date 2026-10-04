@@ -1,9 +1,10 @@
 ---
 id: TASK-520
 title: 'mobile: проверка подписи над полем падает от порядка тестов'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-04 09:19'
+updated_date: '2026-10-04 13:37'
 labels:
   - from-lead
 milestone: m-35
