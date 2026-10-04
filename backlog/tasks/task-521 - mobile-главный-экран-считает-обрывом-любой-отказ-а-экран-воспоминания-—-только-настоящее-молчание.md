@@ -3,10 +3,10 @@ id: TASK-521
 title: >-
   mobile: главный экран считает обрывом любой отказ, а экран воспоминания —
   только настоящее молчание
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-04 10:49'
-updated_date: '2026-10-04 11:12'
+updated_date: '2026-10-04 11:31'
 labels:
   - from-lead
 milestone: m-36
