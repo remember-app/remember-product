@@ -3,9 +3,10 @@ id: TASK-534
 title: >-
   design: анимации, которые макет обещает, но не рисует — автопилот по шаблону и
   печать мысли режиссёра
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-04 13:25'
+updated_date: '2026-10-04 21:50'
 labels:
   - from-lead
 milestone: m-37

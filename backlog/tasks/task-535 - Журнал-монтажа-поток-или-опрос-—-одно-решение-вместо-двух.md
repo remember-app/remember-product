@@ -1,9 +1,10 @@
 ---
 id: TASK-535
 title: 'Журнал монтажа: поток или опрос — одно решение вместо двух'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-04 13:25'
+updated_date: '2026-10-04 21:50'
 labels:
   - from-lead
 milestone: m-37
