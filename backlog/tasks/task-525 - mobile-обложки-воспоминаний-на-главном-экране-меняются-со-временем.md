@@ -1,10 +1,10 @@
 ---
 id: TASK-525
 title: 'mobile: обложки воспоминаний на главном экране меняются со временем'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-04 11:11'
-updated_date: '2026-10-04 11:34'
+updated_date: '2026-10-04 12:52'
 labels:
   - from-lead
 milestone: m-36
