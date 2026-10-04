@@ -1,11 +1,11 @@
 ---
 id: TASK-497
 title: 'api: комментарии к кадру — хранение и три маршрута'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-03 23:46'
-updated_date: '2026-10-03 23:51'
+updated_date: '2026-10-04 00:43'
 labels:
   - from-lead
 milestone: m-32
