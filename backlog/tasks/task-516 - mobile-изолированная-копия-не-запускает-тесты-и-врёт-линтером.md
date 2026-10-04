@@ -1,9 +1,11 @@
 ---
 id: TASK-516
 title: 'mobile: изолированная копия не запускает тесты и врёт линтером'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@lead'
 created_date: '2026-10-04 06:17'
+updated_date: '2026-10-04 11:03'
 labels:
   - from-lead
 milestone: m-32

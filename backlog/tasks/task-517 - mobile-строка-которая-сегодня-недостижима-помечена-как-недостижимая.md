@@ -1,9 +1,11 @@
 ---
 id: TASK-517
 title: 'mobile: строка, которая сегодня недостижима, помечена как недостижимая'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@lead'
 created_date: '2026-10-04 06:35'
+updated_date: '2026-10-04 11:03'
 labels:
   - from-lead
 milestone: m-32
