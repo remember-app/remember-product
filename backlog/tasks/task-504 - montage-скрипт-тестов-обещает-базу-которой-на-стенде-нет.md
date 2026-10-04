@@ -1,11 +1,11 @@
 ---
 id: TASK-504
 title: 'montage: скрипт тестов обещает базу, которой на стенде нет'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-04 02:05'
-updated_date: '2026-10-04 06:41'
+updated_date: '2026-10-04 07:56'
 labels:
   - from-lead
 milestone: m-32
