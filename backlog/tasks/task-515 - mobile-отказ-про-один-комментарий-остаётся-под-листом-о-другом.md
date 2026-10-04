@@ -1,9 +1,10 @@
 ---
 id: TASK-515
 title: 'mobile: отказ про один комментарий остаётся под листом о другом'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-10-04 06:10'
+updated_date: '2026-10-04 06:15'
 labels:
   - from-lead
 milestone: m-32
