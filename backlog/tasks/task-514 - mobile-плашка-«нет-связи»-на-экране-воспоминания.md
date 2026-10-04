@@ -1,10 +1,10 @@
 ---
 id: TASK-514
 title: 'mobile: плашка «нет связи» на экране воспоминания'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-04 04:35'
-updated_date: '2026-10-04 04:39'
+updated_date: '2026-10-04 10:55'
 labels:
   - from-lead
 milestone: m-35

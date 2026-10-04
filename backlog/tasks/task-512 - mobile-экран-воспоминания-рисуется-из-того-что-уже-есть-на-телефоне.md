@@ -1,11 +1,11 @@
 ---
 id: TASK-512
 title: 'mobile: экран воспоминания рисуется из того, что уже есть на телефоне'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-04 04:35'
-updated_date: '2026-10-04 06:13'
+updated_date: '2026-10-04 10:55'
 labels:
   - from-lead
 milestone: m-35
