@@ -3,10 +3,10 @@ id: TASK-524
 title: >-
   mobile: с выключенным разбивкой по дням лента листается с перезарядкой — между
   двумя рывками секунда
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-04 11:10'
-updated_date: '2026-10-04 11:23'
+updated_date: '2026-10-04 12:09'
 labels:
   - from-lead
 milestone: m-36
