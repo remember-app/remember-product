@@ -1,10 +1,11 @@
 ---
 id: TASK-502
 title: 'mobile: тест профиля мигает — причина не найдена'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@lead'
 created_date: '2026-10-04 00:25'
-updated_date: '2026-10-04 06:36'
+updated_date: '2026-10-04 11:26'
 labels:
   - from-lead
 milestone: m-32
