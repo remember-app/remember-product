@@ -1,10 +1,10 @@
 ---
 id: TASK-523
 title: 'mobile: плотность сетки 3, 5 или 7 в ряд — во всех галереях, выбор помнится'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-10-04 11:09'
-updated_date: '2026-10-04 11:22'
+updated_date: '2026-10-04 12:11'
 labels:
   - from-lead
 milestone: m-36
