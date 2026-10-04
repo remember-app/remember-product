@@ -1,10 +1,10 @@
 ---
 id: TASK-509
 title: 'mobile: потолок 500 режет эмодзи пополам и съедает половину текста'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-04 03:28'
-updated_date: '2026-10-04 03:31'
+updated_date: '2026-10-04 04:41'
 labels:
   - from-lead
 milestone: m-32
