@@ -1,8 +1,9 @@
 ---
 id: TASK-500
 title: 'montage: чтение комментариев кадра — настоящее, а не пустое'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@coder'
 created_date: '2026-10-03 23:50'
 updated_date: '2026-10-04 00:44'
 labels:

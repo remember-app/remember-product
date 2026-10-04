@@ -1,8 +1,9 @@
 ---
 id: TASK-499
 title: 'mobile: комментарии к кадру на экране сведений — по макету и шести решениям'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@coder'
 created_date: '2026-10-03 23:49'
 updated_date: '2026-10-04 00:44'
 labels:
