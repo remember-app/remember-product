@@ -1,10 +1,11 @@
 ---
 id: TASK-501
 title: 'mobile: в словаре причин остались ещё четыре мёртвых кода'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@coder'
 created_date: '2026-10-04 00:23'
-updated_date: '2026-10-04 00:27'
+updated_date: '2026-10-04 06:33'
 labels:
   - from-lead
 milestone: m-32
