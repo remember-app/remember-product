@@ -1,9 +1,11 @@
 ---
 id: TASK-510
 title: 'mobile: порядок нового комментария и двойное нажатие не проверены'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@coder'
 created_date: '2026-10-04 03:29'
+updated_date: '2026-10-04 05:31'
 labels:
   - from-lead
 milestone: m-32

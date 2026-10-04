@@ -1,9 +1,11 @@
 ---
 id: TASK-505
 title: 'mobile: проверка удаления комментария слепа к тому, КАКОЙ ряд ушёл'
-status: To Do
-assignee: []
+status: Done
+assignee:
+  - '@coder'
 created_date: '2026-10-04 02:42'
+updated_date: '2026-10-04 05:31'
 labels:
   - from-lead
 milestone: m-32
