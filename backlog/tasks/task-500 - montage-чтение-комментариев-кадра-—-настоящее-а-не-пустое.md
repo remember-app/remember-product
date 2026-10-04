@@ -1,11 +1,11 @@
 ---
 id: TASK-500
 title: 'montage: чтение комментариев кадра — настоящее, а не пустое'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-03 23:50'
-updated_date: '2026-10-04 00:44'
+updated_date: '2026-10-04 02:03'
 labels:
   - from-lead
 milestone: m-32
