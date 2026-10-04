@@ -1,9 +1,10 @@
 ---
 id: TASK-511
 title: 'mobile: оформить проверки, которые тестер оставил незаписанными'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-04 03:32'
+updated_date: '2026-10-04 06:13'
 labels:
   - from-lead
 milestone: m-32
