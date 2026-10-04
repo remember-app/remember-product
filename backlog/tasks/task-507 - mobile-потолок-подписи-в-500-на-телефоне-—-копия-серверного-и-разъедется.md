@@ -1,15 +1,16 @@
 ---
 id: TASK-507
 title: 'mobile: потолок подписи в 500 на телефоне — копия серверного, и разъедется'
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@coder'
 created_date: '2026-10-04 02:43'
-updated_date: '2026-10-04 03:31'
+updated_date: '2026-10-04 04:18'
 labels:
   - from-lead
 milestone: m-32
 dependencies:
-  - TASK-499
+  - TASK-506
 priority: medium
 type: bug
 ordinal: 489000
