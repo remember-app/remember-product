@@ -1,11 +1,11 @@
 ---
 id: TASK-506
 title: 'mobile: неудачное удаление комментария не говорит ни слова'
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-04 02:43'
-updated_date: '2026-10-04 04:41'
+updated_date: '2026-10-04 05:10'
 labels:
   - from-lead
 milestone: m-32
