@@ -1,10 +1,10 @@
 ---
 id: TASK-513
 title: 'mobile: запуск не уводит вошедшего человека на экран входа'
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-10-04 04:35'
-updated_date: '2026-10-04 04:43'
+updated_date: '2026-10-04 07:01'
 labels:
   - from-lead
 milestone: m-35
