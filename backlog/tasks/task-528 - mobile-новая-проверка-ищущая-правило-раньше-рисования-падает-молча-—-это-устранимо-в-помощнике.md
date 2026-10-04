@@ -3,10 +3,10 @@ id: TASK-528
 title: >-
   mobile: новая проверка, ищущая правило раньше рисования, падает молча — это
   устранимо в помощнике
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-04 12:24'
-updated_date: '2026-10-04 12:45'
+updated_date: '2026-10-04 13:34'
 labels:
   - from-lead
 milestone: m-36
