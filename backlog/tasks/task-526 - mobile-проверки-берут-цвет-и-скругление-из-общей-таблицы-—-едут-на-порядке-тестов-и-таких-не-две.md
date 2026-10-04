@@ -3,10 +3,10 @@ id: TASK-526
 title: >-
   mobile: проверки берут цвет и скругление из общей таблицы — едут на порядке
   тестов, и таких не две
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-10-04 11:21'
-updated_date: '2026-10-04 11:43'
+updated_date: '2026-10-04 12:31'
 labels:
   - from-lead
 milestone: m-36
