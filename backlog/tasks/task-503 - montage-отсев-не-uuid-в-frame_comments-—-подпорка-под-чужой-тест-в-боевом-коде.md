@@ -3,11 +3,11 @@ id: TASK-503
 title: >-
   montage: отсев не-uuid в frame_comments — подпорка под чужой тест в боевом
   коде
-status: In Progress
+status: Done
 assignee:
   - '@coder'
 created_date: '2026-10-04 02:04'
-updated_date: '2026-10-04 06:33'
+updated_date: '2026-10-05 08:25'
 labels:
   - from-lead
 milestone: m-32

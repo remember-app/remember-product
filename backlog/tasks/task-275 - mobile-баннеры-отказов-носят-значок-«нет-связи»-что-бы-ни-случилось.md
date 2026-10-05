@@ -1,10 +1,10 @@
 ---
 id: TASK-275
 title: 'mobile: баннеры отказов носят значок «нет связи», что бы ни случилось'
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-09-24 11:53'
-updated_date: '2026-10-04 04:38'
+updated_date: '2026-10-05 08:25'
 labels:
   - from-chief
 dependencies: []
