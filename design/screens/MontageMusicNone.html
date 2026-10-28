@@ -22,7 +22,7 @@ button { font-family: inherit; }
     </div>
     <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;"><span style="height: 3px; border-radius: 999px; background: #4B5BFF;"></span><span style="height: 3px; border-radius: 999px; background: #4B5BFF;"></span><span style="height: 3px; border-radius: 999px; background: #4B5BFF;"></span><span style="height: 3px; border-radius: 999px; background: #2C2C3A;"></span></div>
     <h1 style="margin: 18px 0 0; font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 26px; line-height: 29px; letter-spacing: -0.035em; color: #F5F3EE;">Под что монтировать</h1>
-    <p style="margin: 10px 0 0; font-size: 13px; line-height: 19px; font-weight: 500; color: #A4A1B2;">Без музыки или один-несколько треков.</p>
+    <p style="margin: 10px 0 0; font-size: 13px; line-height: 19px; font-weight: 500; color: #A4A1B2;">Без музыки, треки или на усмотрение режиссёра.</p>
   </div>
   <div style="position: absolute; left: 16px; right: 16px; top: 206px; display: flex; flex-direction: column; gap: 18px;">
     <div style="border-radius: 20px; background: #16161F; border: 1px solid #2C2C3A; padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 10px;">
@@ -38,6 +38,14 @@ button { font-family: inherit; }
         </span>
       </div>
     </div>
+    <button type="button" aria-pressed="false" aria-label="Отдать выбор режиссёру — один трек он подберёт сам" style="width: 100%; box-sizing: border-box; height: 60px; border: 1px solid #2C2C3A; border-radius: 20px; background: #16161F; color: #F5F3EE; font-family: inherit; text-align: left; display: flex; align-items: center; gap: 12px; padding: 0 12px; cursor: pointer;">
+      <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 999px; background: #22222E; color: #F5F3EE; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"></path></svg></span>
+      <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-size: 15px; font-weight: 600; color: #F5F3EE;">На усмотрение режиссёра</span>
+        <span style="font-size: 12px; line-height: 16px; font-weight: 500; color: #A4A1B2;">Режиссёр подберёт один трек сам</span>
+      </span>
+      <span aria-hidden="true" style="width: 36px; height: 36px; box-sizing: border-box; border: 1px solid #45424F; border-radius: 999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"></span>
+    </button>
     <div style="display: flex; flex-direction: column; gap: 10px;">
       <div style="display: flex; align-items: center; gap: 8px; padding-left: 2px;">
         <span style="flex-grow: 1; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #A4A1B2;">Музыка</span>
@@ -68,6 +76,11 @@ button { font-family: inherit; }
         <button type="button" aria-label="Послушать «Дорога»" style="width: 40px; height: 40px; border: none; border-radius: 999px; background: #22222E; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg></button>
         <span style="flex-grow: 1; min-width: 0; display: flex; align-items: baseline; gap: 8px;"><span style="font-size: 15px; font-weight: 600; color: #F5F3EE;">Дорога</span><span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">1:55</span></span>
         <button type="button" aria-pressed="false" aria-label="Добавить «Дорога»" style="width: 36px; height: 36px; border: 1px solid #45424F; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+      </div><div style="height: 1px; background: #22222E; margin-left: 64px;"></div>
+      <div style="height: 52px; display: flex; align-items: center; gap: 12px; padding: 0 12px;">
+        <button type="button" aria-label="Послушать «Утро»" style="width: 40px; height: 40px; border: none; border-radius: 999px; background: #22222E; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"></path></svg></button>
+        <span style="flex-grow: 1; min-width: 0; display: flex; align-items: baseline; gap: 8px;"><span style="font-size: 15px; font-weight: 600; color: #F5F3EE;">Утро</span><span style="font-size: 12px; font-weight: 500; color: #A4A1B2; font-variant-numeric: tabular-nums;">2:18</span></span>
+        <button type="button" aria-pressed="false" aria-label="Добавить «Утро»" style="width: 36px; height: 36px; border: 1px solid #45424F; border-radius: 999px; background: transparent; color: #F5F3EE; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
       </div>
       </div>
     </div>
