@@ -7,9 +7,10 @@
 # стенд: make его не поднимает и не гасит, только подключается и заводит в нём базу `remember`.
 
 DATABASE_URL ?= postgres://postgres:postgres@localhost:5432/remember
-# Своя база для тестов воркера, на том же Postgres. Они чистят jobs и разбирают очередь целиком,
-# так что общая с `make up` база означала бы драку за очередь с живым воркером. Выводится из
-# DATABASE_URL, чтобы другой порт или другой стенд уводил за собой и тесты, а не только стенд.
+# Основа базы тестов воркера, на том же Postgres. Свою базу с меткой прогона (и свой бакет)
+# заводит сам прогон — projects/montage/test.sh: два прогона сразу не делят ни очередь, ни
+# объекты. Выводится из DATABASE_URL, чтобы другой порт или другой стенд уводил за собой тесты,
+# а не только стенд.
 TEST_DATABASE_URL ?= $(DATABASE_URL)_test
 # Хост стенда — один и тот же для api и для хранилища. Он уезжает не только в приложение: api
 # подписывает им ссылки на медиа, а подпись покрывает адрес — переписать его потом нельзя. С
@@ -116,10 +117,8 @@ test-api: ## тесты API
 test-mobile: ## тесты приложения
 	cd projects/mobile && npm test
 
-test-montage: ## тесты воркера (в своей базе, поднятому стенду не мешают)
-	@DB_URL='$(DATABASE_URL)' TEST_DB_URL='$(TEST_DATABASE_URL)' $(PY) -c 'import os,psycopg,urllib.parse as u;from psycopg import sql;n=u.urlparse(os.environ["TEST_DB_URL"]).path.lstrip("/");c=psycopg.connect(os.environ["DB_URL"],autocommit=True);c.execute("SELECT 1 FROM pg_database WHERE datname=%s",(n,)).fetchone() or c.execute(sql.SQL("CREATE DATABASE {}").format(sql.Identifier(n)))'
-	cd projects/api && DATABASE_URL='$(TEST_DATABASE_URL)' npm run migrate
-	cd projects/montage && DATABASE_URL='$(TEST_DATABASE_URL)' $(R2) .venv/bin/python -m pytest
+test-montage: ## тесты воркера (своя база и свой бакет на прогон, поднятому стенду не мешают)
+	cd projects/montage && TEST_DATABASE_URL='$(TEST_DATABASE_URL)' PYTHON='$(abspath $(PY))' $(R2) ./test.sh
 
 check: ## линт и типы
 	cd projects/api && npm run lint && npm run typecheck
