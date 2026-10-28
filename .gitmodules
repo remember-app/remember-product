@@ -1,9 +1,9 @@
 [submodule "projects/mobile"]
 	path = projects/mobile
-	url = ssh://git@git.dapp-devs.com:2222/nox-labs/nox/remember/mobile.git
+	url = git@github.com:remember-app/mobile.git
 [submodule "projects/api"]
 	path = projects/api
-	url = ssh://git@git.dapp-devs.com:2222/nox-labs/nox/remember/api.git
+	url = git@github.com:remember-app/api.git
 [submodule "projects/montage"]
 	path = projects/montage
-	url = ssh://git@git.dapp-devs.com:2222/nox-labs/nox/remember/montage.git
+	url = git@github.com:remember-app/montage.git
