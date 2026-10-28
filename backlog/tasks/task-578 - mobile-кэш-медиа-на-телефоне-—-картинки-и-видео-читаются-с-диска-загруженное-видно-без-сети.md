@@ -3,9 +3,10 @@ id: TASK-578
 title: >-
   mobile: кэш медиа на телефоне — картинки и видео читаются с диска, загруженное
   видно без сети
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-10-28 16:40'
+updated_date: '2026-10-28 17:15'
 labels:
   - from-lead
 milestone: m-41
