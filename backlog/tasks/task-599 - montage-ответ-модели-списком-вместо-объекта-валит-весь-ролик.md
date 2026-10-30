@@ -1,10 +1,10 @@
 ---
 id: TASK-599
 title: 'montage: ответ модели списком вместо объекта валит весь ролик'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-10-29 15:36'
-updated_date: '2026-10-29 15:38'
+updated_date: '2026-10-30 06:29'
 labels:
   - from-chief
 dependencies: []
