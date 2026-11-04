@@ -1,0 +1,49 @@
+name: remember
+
+x-env: &env
+  POSTGRES_URL: "${POSTGRES_URL:-postgres://postgres:postgres@host.docker.internal:5432/remember}"
+  S3_ENDPOINT: "${S3_ENDPOINT:-http://host.docker.internal:9000}"
+  S3_PUBLIC_ENDPOINT: "${S3_PUBLIC_ENDPOINT:-http://localhost:9000}"
+  S3_BUCKET: "${S3_BUCKET:-remember}"
+  S3_ACCESS_KEY_ID: "${S3_ACCESS_KEY_ID:-remember}"
+  S3_SECRET_ACCESS_KEY: "${S3_SECRET_ACCESS_KEY:-remember-secret}"
+  S3_REGION: "${S3_REGION:-auto}"
+  INTERNAL_WORKER_TOKEN: "${INTERNAL_WORKER_TOKEN:-local-worker-token}"
+  API_URL: "http://api:3000"
+
+services:
+  migrate:
+    build: ./projects/api
+    command: ["node", "scripts/migrate.ts"]
+    environment: *env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: "no"
+
+  api:
+    build: ./projects/api
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      <<: *env
+      REVIEW_LOGIN: "${REVIEW_LOGIN:-dev@remember.local:123456}"
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  montage:
+    build: ./projects/montage
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    environment:
+      <<: *env
+      AUDIO_COVER_MEDIA_ID: "${AUDIO_COVER_MEDIA_ID:-}"
+      GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
+      GEMINI_MODEL: "${GEMINI_MODEL:-}"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
