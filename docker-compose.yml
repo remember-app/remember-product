@@ -27,7 +27,9 @@ services:
         condition: service_completed_successfully
     environment:
       <<: *env
+      NODE_ENV: "development"
       REVIEW_LOGIN: "${REVIEW_LOGIN:-dev@remember.local:123456}"
+      EMAIL_LOGIN_DEV_BYPASS: "${EMAIL_LOGIN_DEV_BYPASS:-123456}"
     ports:
       - "3000:3000"
     extra_hosts:
