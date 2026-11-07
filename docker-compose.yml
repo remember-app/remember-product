@@ -12,9 +12,9 @@ x-env: &env
   API_URL: "http://api:3000"
 
 services:
-  migrate:
+  deploy-worker:
     build: ./projects/api
-    command: ["node", "scripts/migrate.ts"]
+    command: ["node", "scripts/deploy-worker.ts"]
     environment: *env
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -23,7 +23,7 @@ services:
   api:
     build: ./projects/api
     depends_on:
-      migrate:
+      deploy-worker:
         condition: service_completed_successfully
     environment:
       <<: *env
@@ -39,7 +39,7 @@ services:
   montage:
     build: ./projects/montage
     depends_on:
-      migrate:
+      deploy-worker:
         condition: service_completed_successfully
     environment:
       <<: *env
