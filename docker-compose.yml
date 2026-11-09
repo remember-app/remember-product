@@ -41,10 +41,12 @@ services:
     depends_on:
       deploy-worker:
         condition: service_completed_successfully
+    env_file:
+      - path: ./projects/montage/.env
+        required: false
     environment:
       <<: *env
       AUDIO_COVER_MEDIA_ID: "${AUDIO_COVER_MEDIA_ID:-00000000-0000-4000-8000-000000000001}"
-      GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
       GEMINI_MODEL: "${GEMINI_MODEL:-}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
