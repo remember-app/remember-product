@@ -23,4 +23,4 @@ phone:
 	@ip=$${HOST:-$$(ipconfig getifaddr en0 || ipconfig getifaddr en1)}; \
 	[ -n "$$ip" ] || { echo "no local network address (en0/en1)"; exit 1; }; \
 	$(MAKE) api-up PUBLIC_HOST=$$ip; \
-	cd projects/mobile && EXPO_PUBLIC_API_URL=http://$$ip:3000 npx expo start --lan
+	cd projects/mobile && EXPO_PUBLIC_API_URL=http://$$ip:3000 npx expo start --dev-client --lan
