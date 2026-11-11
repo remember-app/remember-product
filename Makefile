@@ -25,10 +25,10 @@ start-mobile-phone:
 
 db-fresh:
 	docker exec postgres sh -c 'psql -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" -c "drop schema public cascade; create schema public;"'
-	docker compose run --rm --build deploy-worker node scripts/cicd/migrate.ts
+	docker compose run --rm --build deploy-worker node scripts/cicd/migrations/index.ts
 
 db-seed-essentials:
-	docker compose run --rm --build deploy-worker node scripts/cicd/seed-essentials.ts
+	docker compose run --rm --build deploy-worker node scripts/cicd/seeds/index.ts
 
 db-seed-data:
-	docker compose run --rm --build deploy-worker node scripts/manual/seed-test.ts
+	docker compose run --rm --build deploy-worker node scripts/manual/seeds/index.ts
