@@ -28,8 +28,6 @@ services:
     environment:
       <<: *env
       NODE_ENV: "development"
-      REVIEW_LOGIN: "${REVIEW_LOGIN:-dev@remember.local:123456}"
-      EMAIL_LOGIN_DEV_BYPASS: "${EMAIL_LOGIN_DEV_BYPASS:-123456}"
     ports:
       - "3000:3000"
     extra_hosts:
@@ -39,13 +37,13 @@ services:
   mock-ai:
     build: ./mock-services/mock-ai
     ports:
-      - "8080:8080"
+      - "7801:8080"
     restart: unless-stopped
 
   mock-api:
     build: ./mock-services/mock-api
     ports:
-      - "8081:8080"
+      - "7300:8080"
     restart: unless-stopped
 
   montage:

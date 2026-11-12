@@ -23,7 +23,7 @@ start-mobile-simulator:
 	cd projects/mobile && EXPO_PUBLIC_API_URL=http://localhost:3000 npx expo start --dev-client --ios
 
 start-mobile-mock: start-mock-api
-	cd projects/mobile && EXPO_PUBLIC_API_URL=http://localhost:8081 npx expo start --dev-client --ios
+	cd projects/mobile && EXPO_PUBLIC_API_URL=http://localhost:7300 npx expo start --dev-client --ios
 
 start-mobile-phone:
 	@ip=$${HOST:-$$(ipconfig getifaddr en0 || ipconfig getifaddr en1)}; \

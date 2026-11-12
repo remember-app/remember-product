@@ -10,7 +10,7 @@ make start-montage-mock
 ```
 
 Поднимается сервис `mock-ai` и воркер монтажа с адресом
-`http://mock-ai:8080/v1beta/interactions`. С хоста сервис доступен на `http://localhost:8080`.
+`http://mock-ai:8080/v1beta/interactions`. С хоста сервис доступен на `http://localhost:7801`.
 Боевой режим — `make start-montage`, там адрес не меняется и запросы идут в настоящий Gemini.
 
 Что отвечает:

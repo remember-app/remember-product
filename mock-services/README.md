@@ -8,7 +8,10 @@
 
 Запуск:
 
-- `make start-mock-ai` — только мок AI;
-- `make start-mock-api` — только мок API;
+- `make start-mock-ai` — только мок AI (хост 7801);
+- `make start-mock-api` — только мок API (хост 7300);
 - `make start-montage-mock` — мок AI и монтаж;
 - `make start-mobile-mock` — мок API и мобилка на нём.
+
+Моки живут на портах с семёркой — 7300 и 7801, — поэтому поднимаются рядом с настоящими
+сервисами на 3000 и 9000.

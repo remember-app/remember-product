@@ -30,10 +30,11 @@
 - Инфраструктура: `docker compose -f docker-compose.infra.yml up -d` — общий S3 для всех проектов.
   Postgres — отдельный стоящий контейнер, тоже общий.
 - Приложение: `docker compose up -d --build` — миграции, API на `:3000`, воркер монтажа.
-- Мок AI: `make start-montage-mock` — поднимает `mock-services/mock-ai` и направляет запросы
-  монтажа на него; `make start-montage` — боевой режим с настоящей моделью.
-- Мок API для мобилки: `make start-mobile-mock` — поднимает `mock-services/mock-api` и запускает
-  приложение с адресом на него; `make start-mobile-simulator` — с настоящим API.
+- Мок AI: `make start-montage-mock` — поднимает `mock-services/mock-ai` на `7801` и направляет
+  запросы монтажа на него; `make start-montage` — боевой режим с настоящей моделью.
+- Мок API для мобилки: `make start-mobile-mock` — поднимает `mock-services/mock-api` на `7300`
+  и запускает приложение с адресом на него; `make start-mobile-simulator` — с настоящим API.
+  Моки на портах с семёркой, поэтому работают одновременно с настоящими сервисами.
 - Сиды: `make db-seed-essentials` — системное; `make db-seed-data` — тестовые проекты;
   `make db-seed-anthropovy NICK=<ник>` — воспоминание Антроповых сразу с анализами, задачами
   анализа и монтажа, запросами к модели, монтажом и роликом от имени указанного пользователя.
