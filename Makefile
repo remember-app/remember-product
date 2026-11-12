@@ -3,7 +3,7 @@ AI_MOCK ?= 0
 
 .DEFAULT_GOAL := start-api
 
-.PHONY: start-api start-montage start-montage-mock start-mobile-simulator start-mobile-phone db-fresh db-seed-essentials db-seed-data
+.PHONY: start-api start-montage start-montage-mock start-mobile-simulator start-mobile-phone db-fresh db-seed-essentials db-seed-data db-seed-anthropovy
 
 start-api:
 	S3_PUBLIC_ENDPOINT=http://$(PUBLIC_HOST):9000 docker compose up -d --build api
@@ -32,3 +32,7 @@ db-seed-essentials:
 
 db-seed-data:
 	docker compose run --rm --build deploy-worker node scripts/manual/seeds/index.ts
+
+db-seed-anthropovy:
+	@[ -n "$(NICK)" ] || { echo "usage: make db-seed-anthropovy NICK=<nickname>"; exit 1; }
+	docker compose run --rm --build deploy-worker node scripts/manual/seeds/anthropovy/main.ts "$(NICK)"
