@@ -9,7 +9,7 @@
 make montage MOCK=1
 ```
 
-или весь мок-стенд — `make start-mock`. Поднимается сервис `mock-ai` и воркер монтажа с адресом
+или мок-бекенд — `make start-mock`. Поднимается сервис `mock-ai` и воркер монтажа с адресом
 `http://mock-ai:8080/v1beta/interactions`. С хоста сервис доступен на `http://localhost:7801`.
 Боевой режим — `make montage`, там адрес не меняется и запросы идут в настоящий Gemini.
 

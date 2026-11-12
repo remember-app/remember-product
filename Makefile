@@ -1,12 +1,11 @@
 PUBLIC_HOST ?= localhost
 MOCK ?= 0
 HOST ?=
-API_HOST = $(if $(HOST),$(HOST),localhost)
 API_PORT = $(if $(filter 1,$(MOCK)),7300,3000)
 
 .DEFAULT_GOAL := start
 
-.PHONY: api montage mobile start start-mock db-fresh db-seed-essentials
+.PHONY: api montage start start-mock start-mobile-local start-mobile-network db-fresh db-seed-essentials
 
 api:
 	@if [ "$(MOCK)" = "1" ]; then \
@@ -22,16 +21,22 @@ montage:
 		docker compose up -d --build montage; \
 	fi
 
-mobile:
-	cd projects/mobile && EXPO_PUBLIC_API_URL=http://$(API_HOST):$(API_PORT) \
-		npx expo start --dev-client $(if $(HOST),--lan,--ios)
-
 start:
 	$(MAKE) api montage PUBLIC_HOST=$(or $(HOST),$(PUBLIC_HOST))
-	$(MAKE) mobile
 
 start-mock:
-	$(MAKE) api montage mobile MOCK=1 HOST=$(HOST)
+	$(MAKE) api montage MOCK=1
+
+start-mobile-local:
+	cd projects/mobile && EXPO_PUBLIC_API_URL=http://localhost:$(API_PORT) \
+		npx expo start --dev-client --ios
+
+start-mobile-network:
+	@ip=$${HOST:-$$(ipconfig getifaddr en0 || ipconfig getifaddr en1)}; \
+	[ -n "$$ip" ] || { echo "no local network address (en0/en1)"; exit 1; }; \
+	cd projects/mobile && EXPO_PUBLIC_API_URL=http://$$ip:$(API_PORT) \
+		EXPO_PUBLIC_API_SERVER_OVERRIDE=$$ip \
+		npx expo start --dev-client --lan
 
 db-fresh:
 	docker exec postgres sh -c 'psql -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" -c "drop schema public cascade; create schema public;"'

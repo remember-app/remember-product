@@ -4,7 +4,8 @@
 но из заготовок: проекты, галереи, песни, шаблоны, монтажи, ролики, вход.
 
 Запуск отдельно: `make api MOCK=1`.
-Приложение с мок-API: `make mobile MOCK=1` (или весь мок-стенд — `make start-mock`).
+Приложение с мок-API: `make start-mobile-local MOCK=1` или `make start-mobile-network MOCK=1`;
+мок-бекенд — `make start-mock`.
 
 Порты: реальный API — 3000, мок-API — 7300; так они могут работать одновременно.
 Мок AI — 7801.
