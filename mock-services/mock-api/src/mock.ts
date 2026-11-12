@@ -101,8 +101,13 @@ export function mockResponse(method: string, path: string, body?: unknown): unkn
       const ids = Array.isArray(payload.itemIds) ? payload.itemIds : [];
       return { queued: ids.length, tokens: ids.length };
     }
-    if (url === '/auth/email/start') return { ok: true, code: '123456', registered: true };
+    if (url === '/auth/email/start') {
+      const email = typeof payload.email === 'string' ? payload.email : '';
+      const registered = email === mockAccount.email || mockUsers.some((user) => user.email === email);
+      return { ok: true, code: '123456', registered };
+    }
     if (url === '/auth/email/verify') {
+      if (payload.code !== '123456') return undefined;
       const email = typeof payload.email === 'string' ? payload.email : active.email;
       active = mockUsers.find((user) => user.email === email) ?? mockAccount;
       return { token: 'mock-token', user: active };
@@ -111,9 +116,12 @@ export function mockResponse(method: string, path: string, body?: unknown): unkn
     if (parts[0] === 'auth' && parts[1] === 'sessions' && parts[3] === 'revoke')
       return { ok: true };
     if (url === '/me/push-tokens') return { ok: true };
-    if (url === '/invites/app') return { token: 'MOCK01', maxUses: null };
+    if (url === '/invites/app') return { token: invite.token, maxUses: null };
+    if (url === '/invites/check') {
+      return payload.token === invite.token ? { ok: true } : undefined;
+    }
     if (url === '/invites/accept') {
-      return bundleOf(String(payload.token ?? ''))?.project ?? mockProjects[0];
+      return payload.token === invite.token ? mockProjects[0] : undefined;
     }
     if (url === '/me/contacts') {
       const bob = mockBundles[MOCK_PROJECT_ID]?.members[1];
