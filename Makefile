@@ -1,5 +1,4 @@
 PUBLIC_HOST ?= localhost
-AI_MOCK ?= 0
 
 .DEFAULT_GOAL := start-api
 
@@ -9,10 +8,10 @@ start-api:
 	S3_PUBLIC_ENDPOINT=http://$(PUBLIC_HOST):9000 docker compose up -d --build api
 
 start-montage:
-	AI_MOCK=$(AI_MOCK) docker compose up -d --build montage
+	docker compose up -d --build montage
 
 start-montage-mock:
-	$(MAKE) start-montage AI_MOCK=1
+	AI_ENDPOINT=http://mock-ai:8080/v1beta/interactions docker compose up -d --build mock-ai montage
 
 start-mobile-simulator:
 	cd projects/mobile && EXPO_PUBLIC_API_URL=http://localhost:3000 npx expo start --dev-client --ios

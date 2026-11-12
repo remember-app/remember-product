@@ -36,6 +36,12 @@ services:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
+  mock-ai:
+    build: ./mock-services
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
   montage:
     build: ./projects/montage
     depends_on:
@@ -48,7 +54,7 @@ services:
       <<: *env
       AUDIO_COVER_MEDIA_ID: "${AUDIO_COVER_MEDIA_ID:-00000000-0000-4000-8000-000000000001}"
       GEMINI_MODEL: "${GEMINI_MODEL:-}"
-      AI_MOCK: "${AI_MOCK:-1}"
+      AI_ENDPOINT: "${AI_ENDPOINT:-}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
