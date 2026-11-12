@@ -2,7 +2,7 @@ PUBLIC_HOST ?= localhost
 
 .DEFAULT_GOAL := start-api
 
-.PHONY: start-api start-montage start-montage-mock start-mobile-simulator start-mobile-phone db-fresh db-seed-essentials db-seed-data db-seed-anthropovy
+.PHONY: start-api start-montage start-montage-mock start-mock-ai start-mobile-simulator start-mobile-phone db-fresh db-seed-essentials db-seed-data db-seed-anthropovy
 
 start-api:
 	S3_PUBLIC_ENDPOINT=http://$(PUBLIC_HOST):9000 docker compose up -d --build api
@@ -12,6 +12,9 @@ start-montage:
 
 start-montage-mock:
 	AI_ENDPOINT=http://mock-ai:8080/v1beta/interactions docker compose up -d --build mock-ai montage
+
+start-mock-ai:
+	docker compose up -d --build mock-ai
 
 start-mobile-simulator:
 	cd projects/mobile && EXPO_PUBLIC_API_URL=http://localhost:3000 npx expo start --dev-client --ios
