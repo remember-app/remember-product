@@ -37,9 +37,15 @@ services:
     restart: unless-stopped
 
   mock-ai:
-    build: ./mock-services
+    build: ./mock-services/mock-ai
     ports:
       - "8080:8080"
+    restart: unless-stopped
+
+  mock-api:
+    build: ./mock-services/mock-api
+    ports:
+      - "8081:8080"
     restart: unless-stopped
 
   montage:
