@@ -35,6 +35,8 @@
 - Мобилка: `make start-mobile-local` — на localhost; `make start-mobile-network` — по локальной
   сети (адрес из `HOST` или определяется сам); `MOCK=1` — на мок-API.
 - По отдельности: `make api`, `make montage`.
+- Отпечатки для уже загруженных кадров: `docker compose exec montage python -m src backfill` —
+  считает по готовым миниатюрам, ничего не пересобирает.
 - Вход: настоящий API присылает код письмом, для этого нужны `SMTP_*`; без них вход отвечает 503.
   В compose они берутся из `projects/api/.env` (файл не в git).
   Мок-API писем не шлёт: код входа `123456`, код приглашения `MOCK01`.
