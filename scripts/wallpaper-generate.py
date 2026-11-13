@@ -2,9 +2,13 @@
 
     python3 scripts/wallpaper-generate.py
 
-Пишет projects/mobile/assets/wallpaper/background.svg и, если в системе есть
-rsvg-convert, растрирует background.png (2160x4680) и preview.png (540x1170).
-Параметры — в константах ниже.
+Раскладка считается один раз, поэтому во всех семи обоях узор вокруг центра
+пиксель в пиксель одинаков — меняется только логотип в середине.
+Пишет projects/mobile/assets/wallpaper/:
+  background.svg/png        — узор без логотипа;
+  logo-heart-1..7-*.png     — семь состояний, логотип по центру.
+Нужны rsvg-convert (растр узора) и ffmpeg (наложение логотипа).
+Параметры — ниже.
 """
 import math
 import random
@@ -28,6 +32,19 @@ STROKE = 3.6
 OPACITY = 0.22
 SEED = 11
 BG = '#0B0B12'
+CENTER = (W / 2, H / 2)    # центр экрана
+CLEAR_R = 560.0            # радиус свободного места под логотип
+LOGO_BOX = 800.0           # сторона квадрата, в который вписан логотип
+
+STATES = (
+    'logo-heart-1-empty',
+    'logo-heart-2-outline',
+    'logo-heart-3-partial',
+    'logo-heart-4-more',
+    'logo-heart-5-full',
+    'logo-heart-6-star-open',
+    'logo-heart-7-complete',
+)
 GRADIENT = [(0.0, (0x4B, 0x5B, 0xFF)), (1.0, (0xE4, 0xFF, 0x4F))]
 
 
@@ -183,6 +200,17 @@ def poly_dist(a, b):
     return best
 
 
+def point_dist(p, poly):
+    best = 1e9
+    for i in range(len(poly)):
+        d = seg_dist(p, p, poly[i], poly[(i + 1) % len(poly)])
+        if d < best:
+            best = d
+            if best <= 0:
+                return 0.0
+    return best
+
+
 def boxes_near(bb1, bb2, gap):
     for sx in (-W, 0, W):
         if (bb1[0] + sx < bb2[2] + gap and bb2[0] < bb1[2] + sx + gap
@@ -238,6 +266,8 @@ def main():
     placed = []
 
     def fits(pts):
+        if point_dist(CENTER, pts) < CLEAR_R:
+            return False
         bb = bbox(pts)
         for q in placed:
             if boxes_near(bb, q['bbox'], GAP) and any(
@@ -267,31 +297,52 @@ def main():
     def path_d(pts):
         return 'M ' + ' L '.join('%.1f,%.1f' % pt for pt in pts) + ' Z'
 
-    out = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H)]
+    lines = []
     for p in placed:
         xs = [pt[0] for pt in p['pts']]
         shifts = [0] + ([W] if min(xs) < 0 else []) + ([-W] if max(xs) > W else [])
         color = grad_color((p['bbox'][1] + p['bbox'][3]) / 2 / H)
         for dx in shifts:
             pts = [(x + dx, y) for x, y in p['pts']]
-            out.append('<path d="%s" fill="none" stroke="%s" stroke-width="%.2f" stroke-opacity="%.2f" '
-                       'stroke-linejoin="round" stroke-linecap="round"/>' % (path_d(pts), color, STROKE, OPACITY))
-    out.append('</svg>')
-    (OUT / 'background.svg').write_text('\n'.join(out) + '\n')
+            lines.append('<path d="%s" fill="none" stroke="%s" stroke-width="%.2f" stroke-opacity="%.2f" '
+                         'stroke-linejoin="round" stroke-linecap="round"/>' % (path_d(pts), color, STROKE, OPACITY))
+
+    def svg(body):
+        return ('<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">\n%s\n</svg>'
+                % (W, H, W, H, '\n'.join(body)))
+
+    (OUT / 'background.svg').write_text(svg(lines) + '\n')
     print('background.svg: %d фигур' % len(placed))
 
-    if shutil.which('rsvg-convert'):
-        subprocess.run(['rsvg-convert', '-w', str(int(W)), '-h', str(int(H)),
-                        str(OUT / 'background.svg'), '-o', str(OUT / 'background.png')], check=True)
-        preview = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H),
-                   '<rect width="%d" height="%d" fill="%s"/>' % (W, H, BG),
-                   *out[1:-1], '</svg>']
-        tmp = OUT / '.preview.svg'
-        tmp.write_text('\n'.join(preview) + '\n')
-        subprocess.run(['rsvg-convert', '-w', '540', '-h', '1170', str(tmp), '-o', str(OUT / 'preview.png')], check=True)
-        tmp.unlink()
-    else:
-        print('rsvg-convert не найден: PNG не обновлён', file=sys.stderr)
+    if not (shutil.which('rsvg-convert') and shutil.which('ffmpeg')):
+        print('нужны rsvg-convert и ffmpeg: PNG не обновлены', file=sys.stderr)
+        return
+
+    subprocess.run(['rsvg-convert', '-w', str(int(W)), '-h', str(int(H)),
+                    str(OUT / 'background.svg'), '-o', str(OUT / 'background.png')], check=True)
+
+    # Логотип кладём ffmpeg: эта сборка rsvg-convert не грузит растровые картинки из SVG.
+    # Фон делаем непрозрачным — обои всегда закрывают экран целиком, а RGBA весит втрое.
+    x = CENTER[0] - LOGO_BOX / 2
+    y = CENTER[1] - LOGO_BOX / 2
+    for state in STATES:
+        subprocess.run([
+            'ffmpeg', '-y', '-loglevel', 'error',
+            '-f', 'lavfi', '-i', 'color=c=0x%s:s=%dx%d' % (BG.lstrip('#'), int(W), int(H)),
+            '-i', str(OUT / 'background.png'),
+            '-i', str(MOBILE / 'logo' / ('%s.png' % state)),
+            '-filter_complex',
+            '[2:v]scale=%d:%d[l];[0:v][1:v]overlay=0:0:format=auto[b];[b][l]overlay=%d:%d:format=auto'
+            % (LOGO_BOX, LOGO_BOX, x, y),
+            '-frames:v', '1', '-update', '1', '-pix_fmt', 'rgb24', str(OUT / ('%s.png' % state)),
+        ], check=True)
+        print('%s.png' % state)
+
+    preview = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, BG)] + lines
+    tmp = OUT / '.preview.svg'
+    tmp.write_text(svg(preview) + '\n')
+    subprocess.run(['rsvg-convert', '-w', '540', '-h', '1170', str(tmp), '-o', str(OUT / 'preview.png')], check=True)
+    tmp.unlink()
 
 
 def check(placed):
