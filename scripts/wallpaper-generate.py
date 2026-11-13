@@ -1,9 +1,10 @@
-"""Фон приложения: фигуры из logo.svg, один масштаб, плотная упаковка без наложений.
+"""Фон приложения: фигуры из логотипа, один масштаб, плотная упаковка без наложений.
 
-    python3 assets/wallpaper/generate.py
+    python3 scripts/wallpaper-generate.py
 
-Пишет background.svg и, если в системе есть rsvg-convert, растрирует
-background.png (2160x4680) и preview.png (540x1170). Параметры — в константах ниже.
+Пишет projects/mobile/assets/wallpaper/background.svg и, если в системе есть
+rsvg-convert, растрирует background.png (2160x4680) и preview.png (540x1170).
+Параметры — в константах ниже.
 """
 import math
 import random
@@ -14,14 +15,16 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-LOGO = HERE.parent / 'images' / 'logo.svg'
+MOBILE = HERE.parent / 'projects' / 'mobile' / 'assets'
+LOGO = MOBILE / 'logo' / 'logo-2048x2048.svg'
+OUT = MOBILE / 'wallpaper'
 
 W, H = 2160.0, 4680.0      # экран телефона в двойном разрешении
-GAP = 44.0                 # минимальный просвет между фигурами
-TARGET = 520.0             # самая длинная сторона фигуры — как на логотипе
+GAP = 22.0                 # минимальный просвет между фигурами
+TARGET = 260.0             # самая длинная сторона фигуры
 JITTER = 0.07              # разброс размера
-COLS, ROWS = 5, 11         # слоты упаковки
-STROKE = 6.4
+COLS, ROWS = 11, 24        # слоты упаковки
+STROKE = 3.6
 OPACITY = 0.22
 SEED = 11
 BG = '#0B0B12'
@@ -274,18 +277,18 @@ def main():
             out.append('<path d="%s" fill="none" stroke="%s" stroke-width="%.2f" stroke-opacity="%.2f" '
                        'stroke-linejoin="round" stroke-linecap="round"/>' % (path_d(pts), color, STROKE, OPACITY))
     out.append('</svg>')
-    (HERE / 'background.svg').write_text('\n'.join(out) + '\n')
+    (OUT / 'background.svg').write_text('\n'.join(out) + '\n')
     print('background.svg: %d фигур' % len(placed))
 
     if shutil.which('rsvg-convert'):
         subprocess.run(['rsvg-convert', '-w', str(int(W)), '-h', str(int(H)),
-                        str(HERE / 'background.svg'), '-o', str(HERE / 'background.png')], check=True)
+                        str(OUT / 'background.svg'), '-o', str(OUT / 'background.png')], check=True)
         preview = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H),
                    '<rect width="%d" height="%d" fill="%s"/>' % (W, H, BG),
                    *out[1:-1], '</svg>']
-        tmp = HERE / '.preview.svg'
+        tmp = OUT / '.preview.svg'
         tmp.write_text('\n'.join(preview) + '\n')
-        subprocess.run(['rsvg-convert', '-w', '540', '-h', '1170', str(tmp), '-o', str(HERE / 'preview.png')], check=True)
+        subprocess.run(['rsvg-convert', '-w', '540', '-h', '1170', str(tmp), '-o', str(OUT / 'preview.png')], check=True)
         tmp.unlink()
     else:
         print('rsvg-convert не найден: PNG не обновлён', file=sys.stderr)
