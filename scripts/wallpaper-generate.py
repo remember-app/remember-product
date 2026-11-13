@@ -338,12 +338,6 @@ def main():
         ], check=True)
         print('%s.png' % state)
 
-    preview = ['<rect width="%d" height="%d" fill="%s"/>' % (W, H, BG)] + lines
-    tmp = OUT / '.preview.svg'
-    tmp.write_text(svg(preview) + '\n')
-    subprocess.run(['rsvg-convert', '-w', '540', '-h', '1170', str(tmp), '-o', str(OUT / 'preview.png')], check=True)
-    tmp.unlink()
-
 
 def check(placed):
     """Никакие два контура не ближе GAP, в том числе копии через край."""
