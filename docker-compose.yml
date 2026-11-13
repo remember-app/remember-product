@@ -25,6 +25,9 @@ services:
     depends_on:
       deploy-worker:
         condition: service_completed_successfully
+    env_file:
+      - path: ./projects/api/.env
+        required: false
     environment:
       <<: *env
       NODE_ENV: "development"
