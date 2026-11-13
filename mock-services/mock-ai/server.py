@@ -5,12 +5,24 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 PORT = 8080
 OVERLAP = 0.25
 
-PHOTO = "Describe in one or two sentences what is happening in the photo"
-VIDEO = "several frames from one video"
-TRANSCRIBE = "Transcribe the speech in the recording"
-AUDIO = "Describe in one sentence what is heard in the recording"
+PHOTO = "Look closely at the photo"
+VIDEO = "These are frames from one video"
+SEGMENT = "These are frames from one segment"
+FINAL_VIDEO = "descriptions of consecutive segments"
+SOUND = "Listen to the sound of a video"
+AUDIO = "Listen to the recording"
 MUSIC = "This is a music track"
 DIRECTOR = "You are the director"
+
+
+def _seconds(text: str) -> list[str]:
+    marker = "taken at seconds "
+    start = text.find(marker)
+    if start < 0:
+        return []
+    end = text.find(". ", start)
+    chunk = text[start + len(marker) : end if end >= 0 else None]
+    return [one.strip() for one in chunk.split(",") if one.strip()]
 
 
 def _plan(text: str) -> dict:
@@ -39,6 +51,7 @@ def _plan(text: str) -> dict:
                 "framing": None,
                 "motion": "none",
                 "transitionSeconds": OVERLAP,
+                "role": "portrait" if kind == "photo" else "action",
             }
         )
     total = sum(command["seconds"] for command in commands) - OVERLAP * max(len(commands) - 1, 0)
@@ -69,17 +82,69 @@ def _plan(text: str) -> dict:
 def _answer(text: str) -> dict:
     if DIRECTOR in text:
         return _plan(text)
-    if MUSIC in text:
-        return {"description": "Mock: a music track.", "score": 5.0, "transcription": [], "mood": []}
-    if AUDIO in text:
-        return {"description": "Mock: a sound from the event.", "score": 5.0, "transcription": []}
-    if TRANSCRIBE in text:
-        return {"transcription": []}
+    if FINAL_VIDEO in text:
+        return {
+            "summary": "Mock: a clip from the event.",
+            "description": "Mock: a detailed description of the clip.",
+            "score": 5.0,
+            "tags": {"mock": "video"},
+        }
+    if SEGMENT in text:
+        return {
+            "context": "Mock: the event continues.",
+            "description": "Mock: a segment of the event.",
+            "score": 5.0,
+            "tags": {"mock": "segment", "shotSize": "medium"},
+        }
     if VIDEO in text:
-        return {"description": "Mock: a clip from the event.", "score": 5.0, "frames": []}
+        return {
+            "summary": "Mock: a clip from the event.",
+            "description": "Mock: a detailed description of the clip.",
+            "score": 5.0,
+            "tags": {"mock": "video"},
+            "frames": [
+                {"description": f"Mock: the frame at {second} seconds.", "tags": {"mock": "frame"}}
+                for second in _seconds(text)
+            ],
+        }
+    if SOUND in text:
+        return {
+            "description": "Mock: the sound of the event.",
+            "tags": {"mock": "sound"},
+            "sounds": [],
+            "words": [],
+        }
+    if MUSIC in text:
+        return {
+            "summary": "Mock: a music track.",
+            "description": "Mock: a warm track with a steady beat.",
+            "score": 5.0,
+            "tags": {"mock": "music", "bpm": "100"},
+            "sounds": [],
+            "words": [],
+        }
+    if AUDIO in text:
+        return {
+            "summary": "Mock: a recording from the event.",
+            "description": "Mock: voices and laughter.",
+            "score": 5.0,
+            "tags": {"mock": "audio"},
+            "sounds": [],
+            "words": [],
+        }
     if PHOTO in text:
-        return {"description": "Mock: a frame from the event.", "score": 5.0}
-    return {"description": "Mock answer.", "score": 5.0}
+        return {
+            "summary": "Mock: a frame from the event.",
+            "description": "Mock: a detailed description of the frame.",
+            "score": 5.0,
+            "tags": {"mock": "photo"},
+        }
+    return {
+        "summary": "Mock answer.",
+        "description": "Mock answer.",
+        "score": 5.0,
+        "tags": {"mock": "answer"},
+    }
 
 
 class Handler(BaseHTTPRequestHandler):
