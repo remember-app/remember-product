@@ -4,11 +4,12 @@ HOST ?=
 EMAIL ?= dev@noxlabs.xyz
 USERNAME ?= owner
 NAME ?=
+SONG ?=
 API_PORT = $(if $(filter 1,$(MOCK)),7300,3000)
 
 .DEFAULT_GOAL := start
 
-.PHONY: api montage start start-mock start-mobile-local start-mobile-network db-fresh db-seed-essentials seed-first-user
+.PHONY: api montage start start-mock start-mobile-local start-mobile-network db-fresh db-seed-essentials seed-first-user analyze-song analyze-songs
 
 api:
 	@if [ "$(MOCK)" = "1" ]; then \
@@ -52,3 +53,10 @@ seed-first-user:
 	docker compose run --rm --build \
 		-e EMAIL="$(EMAIL)" -e USERNAME="$(USERNAME)" -e NAME="$(NAME)" \
 		deploy-worker node scripts/dev/first-user.ts
+
+analyze-song:
+	@test -n "$(SONG)" || { echo "usage: make analyze-song SONG=<song-id>"; exit 1; }
+	docker compose run --rm --build deploy-worker node scripts/dev/analyze-song.ts "$(SONG)"
+
+analyze-songs:
+	docker compose run --rm --build deploy-worker node scripts/dev/analyze-song.ts --all
