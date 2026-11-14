@@ -86,21 +86,22 @@ def _answer(text: str) -> dict:
         return {
             "summary": "Mock: a clip from the event.",
             "description": "Mock: a detailed description of the clip.",
-            "score": 5.0,
+            "scoreImportance": 5.0,
             "tags": {"mock": "video"},
         }
     if SEGMENT in text:
         return {
             "context": "Mock: the event continues.",
             "description": "Mock: a segment of the event.",
-            "score": 5.0,
+            "scoreQuality": 5.0,
             "tags": {"mock": "segment", "shotSize": "medium"},
         }
     if VIDEO in text:
         return {
             "summary": "Mock: a clip from the event.",
             "description": "Mock: a detailed description of the clip.",
-            "score": 5.0,
+            "scoreImportance": 5.0,
+            "scoreQuality": 5.0,
             "tags": {"mock": "video"},
             "frames": [
                 {"description": f"Mock: the frame at {second} seconds.", "tags": {"mock": "frame"}}
@@ -127,7 +128,8 @@ def _answer(text: str) -> dict:
         return {
             "summary": "Mock: a recording from the event.",
             "description": "Mock: voices and laughter.",
-            "score": 5.0,
+            "scoreImportance": 5.0,
+            "scoreQuality": 5.0,
             "tags": {"mock": "audio"},
             "sounds": [],
             "words": [],
@@ -136,13 +138,15 @@ def _answer(text: str) -> dict:
         return {
             "summary": "Mock: a frame from the event.",
             "description": "Mock: a detailed description of the frame.",
-            "score": 5.0,
+            "scoreImportance": 5.0,
+            "scoreQuality": 5.0,
             "tags": {"mock": "photo"},
         }
     return {
         "summary": "Mock answer.",
         "description": "Mock answer.",
-        "score": 5.0,
+        "scoreImportance": 5.0,
+        "scoreQuality": 5.0,
         "tags": {"mock": "answer"},
     }
 

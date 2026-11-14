@@ -152,7 +152,9 @@ const item = (
       description,
       labelIds: options.labelIds ?? [],
       analysis:
-        options.analyzed && kind === 'photo' ? { description: 'Тёплый момент', score: 8.0 } : null,
+        options.analyzed && kind === 'photo'
+          ? { description: 'Тёплый момент', scoreImportance: 8.0, scoreQuality: 7.0 }
+          : null,
       createdAt: at,
     },
     media:
