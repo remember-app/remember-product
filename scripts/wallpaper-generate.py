@@ -2,12 +2,14 @@
 
     python3 scripts/wallpaper-generate.py
 
-Узор считается один раз, поэтому оба фона совпадают вне центра: меняется
-только свободное место под логотип. Логотип в приложении ставится поверх.
+Сначала ставится база — весь экран, кроме круга под логотип. Потом центр —
+дополнительные фигуры только внутри этого круга. Поэтому у полного фона
+вне круга стоят ровно те же фигуры, что и у фона с пустым центром:
+меняется только центр. Логотип в приложении ставится поверх.
 Пишет projects/mobile/assets/wallpaper/:
-  background.svg/png         — плотный узор, центр не расступается;
-  background-center.svg/png  — тот же узор, центр свободен под логотип.
-Нужен rsvg-convert. Параметры — ниже.
+  background.svg/png         — база плюс центр, узор по всему экрану;
+  background-center.svg/png  — только база, центр свободен под логотип.
+Оба файла без фона (прозрачные). Нужен rsvg-convert. Параметры — ниже.
 """
 import math
 import random
@@ -276,18 +278,29 @@ def main():
         c, sn = math.cos(ang), math.sin(ang)
         return [(ox + (p[0] * c - p[1] * sn) * sc, oy + (p[0] * sn + p[1] * c) * sc) for p in shape]
 
-    cells = [((i + 0.5) * W / COLS, (j + 0.5) * H / ROWS) for i in range(COLS) for j in range(ROWS)]
-    rng.shuffle(cells)
-    for sx0, sy0 in cells:
-        for _ in range(400):
-            shape = basis[rng.randrange(len(basis))]
-            ang = rng.choice([rng.uniform(0, math.tau), rng.uniform(-0.35, 0.35) + rng.choice([0, math.pi])])
-            pts = rot(shape, ang, TARGET * (1 + rng.uniform(-JITTER, JITTER)),
-                      sx0 + rng.uniform(-0.45, 0.45) * W / COLS,
-                      sy0 + rng.uniform(-0.45, 0.45) * H / ROWS)
-            if fits(pts):
-                placed.append({'pts': pts, 'bbox': bbox(pts)})
+    def place(predicate, cells, base):
+        """Раскладывает фигуры по слотам, беря только подходящие под predicate."""
+        rng.shuffle(cells)
+        for sx0, sy0 in cells:
+            for _ in range(400):
+                shape = basis[rng.randrange(len(basis))]
+                ang = rng.choice([rng.uniform(0, math.tau), rng.uniform(-0.35, 0.35) + rng.choice([0, math.pi])])
+                pts = rot(shape, ang, TARGET * (1 + rng.uniform(-JITTER, JITTER)),
+                          sx0 + rng.uniform(-0.45, 0.45) * W / COLS,
+                          sy0 + rng.uniform(-0.45, 0.45) * H / ROWS)
+                if not predicate(pts) or not fits(pts):
+                    continue
+                placed.append({'pts': pts, 'bbox': bbox(pts), 'base': base})
                 break
+
+    all_cells = [((i + 0.5) * W / COLS, (j + 0.5) * H / ROWS) for i in range(COLS) for j in range(ROWS)]
+    middle = [c for c in all_cells
+              if math.hypot(c[0] - CENTER[0], c[1] - CENTER[1]) <= CLEAR_R + max(W / COLS, H / ROWS)]
+
+    # Основа — целиком вне круга под логотип.
+    place(lambda pts: point_dist(CENTER, pts) >= CLEAR_R, all_cells, True)
+    # Центр — целиком внутри круга, вплотную к основе.
+    place(lambda pts: max(math.hypot(x - CENTER[0], y - CENTER[1]) for x, y in pts) <= CLEAR_R, middle, False)
 
     check(placed)
 
@@ -314,7 +327,7 @@ def main():
 
     variants = {
         'background': paths(lambda p: True),
-        'background-center': paths(lambda p: point_dist(CENTER, p['pts']) >= CLEAR_R),
+        'background-center': paths(lambda p: p['base']),
     }
     for name, lines in variants.items():
         (OUT / ('%s.svg' % name)).write_text(svg(lines) + '\n')
