@@ -37,6 +37,10 @@ CENTER = (W / 2, H / 2)    # центр экрана
 CLEAR_R = 560.0            # радиус свободного места под логотип
 LOGO_BOX = 800.0           # сторона квадрата, в который вписан логотип
 
+FILL_SPOTS = ((515.0, 2165.0),)  # пустоты, которые слотовая упаковка обошла
+FILL_SCALES = (1.0, 0.92, 0.84, 0.76, 0.68)
+FILL_SHIFT = (-60.0, -30.0, 0.0, 30.0, 60.0)
+
 STATES = (
     'logo-heart-1-empty',
     'logo-heart-2-outline',
@@ -293,6 +297,30 @@ def main():
                 placed.append({'pts': pts, 'bbox': bbox(pts), 'base': base})
                 break
 
+    def fill_spots(basis_shapes):
+        """Закрывает заданные пустоты одной фигурой, самой крупной из подходящих."""
+        for sx, sy in FILL_SPOTS:
+            best = None
+            for shape in basis_shapes:
+                for step in range(72):
+                    ang = step * math.tau / 72
+                    for scale in FILL_SCALES:
+                        for dx in FILL_SHIFT:
+                            for dy in FILL_SHIFT:
+                                pts = rot(shape, ang, TARGET * scale, sx + dx, sy + dy)
+                                if point_dist(CENTER, pts) < CLEAR_R or not fits(pts):
+                                    continue
+                                bb = bbox(pts)
+                                cx, cy = (bb[0] + bb[2]) / 2, (bb[1] + bb[3]) / 2
+                                score = (scale, -math.hypot(cx - sx, cy - sy))
+                                if best is None or score > best[0]:
+                                    best = (score, pts)
+            if best is None:
+                print('пустота у (%.0f, %.0f) осталась незакрытой' % (sx, sy), file=sys.stderr)
+                continue
+            pts = best[1]
+            placed.append({'pts': pts, 'bbox': bbox(pts), 'base': True})
+
     all_cells = [((i + 0.5) * W / COLS, (j + 0.5) * H / ROWS) for i in range(COLS) for j in range(ROWS)]
     middle = [c for c in all_cells
               if math.hypot(c[0] - CENTER[0], c[1] - CENTER[1]) <= CLEAR_R + max(W / COLS, H / ROWS)]
@@ -301,6 +329,8 @@ def main():
     place(lambda pts: point_dist(CENTER, pts) >= CLEAR_R, all_cells, True)
     # Центр — целиком внутри круга, вплотную к основе.
     place(lambda pts: max(math.hypot(x - CENTER[0], y - CENTER[1]) for x, y in pts) <= CLEAR_R, middle, False)
+    # Крупные пустоты, мимо которых прошла упаковка, закрываем отдельной фигурой.
+    fill_spots(basis)
 
     check(placed)
 
