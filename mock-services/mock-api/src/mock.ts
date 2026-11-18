@@ -81,7 +81,7 @@ export function mockResponse(method: string, path: string, body?: unknown): unkn
       return {
         items: (bundleOf(parts[1] ?? '')?.gallery.items ?? []).map((one) => ({
           itemId: one.item.id,
-          mediaId: one.media.id,
+          mediaId: one.item.originalId,
           kind: one.media.kind,
           status: one.item.analysis ? 'done' : 'none',
           error: null,
@@ -182,7 +182,7 @@ export function mockResponse(method: string, path: string, body?: unknown): unkn
     if (parts[0] === 'projects' && parts[2] === 'items' && parts[3]) {
       const found = findItem(parts[1] ?? '', parts[3]);
       return found
-        ? { ...found, item: { ...found.item, description: payload.description ?? null } }
+        ? { ...found, item: { ...found.item, comment: payload.comment ?? null } }
         : undefined;
     }
     if (parts[0] === 'projects' && parts[2] === 'members' && parts[3]) {

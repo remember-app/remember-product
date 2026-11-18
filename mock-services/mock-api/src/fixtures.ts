@@ -108,19 +108,15 @@ const label = (
   projectId: string,
   ownerId: string,
   name: string,
-  colorHex: `#${string}`,
-  shared: boolean,
-  itemCount: number,
+  color: `#${string}`,
+  itemsIds: string[] = [],
 ): LabelResponse => ({
   id: id(),
   projectId,
   ownerId,
   name,
-  colorHex,
-  description: null,
-  shared,
-  itemCount,
-  createdAt: '2026-10-01T10:00:00.000Z',
+  color,
+  itemsIds,
 });
 
 type Kind = 'photo' | 'video' | 'audio';
@@ -141,15 +137,15 @@ const item = (
   const itemId = id();
   const mediaId = id();
   const at = new Date(Date.now() - (options.daysAgo ?? 5) * 86_400_000).toISOString();
-  const description =
+  const comment =
     options.description ??
     (kind === 'video' ? 'Волны на реке' : kind === 'audio' ? 'Первый танец, музыка' : 'Кадр');
   return {
     item: {
       id: itemId,
       projectId,
-      mediaId,
-      description,
+      uploadedBy: uploader.id,
+      comment,
       labelIds: options.labelIds ?? [],
       analysis:
         options.analyzed && kind === 'photo'
@@ -157,50 +153,32 @@ const item = (
           : null,
       createdAt: at,
     },
-    media:
-      kind === 'photo'
-        ? {
-            id: mediaId,
-            fingerprint: '',
-            kind: 'photo',
-            format: 'jpeg',
-            bytes: '287079',
-            capturedAt: at,
-            place: options.withPlace ? { latitude: 55.75, longitude: 37.61 } : null,
-            uploadedBy: uploader.id,
-            dimensions: { width: 1080, height: 1440 },
-            duration: null,
-            camera: null,
-          }
-        : kind === 'video'
-          ? {
-              id: mediaId,
-              fingerprint: '',
-              kind: 'video',
-              format: 'mp4',
-              bytes: '101349',
-              capturedAt: at,
-              place: null,
-              uploadedBy: uploader.id,
-              dimensions: { width: 720, height: 960 },
-              duration: 5,
-              camera: null,
-            }
-          : {
-              id: mediaId,
-              fingerprint: '',
-              kind: 'audio',
-              format: 'm4a',
-              bytes: '98823',
-              capturedAt: at,
-              place: null,
-              uploadedBy: uploader.id,
-              dimensions: null,
-              duration: 8,
-              camera: null,
-            },
+    media: {
+      id: mediaId,
+      kind,
+      fingerprint: '',
+      perceptualHash: '',
+      format: kind === 'photo' ? 'jpeg' : kind === 'video' ? 'mp4' : 'm4a',
+      bytes: kind === 'photo' ? '287079' : kind === 'video' ? '101349' : '98823',
+      meta: {
+        dimensions:
+          kind === 'photo'
+            ? { width: 1080, height: 1440 }
+            : kind === 'video'
+              ? { width: 720, height: 960 }
+              : null,
+        duration: kind === 'photo' ? null : kind === 'video' ? 5 : 8,
+        at,
+        place: options.withPlace ? { latitude: 55.75, longitude: 37.61 } : null,
+        camera: null,
+      },
+    },
     uploader,
-    links: { original: image, thumbnail: image, preview: image },
+    links: {
+      original: image,
+      compressed: image,
+      previews: { small: image, middle: image, large: image },
+    },
   };
 };
 
@@ -231,15 +209,15 @@ const manifest = (
     },
     shots: shots.map((one) => ({
       itemId: one.item.id,
-      mediaId: one.item.mediaId,
+      mediaId: one.item.originalId,
       kind: one.media.kind,
-      capturedAt: one.media.capturedAt,
-      width: one.media.dimensions?.width ?? null,
-      height: one.media.dimensions?.height ?? null,
-      durationSeconds: one.media.duration,
+      capturedAt: one.media.meta.at,
+      width: one.media.meta.dimensions?.width ?? null,
+      height: one.media.meta.dimensions?.height ?? null,
+      durationSeconds: one.media.meta.duration,
       hasAudio: one.media.kind !== 'photo',
       shownWithCover: one.media.kind === 'audio',
-      description: one.item.description,
+      description: one.item.comment,
       labels: [],
       analysis: one.item.analysis,
     })),
@@ -248,7 +226,7 @@ const manifest = (
   const commands = shots.map((one) => ({
     type: 'shot',
     itemId: one.item.id,
-    mediaId: one.item.mediaId,
+    mediaId: one.item.originalId,
     kind: one.media.kind,
     sourceStartSeconds: 0,
     seconds: 2.5,
@@ -311,7 +289,9 @@ const movie = (
   createdBy: MOCK_USER_ID,
   createdAt,
   montageId: montageResponse.id,
-  videoId: id(),
+  originalId: id(),
+  compressedId: null,
+  previewId: null,
   video: {
     durationSeconds: 12.05,
     bytes: 1634374,
@@ -320,7 +300,6 @@ const movie = (
     format: 'mp4',
   },
   montage: montageResponse,
-  derived: { thumbnailId: null, previewId: null },
   video_url: VIDEO,
   poster_url: poster,
   preview_url: VIDEO,
@@ -352,8 +331,8 @@ const bundle = (
 });
 
 const weddingId = MOCK_PROJECT_ID;
-const cover = label(weddingId, alice.id, 'Обложка', '#e8b04b', true, 2);
-const favourite = label(weddingId, alice.id, 'Любимое', '#ec4899', false, 1);
+const cover = label(weddingId, alice.id, 'Обложка', '#e8b04b', []);
+const favourite = label(weddingId, alice.id, 'Любимое', '#ec4899', []);
 const weddingItems = [
   item(weddingId, 'photo', PARTY, alice, {
     labelIds: [cover.id, favourite.id],
@@ -409,7 +388,7 @@ const emptyProject: ProjectCardResponse = {
 };
 
 const partyId = '22222222-2222-4222-8222-222222222224';
-const partyCover = label(partyId, alice.id, 'Обложка', '#84cc16', true, 3);
+const partyCover = label(partyId, alice.id, 'Обложка', '#84cc16', []);
 const partyItems = Array.from({ length: 9 }, (_, index) =>
   item(partyId, 'photo', PHOTOS[index % PHOTOS.length] ?? PARTY, index % 2 === 0 ? alice : bob, {
     labelIds: index < 3 ? [partyCover.id] : [],
@@ -434,7 +413,7 @@ const partyProject: ProjectCardResponse = {
 };
 
 const concertId = '22222222-2222-4222-8222-222222222225';
-const concertCover = label(concertId, carol.id, 'Обложка', '#a855f7', true, 1);
+const concertCover = label(concertId, carol.id, 'Обложка', '#a855f7', []);
 const concertItems = [
   item(concertId, 'photo', DANCE, carol, { labelIds: [concertCover.id], analyzed: true }),
   item(concertId, 'photo', CITY, carol, { analyzed: true }),
@@ -456,7 +435,7 @@ const concertProject: ProjectCardResponse = {
 };
 
 const dachaId = '22222222-2222-4222-8222-222222222226';
-const dachaCover = label(dachaId, bob.id, 'Обложка', '#3b82f6', true, 2);
+const dachaCover = label(dachaId, bob.id, 'Обложка', '#3b82f6', []);
 const dachaItems = [
   item(dachaId, 'photo', PICNIC, bob, { labelIds: [dachaCover.id], analyzed: true }),
   item(dachaId, 'photo', SEA, bob, { labelIds: [dachaCover.id], analyzed: true }),
@@ -755,22 +734,26 @@ export const mockSongs: SongResponse[] = [
     id: '14141414-1414-4414-8414-141414141414',
     name: 'Тихий вечер',
     author: 'Nox',
-    mediaId: TRACK_MEDIA,
+    originalId: TRACK_MEDIA,
+    compressedId: null,
     coverId: null,
+    previewCoverId: null,
     coverUrl: PARTY,
-    description: null,
-    projectId: null,
+    previewCoverUrl: PARTY,
+    duration: 30,
     uploadedBy: null,
   },
   {
     id: '15151515-1515-4515-8515-151515151515',
     name: 'Праздник',
     author: 'Nox',
-    mediaId: '16161616-1616-4616-8616-161616161616',
+    originalId: '16161616-1616-4616-8616-161616161616',
+    compressedId: null,
     coverId: null,
+    previewCoverId: null,
     coverUrl: SEA,
-    description: null,
-    projectId: null,
+    previewCoverUrl: SEA,
+    duration: 20,
     uploadedBy: null,
   },
 ];
@@ -803,7 +786,7 @@ export function createMockMontage(
     projectId,
     made,
     name || found.project.title,
-    chosen[0]?.links.thumbnail ?? null,
+    chosen[0]?.links.previews.middle ?? null,
     new Date().toISOString(),
   );
   found.montages.unshift(made);
