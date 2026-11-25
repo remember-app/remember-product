@@ -62,6 +62,14 @@ services:
       AUDIO_COVER_MEDIA_ID: "${AUDIO_COVER_MEDIA_ID:-00000000-0000-4000-8000-000000000001}"
       GEMINI_MODEL: "${GEMINI_MODEL:-}"
       AI_ENDPOINT: "${AI_ENDPOINT:-}"
+      AI_BACKGROUND: "${AI_BACKGROUND:-}"
+      AI_BACKGROUND_SECONDS: "${AI_BACKGROUND_SECONDS:-}"
+      AI_STREAM: "${AI_STREAM:-}"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
+
+networks:
+  default:
+    driver_opts:
+      com.docker.network.driver.mtu: 1400

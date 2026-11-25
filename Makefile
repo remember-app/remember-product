@@ -17,7 +17,7 @@ api:
 
 montage:
 	@if [ "$(MOCK)" = "1" ]; then \
-		AI_ENDPOINT=http://mock-ai:8080/v1beta/interactions docker compose up -d --build mock-ai montage; \
+		AI_ENDPOINT=http://mock-ai:8080/v1beta/interactions AI_BACKGROUND=0 AI_STREAM=0 docker compose up -d --build mock-ai montage; \
 	else \
 		docker compose up -d --build montage; \
 	fi
