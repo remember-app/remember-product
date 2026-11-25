@@ -23,8 +23,8 @@ const systemMedia = {
       width: 1080,
       height: 1440,
       captions: {
-        ru: 'Фото с праздника остаются у каждого — соберите их в одном месте.',
-        en: "Party photos stay on everyone's phones — bring them into one place.",
+        ru: 'Фото с праздника остаются у каждого из гостей.',
+        en: 'Everyone leaves the party with their own photos.',
       },
     },
     {
@@ -34,19 +34,41 @@ const systemMedia = {
       width: 1080,
       height: 1440,
       captions: {
-        ru: 'Создайте воспоминание и позовите друзей: они добавят свои кадры.',
-        en: 'Create a memory and invite friends: they add their own shots.',
+        ru: 'Все кадры собраны в одном воспоминании.',
+        en: 'All the shots live in one memory.',
       },
     },
     {
       name: 'onboarding-3',
+      mediaId: '00000000-0000-4000-8000-000000000014',
+      url: '__MEDIA__/onboarding-4.jpg',
+      width: 1080,
+      height: 1440,
+      captions: {
+        ru: 'Друзья добавляют свои фото без напоминаний.',
+        en: 'Friends add their photos without reminders.',
+      },
+    },
+    {
+      name: 'onboarding-4',
+      mediaId: '00000000-0000-4000-8000-000000000015',
+      url: '__MEDIA__/onboarding-5.jpg',
+      width: 1080,
+      height: 1440,
+      captions: {
+        ru: 'Концерт или свадьба становятся фильмом.',
+        en: 'A concert or a wedding becomes a film.',
+      },
+    },
+    {
+      name: 'onboarding-5',
       mediaId: '00000000-0000-4000-8000-000000000013',
       url: '__MEDIA__/onboarding-3.jpg',
       width: 1080,
       height: 1440,
       captions: {
-        ru: 'Потом приложение само смонтирует ролик из всех кадров.',
-        en: 'Then the app cuts a film from all the shots.',
+        ru: 'Готовый ролик остаётся с вами надолго.',
+        en: 'The finished film stays with you.',
       },
     },
   ],
