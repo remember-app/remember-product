@@ -14,6 +14,43 @@ let active = mockAccount;
 
 const empty = { items: [], nextOffset: null };
 const invite = { token: 'MOCK01', role: 'contributor' as const };
+const systemMedia = {
+  items: [
+    {
+      name: 'onboarding-1',
+      mediaId: '00000000-0000-4000-8000-000000000011',
+      url: '__MEDIA__/onboarding-1.jpg',
+      width: 1080,
+      height: 1440,
+      captions: {
+        ru: 'Фото с праздника остаются у каждого — соберите их в одном месте.',
+        en: "Party photos stay on everyone's phones — bring them into one place.",
+      },
+    },
+    {
+      name: 'onboarding-2',
+      mediaId: '00000000-0000-4000-8000-000000000012',
+      url: '__MEDIA__/onboarding-2.jpg',
+      width: 1080,
+      height: 1440,
+      captions: {
+        ru: 'Создайте воспоминание и позовите друзей: они добавят свои кадры.',
+        en: 'Create a memory and invite friends: they add their own shots.',
+      },
+    },
+    {
+      name: 'onboarding-3',
+      mediaId: '00000000-0000-4000-8000-000000000013',
+      url: '__MEDIA__/onboarding-3.jpg',
+      width: 1080,
+      height: 1440,
+      captions: {
+        ru: 'Потом приложение само смонтирует ролик из всех кадров.',
+        en: 'Then the app cuts a film from all the shots.',
+      },
+    },
+  ],
+};
 
 const bundleOf = (projectId: string) => mockBundles[projectId];
 
@@ -40,7 +77,7 @@ export function mockResponse(method: string, path: string, body?: unknown): unkn
     if (url === '/auth/sessions') return empty;
     if (url === '/me/contacts' || url === '/me/contacts/suggestions') return empty;
     if (url === '/me/username/available') return { available: true };
-    if (url === '/system/media') return { items: [] };
+    if (url === '/system/media') return systemMedia;
     if (url === '/songs/library') return { items: mockSongs, nextOffset: null };
     if (url === '/projects') return { items: mockProjects, nextOffset: null };
     if (parts[0] === 'projects' && parts.length === 2) return bundleOf(parts[1] ?? '')?.project;
