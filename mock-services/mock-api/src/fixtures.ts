@@ -9,7 +9,7 @@ import type { AccountResponse, PublicUserResponse } from '../contract/user';
 const asset = (name: string): string => `__MEDIA__/${name}`;
 const withSuffix = (image: string, suffix: string): string =>
   image.replace(/\.jpg$/, `-${suffix}.jpg`);
-const smallOf = (image: string): string => withSuffix(image, 'small');
+const middleOf = (image: string): string => withSuffix(image, 'middle');
 
 type LinkVariant = 'large' | 'detail' | 'playback' | 'original';
 const linksByItem = new Map<string, Partial<Record<LinkVariant, string>>>();
@@ -455,7 +455,7 @@ const partyProject: ProjectCardResponse = {
   sharedCount: 3,
   myRole: 'admin',
   myContribution: 'done',
-  previewUrls: PHOTOS.slice(0, 4).map(smallOf),
+  previewUrls: PHOTOS.slice(0, 4).map(middleOf),
 };
 
 const concertId = '22222222-2222-4222-8222-222222222225';
@@ -477,7 +477,7 @@ const concertProject: ProjectCardResponse = {
   sharedCount: 1,
   myRole: 'contributor',
   myContribution: 'more_coming',
-  previewUrls: [DANCE, CITY, FRIENDS].map(smallOf),
+  previewUrls: [DANCE, CITY, FRIENDS].map(middleOf),
 };
 
 const dachaId = '22222222-2222-4222-8222-222222222226';
@@ -509,7 +509,7 @@ const dachaProject: ProjectCardResponse = {
   sharedCount: 2,
   myRole: 'contributor',
   myContribution: 'more_coming',
-  previewUrls: [PICNIC, SEA, FRIENDS].map(smallOf),
+  previewUrls: [PICNIC, SEA, FRIENDS].map(middleOf),
 };
 
 const weddingMembers = [
@@ -529,7 +529,7 @@ const weddingProject: ProjectCardResponse = {
   sharedCount: 2,
   myRole: 'admin',
   myContribution: 'done',
-  previewUrls: [PARTY, WEDDING, DANCE, BIRTHDAY].map(smallOf),
+  previewUrls: [PARTY, WEDDING, DANCE, BIRTHDAY].map(middleOf),
 };
 
 export const mockProjects: ProjectCardResponse[] = [
