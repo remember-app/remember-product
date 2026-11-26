@@ -10,8 +10,10 @@ const asset = (name: string): string => `__MEDIA__/${name}`;
 const withSuffix = (image: string, suffix: string): string =>
   image.replace(/\.jpg$/, `-${suffix}.jpg`);
 const largeOf = (image: string): string => withSuffix(image, 'large');
+const setPhotos = (prefix: string): string[] =>
+  Array.from({ length: 20 }, (_, index) => asset(`${prefix}-${index + 1}.jpg`));
 
-type LinkVariant = 'large' | 'detail' | 'playback' | 'original';
+type LinkVariant = 'large' | 'detail' | 'original';
 const linksByItem = new Map<string, Partial<Record<LinkVariant, string>>>();
 
 export const linkFor = (itemId: string, variant: LinkVariant) => {
@@ -25,38 +27,77 @@ export const linkFor = (itemId: string, variant: LinkVariant) => {
   };
 };
 
-const PARTY = asset('party.jpg');
-const WEDDING = asset('wedding.jpg');
-const DANCE = asset('dance.jpg');
-const BIRTHDAY = asset('birthday.jpg');
-const PICNIC = asset('picnic.jpg');
-const SEA = asset('sea.jpg');
-const FRIENDS = asset('friends.jpg');
-const CITY = asset('city.jpg');
-const VIDEO = asset('sea.mp4');
+const WEDDING_PHOTOS = setPhotos('wedding');
+const BIRTHDAY_PHOTOS = setPhotos('birthday');
+const SEA_PHOTOS = setPhotos('sea');
 const TRACK = asset('track.mp3');
 export const mockTrackUrl = TRACK;
 
-const PHOTOS = [PARTY, WEDDING, DANCE, BIRTHDAY, PICNIC, SEA, FRIENDS, CITY];
-
 const WEDDING_CAPTIONS = [
-  'Клятва под открытым небом',
-  'Первый танец',
-  'Букет и кольца',
-  'Гости за столом',
-  'Свечи и гирлянды',
-  'Море на закате',
+  'The ceremony under the open sky',
+  'The first dance',
+  'Rings and flowers',
+  'Family portrait',
+  'Guests at the reception',
+  'Candles and lights',
+  'The bride getting ready',
+  'A quiet moment before the vows',
+  'Walking down the aisle',
+  'The best man’s speech',
+  'Dancing with friends',
+  'Details of the table setting',
+  'The wedding cake',
+  'A toast to the newlyweds',
+  'Golden hour outside',
+  'Grandma’s embrace',
+  'Confetti on the steps',
+  'The bouquet toss',
+  'A favorite song',
+  'The last guests leaving',
 ];
-const PARTY_CAPTIONS = [
-  'Ужин на террасе',
-  'Смех и разговоры',
-  'Торт со свечами',
-  'Гирлянда над столом',
-  'Музыка и танцы',
-  'Бокалы за вечер',
-  'Ночной город',
-  'Друзья у камина',
-  'Финальный кадр',
+const BIRTHDAY_CAPTIONS = [
+  'Blowing out the candles',
+  'The cake before the party',
+  'Family around the table',
+  'A surprise hug',
+  'Balloons in the hallway',
+  'The first slice',
+  'Old photos on the wall',
+  'A toast for mom',
+  'Grandchildren nearby',
+  'Wrapping the gifts',
+  'A favorite dessert',
+  'Late afternoon light',
+  'Music in the living room',
+  'A quiet conversation',
+  'Candles and flowers',
+  'The dining table',
+  'A walk in the garden',
+  'The birthday girl smiling',
+  'Everyone together',
+  'The evening ending',
+];
+const SEA_CAPTIONS = [
+  'Sailing at sunset',
+  'The beach in the morning',
+  'Footprints in the sand',
+  'A swim before lunch',
+  'The boat on the horizon',
+  'Sunset over the water',
+  'A picnic by the shore',
+  'Friends in the waves',
+  'A quiet cove',
+  'The harbor at night',
+  'A long walk on the beach',
+  'Seashells and stones',
+  'A boat passing by',
+  'Dinner by the water',
+  'The last light',
+  'Clouds over the sea',
+  'A view from the cliff',
+  'Evening on the deck',
+  'A perfect summer day',
+  'Saying goodbye to the sea',
 ];
 
 let counter = 100;
@@ -78,13 +119,12 @@ const account = (
   username: string,
   name: string,
   email: string,
-  language: AccountResponse['language'],
 ): AccountResponse => ({
   id,
   username,
   name,
   email,
-  language,
+  language: 'en',
   registered: true,
   profileMediaId: null,
   consumables: consumables(90, 100 * 1024 ** 3),
@@ -93,47 +133,45 @@ const account = (
 export const mockAccount = account(
   MOCK_USER_ID,
   'anna',
-  'Анна Соколова',
+  'Anna Sokolova',
   'anna.sokolova@gmail.com',
-  'ru',
 );
 
 export const mockUsers: AccountResponse[] = [
   mockAccount,
-  account('55555555-5555-4555-8555-555555555555', 'mark', 'Марк Ветров', 'mark.vetrov@gmail.com', 'ru'),
-  account('66666666-6666-4666-8666-666666666666', 'elena', 'Елена Ким', 'elena.kim@gmail.com', 'ru'),
-  account('77777777-7777-4777-8777-777777777777', 'ilia', 'Илья Орлов', 'ilya.orlov@gmail.com', 'en'),
+  account('55555555-5555-4555-8555-555555555555', 'mark', 'Mark Vetrov', 'mark.vetrov@gmail.com'),
+  account('66666666-6666-4666-8666-666666666666', 'elena', 'Elena Kim', 'elena.kim@gmail.com'),
+  account('77777777-7777-4777-8777-777777777777', 'ilia', 'Ilya Orlov', 'ilya.orlov@gmail.com'),
 ];
 
 const alice: PublicUserResponse = {
   id: MOCK_USER_ID,
   username: 'anna',
-  name: 'Анна Соколова',
+  name: 'Anna Sokolova',
   profileMediaId: null,
 };
 const bob: PublicUserResponse = {
   id: '55555555-5555-4555-8555-555555555555',
   username: 'mark',
-  name: 'Марк Ветров',
+  name: 'Mark Vetrov',
   profileMediaId: null,
 };
 const carol: PublicUserResponse = {
   id: '66666666-6666-4666-8666-666666666666',
   username: 'elena',
-  name: 'Елена Ким',
+  name: 'Elena Kim',
   profileMediaId: null,
 };
 const dave: PublicUserResponse = {
   id: '77777777-7777-4777-8777-777777777777',
   username: 'ilia',
-  name: 'Илья Орлов',
+  name: 'Ilya Orlov',
   profileMediaId: null,
 };
 
 const member = (
   user: PublicUserResponse,
   role: MemberResponse['role'],
-  contribution: MemberResponse['contribution'],
   tokens: number,
   bytes: number,
 ): MemberResponse => ({
@@ -142,7 +180,7 @@ const member = (
   name: user.name,
   role,
   consumables: consumables(tokens, bytes),
-  contribution,
+  contribution: 'done',
   joinedAt: '2026-10-01T10:00:00.000Z',
   invitedBy: user.id === MOCK_USER_ID ? null : MOCK_USER_ID,
 });
@@ -152,93 +190,58 @@ const label = (
   ownerId: string,
   name: string,
   color: `#${string}`,
-  itemsIds: string[] = [],
 ): LabelResponse => ({
   id: id(),
   projectId,
   ownerId,
   name,
   color,
-  itemsIds,
+  itemsIds: [],
 });
-
-type Kind = 'photo' | 'video' | 'audio';
 
 const item = (
   projectId: string,
-  kind: Kind,
   image: string,
   uploader: PublicUserResponse,
   options: {
     labelIds?: string[];
-    description?: string;
+    description: string;
     analyzed?: boolean;
-    daysAgo?: number;
+    daysAgo: number;
     withPlace?: boolean;
-    previewReady?: boolean;
-  } = {},
+  },
 ): ItemResponse => {
   const itemId = id();
   const mediaId = id();
   const compressedId = id();
-  const previewReady = options.previewReady !== false && kind !== 'audio';
-  const previews = previewReady
-    ? { small: id(), middle: id(), large: id() }
-    : {};
-  const originalUrl =
-    kind === 'video'
-      ? image.replace(/\.jpg$/, '-original.mp4')
-      : kind === 'audio'
-        ? TRACK
-        : image;
-  const compressedUrl =
-    kind === 'video'
-      ? image.replace(/\.jpg$/, '.mp4')
-      : kind === 'audio'
-        ? TRACK
-        : withSuffix(image, 'detail');
+  const at = new Date(Date.now() - options.daysAgo * 86_400_000).toISOString();
   linksByItem.set(itemId, {
-    original: originalUrl,
-    large: previewReady ? withSuffix(image, 'large') : undefined,
-    detail: kind === 'photo' ? compressedUrl : undefined,
-    playback: kind === 'photo' ? undefined : compressedUrl,
+    original: image,
+    large: withSuffix(image, 'large'),
+    detail: withSuffix(image, 'detail'),
   });
-  const at = new Date(Date.now() - (options.daysAgo ?? 5) * 86_400_000).toISOString();
-  const comment =
-    options.description ??
-    (kind === 'video'
-      ? 'Короткое видео с события'
-      : kind === 'audio'
-        ? 'Музыка из того вечера'
-        : 'Любимый кадр');
   return {
     item: {
       id: itemId,
       projectId,
       uploadedBy: uploader.id,
-      comment,
+      comment: options.description,
       labelIds: options.labelIds ?? [],
-      analysis:
-        options.analyzed && kind === 'photo'
-          ? { description: 'Тёплый момент', scoreImportance: 8.0, scoreQuality: 7.0 }
-          : null,
+      analysis: options.analyzed
+        ? { description: options.description, scoreImportance: 8.4, scoreQuality: 8.1 }
+        : null,
       createdAt: at,
     },
     media: {
       id: mediaId,
-      kind,
+      kind: 'photo',
       fingerprint: '',
       perceptualHash: '',
-      format: kind === 'photo' ? 'jpeg' : kind === 'video' ? 'mp4' : 'm4a',
-      bytes: kind === 'photo' ? '287079' : kind === 'video' ? '101349' : '98823',
+      format: 'jpeg',
+      bytes: '287079',
       meta: {
-        dimensions:
-          kind === 'photo'
-            ? { width: 1080, height: 1440 }
-            : kind === 'video'
-              ? { width: 720, height: 960 }
-              : null,
-        duration: kind === 'photo' ? null : kind === 'video' ? 5 : 8,
+        dimensions: { width: 1080, height: 1440 },
+        duration: null,
         at,
         place: options.withPlace ? { latitude: 55.75, longitude: 37.61 } : null,
         camera: null,
@@ -248,23 +251,16 @@ const item = (
     variants: {
       original: mediaId,
       compressed: compressedId,
-      previews,
+      previews: { small: id(), middle: id(), large: id() },
     },
     links: {
-      small: previews.small ? withSuffix(image, 'small') : null,
-      middle: previews.middle ? withSuffix(image, 'middle') : null,
+      small: withSuffix(image, 'small'),
+      middle: withSuffix(image, 'middle'),
     },
   };
 };
 
-type Stage = 'analysis' | 'preparation' | 'directing' | 'editing' | 'done' | 'failed';
-
-const manifest = (
-  shots: ItemResponse[],
-  targetSeconds: number,
-  prompt: string | null,
-  stage: Stage,
-) => {
+const manifest = (shots: ItemResponse[], targetSeconds: number, prompt: string) => {
   const config = {
     targetSeconds,
     prompt,
@@ -280,7 +276,7 @@ const manifest = (
       targetSeconds,
       dimensions: { width: 1080, height: 1920 },
       story: prompt,
-      requiredItemIds: [],
+      requiredItemIds: [] as string[],
     },
     shots: shots.map((one) => ({
       itemId: one.item.id,
@@ -290,8 +286,8 @@ const manifest = (
       width: one.media.meta.dimensions?.width ?? null,
       height: one.media.meta.dimensions?.height ?? null,
       durationSeconds: one.media.meta.duration,
-      hasAudio: one.media.kind !== 'photo',
-      shownWithCover: one.media.kind === 'audio',
+      hasAudio: false,
+      shownWithCover: false,
       description: one.item.comment,
       labels: [],
       analysis: one.item.analysis,
@@ -310,44 +306,31 @@ const manifest = (
     motion: 'none',
     transitionSeconds: 0.25,
   }));
-  const planned = stage !== 'analysis' && stage !== 'preparation' && stage !== 'directing';
   return {
     preparationConfig: config,
-    directingInput:
-      stage === 'analysis' || stage === 'preparation' ? null : { mergedMontageData: report },
-    editingParams: planned ? { commands } : null,
+    directingInput: { mergedMontageData: report },
+    editingParams: { commands },
   };
 };
 
 const montage = (
   projectId: string,
   shots: ItemResponse[],
-  stage: Stage,
   targetSeconds: number,
-  prompt: string | null,
+  prompt: string,
 ): MontageResponse => ({
   id: id(),
   projectId,
   createdBy: MOCK_USER_ID,
-  status:
-    stage === 'analysis'
-      ? 'queued'
-      : stage === 'done'
-        ? 'done'
-        : stage === 'failed'
-          ? 'failed'
-          : 'processing',
-  manifest: manifest(shots, targetSeconds, prompt, stage),
+  status: 'done',
+  manifest: manifest(shots, targetSeconds, prompt),
   createdAt: '2026-10-22T10:00:00.000Z',
-  error: stage === 'failed' ? 'The model could not agree on a plan for these shots.' : null,
+  error: null,
   journal: {
-    directing:
-      stage === 'analysis' || stage === 'preparation' || stage === 'directing'
-        ? null
-        : {
-            text: `The movie is built from ${shots.length} shots, with a calm pace and space for every moment.`,
-            usedItemIds: shots.map((one) => one.item.id),
-          },
+    directing: {
+      text: `The movie is built from ${shots.length} shots, with a calm pace and space for every moment.`,
+      usedItemIds: shots.map((one) => one.item.id),
+    },
   },
 });
 
@@ -355,7 +338,7 @@ const movie = (
   projectId: string,
   montageResponse: MontageResponse,
   name: string,
-  poster: string | null,
+  poster: string,
   createdAt: string,
 ): MovieResponse => ({
   id: id(),
@@ -368,16 +351,16 @@ const movie = (
   compressedId: null,
   previewId: null,
   video: {
-    durationSeconds: 12.05,
-    bytes: 1634374,
+    durationSeconds: 42.5,
+    bytes: 6_434_374,
     width: 1080,
     height: 1920,
     format: 'mp4',
   },
   montage: montageResponse,
-  video_url: VIDEO,
+  video_url: asset('sea.mp4'),
   poster_url: poster,
-  preview_url: VIDEO,
+  preview_url: asset('sea.mp4'),
 });
 
 type Bundle = {
@@ -405,317 +388,139 @@ const bundle = (
   movies,
 });
 
+const makeItems = (
+  projectId: string,
+  photos: string[],
+  captions: string[],
+  uploaders: PublicUserResponse[],
+  labelIds: string[],
+): ItemResponse[] =>
+  photos.map((photo, index) =>
+    item(projectId, photo, uploaders[index % uploaders.length] ?? alice, {
+      labelIds: index % 3 === 0 ? [labelIds[0] ?? ''] : index % 3 === 1 ? [labelIds[1] ?? ''] : [labelIds[2] ?? ''],
+      description: captions[index] ?? `Moment ${index + 1}`,
+      analyzed: true,
+      daysAgo: 20 + index,
+      withPlace: index % 5 === 0,
+    }),
+  );
+
 const weddingId = MOCK_PROJECT_ID;
-const cover = label(weddingId, alice.id, 'Обложка', '#e8b04b', []);
-const favourite = label(weddingId, alice.id, 'Любимое', '#ec4899', []);
-const guests = label(weddingId, alice.id, 'Гости', '#4f46e5', []);
-const details = label(weddingId, bob.id, 'Детали', '#14b8a6', []);
-const weddingItems = [
-  item(weddingId, 'photo', PARTY, alice, {
-    labelIds: [cover.id, favourite.id, details.id],
-    analyzed: true,
-    withPlace: true,
-    description: WEDDING_CAPTIONS[0],
-    daysAgo: 37,
-  }),
-  item(weddingId, 'photo', WEDDING, bob, {
-    labelIds: [cover.id, guests.id],
-    analyzed: true,
-    description: WEDDING_CAPTIONS[1],
-    daysAgo: 37,
-  }),
-  item(weddingId, 'photo', DANCE, carol, {
-    labelIds: [favourite.id, guests.id],
-    analyzed: true,
-    description: WEDDING_CAPTIONS[2],
-    daysAgo: 36,
-  }),
-  item(weddingId, 'photo', BIRTHDAY, alice, {
-    labelIds: [details.id],
-    analyzed: true,
-    withPlace: true,
-    description: WEDDING_CAPTIONS[3],
-    daysAgo: 36,
-  }),
-  item(weddingId, 'video', SEA, bob, {
-    labelIds: [guests.id],
-    description: WEDDING_CAPTIONS[4],
-    daysAgo: 35,
-  }),
-  item(weddingId, 'audio', DANCE, alice, {
-    description: WEDDING_CAPTIONS[5],
-    daysAgo: 35,
-  }),
+const weddingLabels = [
+  label(weddingId, alice.id, 'Cover', '#e8b04b'),
+  label(weddingId, alice.id, 'Favourites', '#ec4899'),
+  label(weddingId, bob.id, 'Guests', '#4f46e5'),
 ];
-const weddingMontage = montage(
+const weddingItems = makeItems(
   weddingId,
-  weddingItems,
-  'done',
-  30,
-  'Тёплый фильм о первом танце и гостях',
+  WEDDING_PHOTOS,
+  WEDDING_CAPTIONS,
+  [alice, bob, carol, dave],
+  weddingLabels.map((one) => one.id),
 );
-const TRACK_MEDIA = '12121212-1212-4212-8212-121212121212';
-const weddingConfig = weddingMontage.manifest.preparationConfig;
-if (weddingConfig) weddingConfig.musicIds = [TRACK_MEDIA];
-const weddingReport = weddingMontage.manifest.directingInput?.mergedMontageData as
-  | { music?: unknown[] }
-  | undefined;
-if (weddingReport) {
-  weddingReport.music = [
-    {
-      songId: '13131313-1313-4313-8313-131313131313',
-      mediaId: TRACK_MEDIA,
-      name: 'Тихий вечер',
-      author: 'Марк Ветров',
-      durationSeconds: 30,
-      analysis: null,
-    },
-  ];
-}
+const weddingMontage = montage(weddingId, weddingItems.slice(0, 12), 45, 'A warm film about the wedding day');
 const weddingMovie = movie(
   weddingId,
   weddingMontage,
-  'Свадьба Анны и Марка',
-  SEA,
-  '2026-10-22T10:05:00.000Z',
+  "Anna & Mark's Wedding",
+  WEDDING_PHOTOS[0] ?? WEDDING_PHOTOS[1] ?? '',
+  '2026-11-02T20:05:00.000Z',
 );
-
-const birthdayId = '22222222-2222-4222-8222-222222222223';
-const birthdayCover = label(birthdayId, alice.id, 'Обложка', '#f59e0b', []);
-const birthdayFamily = label(birthdayId, alice.id, 'Семья', '#ec4899', []);
-const birthdayDetails = label(birthdayId, carol.id, 'Детали', '#22c55e', []);
-const birthdayItems = [
-  item(birthdayId, 'photo', BIRTHDAY, alice, {
-    labelIds: [birthdayCover.id, birthdayFamily.id],
-    analyzed: true,
-    description: 'Мама задувает свечи',
-    daysAgo: 12,
-    withPlace: true,
-  }),
-  item(birthdayId, 'photo', FRIENDS, carol, {
-    labelIds: [birthdayFamily.id],
-    analyzed: true,
-    description: 'Все собрались за столом',
-    daysAgo: 12,
-  }),
-  item(birthdayId, 'photo', PARTY, bob, {
-    labelIds: [birthdayDetails.id],
-    analyzed: true,
-    description: 'Праздничный свет и украшения',
-    daysAgo: 11,
-  }),
-  item(birthdayId, 'photo', CITY, dave, {
-    labelIds: [birthdayDetails.id],
-    description: 'Гуляли до позднего вечера',
-    daysAgo: 11,
-  }),
-  item(birthdayId, 'video', SEA, alice, {
-    labelIds: [birthdayFamily.id],
-    description: 'Короткое видео для мамы',
-    daysAgo: 10,
-  }),
-];
-const birthdayMontage = montage(
-  birthdayId,
-  birthdayItems,
-  'done',
-  25,
-  'Тёплый фильм про семейный праздник',
-);
-const birthdayMovie = movie(
-  birthdayId,
-  birthdayMontage,
-  'День рождения мамы',
-  BIRTHDAY,
-  '2026-11-15T19:30:00.000Z',
-);
-const birthdayProject: ProjectCardResponse = {
-  id: birthdayId,
-  title: 'День рождения мамы',
-  eventStart: '2026-11-14T17:00:00.000Z',
-  eventEnd: '2026-11-14T23:00:00.000Z',
-  consumables: consumables(35, 3 * 1024 ** 3),
-  itemCount: birthdayItems.length,
-  memberCount: 4,
-  sharedCount: 3,
-  myRole: 'admin',
-  myContribution: 'done',
-  previewUrls: [BIRTHDAY].map(largeOf),
-};
-
-const partyId = '22222222-2222-4222-8222-222222222224';
-const partyCover = label(partyId, alice.id, 'Обложка', '#84cc16', []);
-const partyFavourites = label(partyId, bob.id, 'Лучшие кадры', '#f97316', []);
-const partyDetails = label(partyId, carol.id, 'Детали', '#6366f1', []);
-const partyItems = Array.from({ length: 9 }, (_, index) =>
-  item(partyId, 'photo', PHOTOS[index % PHOTOS.length] ?? PARTY, index % 2 === 0 ? alice : bob, {
-    labelIds: index < 3 ? [partyCover.id] : index < 6 ? [partyFavourites.id] : [partyDetails.id],
-    analyzed: true,
-    description: PARTY_CAPTIONS[index % PARTY_CAPTIONS.length] ?? 'Гости и веселье',
-    daysAgo: 20 + index,
-    previewReady: true,
-  }),
-);
-const partyDone = montage(partyId, partyItems.slice(0, 6), 'done', 30, 'Вечер в новом доме');
-const partyMovie = movie(
-  partyId,
-  partyDone,
-  'Новоселье',
-  PARTY,
-  '2026-10-18T21:10:00.000Z',
-);
-const partyProject: ProjectCardResponse = {
-  id: partyId,
-  title: 'Новоселье',
-  eventStart: '2026-10-17T18:00:00.000Z',
-  eventEnd: '2026-10-18T01:00:00.000Z',
-  consumables: consumables(25, 3 * 1024 ** 3),
-  itemCount: partyItems.length,
-  memberCount: 4,
-  sharedCount: 3,
-  myRole: 'admin',
-  myContribution: 'done',
-  previewUrls: PHOTOS.slice(0, 1).map(largeOf),
-};
-
-const concertId = '22222222-2222-4222-8222-222222222225';
-const concertCover = label(concertId, carol.id, 'Обложка', '#a855f7', []);
-const concertStage = label(concertId, carol.id, 'Сцена', '#8b5cf6', []);
-const concertBackstage = label(concertId, alice.id, 'За кадром', '#14b8a6', []);
-const concertItems = [
-  item(concertId, 'photo', DANCE, carol, {
-    labelIds: [concertCover.id, concertStage.id],
-    analyzed: true,
-    description: 'Выход на сцену',
-    daysAgo: 18,
-  }),
-  item(concertId, 'photo', CITY, carol, {
-    labelIds: [concertStage.id],
-    analyzed: true,
-    description: 'Город после концерта',
-    daysAgo: 18,
-  }),
-  item(concertId, 'photo', FRIENDS, alice, {
-    labelIds: [concertBackstage.id],
-    analyzed: true,
-    description: 'За кулисами с друзьями',
-    daysAgo: 17,
-  }),
-];
-const concertDone = montage(concertId, concertItems, 'done', 20, 'Вечер в парке');
-const concertMovie = movie(
-  concertId,
-  concertDone,
-  'Концерт в парке',
-  DANCE,
-  '2026-11-09T22:00:00.000Z',
-);
-const concertProject: ProjectCardResponse = {
-  id: concertId,
-  title: 'Концерт в парке',
-  eventStart: '2026-11-08T20:00:00.000Z',
-  eventEnd: '2026-11-08T23:30:00.000Z',
-  consumables: consumables(15, 1024 ** 3),
-  itemCount: concertItems.length,
-  memberCount: 2,
-  sharedCount: 2,
-  myRole: 'contributor',
-  myContribution: 'done',
-  previewUrls: [DANCE].map(largeOf),
-};
-
-const dachaId = '22222222-2222-4222-8222-222222222226';
-const dachaCover = label(dachaId, bob.id, 'Обложка', '#3b82f6', []);
-const dachaNature = label(dachaId, bob.id, 'Природа', '#22c55e', []);
-const dachaPeople = label(dachaId, alice.id, 'Близкие', '#f97316', []);
-const dachaItems = [
-  item(dachaId, 'photo', PICNIC, bob, {
-    labelIds: [dachaCover.id, dachaNature.id],
-    analyzed: true,
-    description: 'Обед на открытом воздухе',
-    daysAgo: 27,
-  }),
-  item(dachaId, 'photo', SEA, bob, {
-    labelIds: [dachaNature.id],
-    analyzed: true,
-    description: 'Вечер у воды',
-    daysAgo: 26,
-  }),
-  item(dachaId, 'photo', FRIENDS, alice, {
-    labelIds: [dachaPeople.id],
-    analyzed: true,
-    description: 'Собрались всей семьёй',
-    daysAgo: 26,
-  }),
-  item(dachaId, 'video', SEA, dave, {
-    labelIds: [dachaNature.id],
-    description: 'Закат и шум воды',
-    daysAgo: 25,
-  }),
-];
-const dachaMontage = montage(dachaId, dachaItems, 'done', 20, 'Выходные у бабушки');
-const dachaMovie = movie(
-  dachaId,
-  dachaMontage,
-  'Дача у бабушки',
-  PICNIC,
-  '2026-11-02T18:00:00.000Z',
-);
-const dachaSecond = montage(dachaId, dachaItems.slice(0, 2), 'done', 10, 'Только вода и еда');
-const dachaSecondMovie = movie(
-  dachaId,
-  dachaSecond,
-  'Дача у бабушки: короткая версия',
-  SEA,
-  '2026-11-03T09:00:00.000Z',
-);
-const dachaProject: ProjectCardResponse = {
-  id: dachaId,
-  title: 'Дача у бабушки',
-  eventStart: '2026-10-30T12:00:00.000Z',
-  eventEnd: '2026-10-31T12:00:00.000Z',
-  consumables: consumables(30, 2 * 1024 ** 3),
-  itemCount: dachaItems.length,
-  memberCount: 3,
-  sharedCount: 2,
-  myRole: 'contributor',
-  myContribution: 'done',
-  previewUrls: [PICNIC].map(largeOf),
-};
-
-const weddingMembers = [
-  member(alice, 'admin', 'done', 40, 4 * 1024 ** 3),
-  member(bob, 'contributor', 'done', 20, 2 * 1024 ** 3),
-  member(carol, 'viewer', 'done', 8, 512 * 1024 ** 2),
-];
-
 const weddingProject: ProjectCardResponse = {
   id: weddingId,
-  title: 'Свадьба Анны и Марка',
-  eventStart: '2026-10-20T15:00:00.000Z',
-  eventEnd: '2026-10-21T02:00:00.000Z',
-  consumables: consumables(40, 4 * 1024 ** 3),
+  title: "Anna & Mark's Wedding",
+  eventStart: '2026-10-31T15:00:00.000Z',
+  eventEnd: '2026-11-01T02:00:00.000Z',
+  consumables: consumables(80, 8 * 1024 ** 3),
   itemCount: weddingItems.length,
   memberCount: 3,
   sharedCount: 2,
   myRole: 'admin',
   myContribution: 'done',
-  previewUrls: [PARTY].map(largeOf),
+  previewUrls: WEDDING_PHOTOS.slice(0, 1).map(largeOf),
 };
 
-export const mockProjects: ProjectCardResponse[] = [
-  weddingProject,
-  birthdayProject,
-  partyProject,
-  concertProject,
-  dachaProject,
+const birthdayId = '22222222-2222-4222-8222-222222222223';
+const birthdayLabels = [
+  label(birthdayId, alice.id, 'Cover', '#f59e0b'),
+  label(birthdayId, alice.id, 'Family', '#ec4899'),
+  label(birthdayId, carol.id, 'Details', '#22c55e'),
 ];
+const birthdayItems = makeItems(
+  birthdayId,
+  BIRTHDAY_PHOTOS,
+  BIRTHDAY_CAPTIONS,
+  [alice, carol, bob, dave],
+  birthdayLabels.map((one) => one.id),
+);
+const birthdayMontage = montage(birthdayId, birthdayItems.slice(0, 12), 40, 'A family film about mom’s birthday');
+const birthdayMovie = movie(
+  birthdayId,
+  birthdayMontage,
+  "Mom's 60th Birthday",
+  BIRTHDAY_PHOTOS[0] ?? BIRTHDAY_PHOTOS[1] ?? '',
+  '2026-11-16T19:30:00.000Z',
+);
+const birthdayProject: ProjectCardResponse = {
+  id: birthdayId,
+  title: "Mom's 60th Birthday",
+  eventStart: '2026-11-15T17:00:00.000Z',
+  eventEnd: '2026-11-15T23:00:00.000Z',
+  consumables: consumables(70, 6 * 1024 ** 3),
+  itemCount: birthdayItems.length,
+  memberCount: 4,
+  sharedCount: 3,
+  myRole: 'admin',
+  myContribution: 'done',
+  previewUrls: BIRTHDAY_PHOTOS.slice(0, 1).map(largeOf),
+};
+
+const seaId = '22222222-2222-4222-8222-222222222224';
+const seaLabels = [
+  label(seaId, alice.id, 'Cover', '#38bdf8'),
+  label(seaId, bob.id, 'Sunsets', '#f97316'),
+  label(seaId, dave.id, 'Friends', '#a855f7'),
+];
+const seaItems = makeItems(
+  seaId,
+  SEA_PHOTOS,
+  SEA_CAPTIONS,
+  [alice, bob, carol, dave],
+  seaLabels.map((one) => one.id),
+);
+const seaMontage = montage(seaId, seaItems.slice(0, 12), 45, 'A calm film about a summer by the sea');
+const seaMovie = movie(
+  seaId,
+  seaMontage,
+  'Summer by the Sea',
+  SEA_PHOTOS[0] ?? SEA_PHOTOS[1] ?? '',
+  '2026-08-18T21:00:00.000Z',
+);
+const seaProject: ProjectCardResponse = {
+  id: seaId,
+  title: 'Summer by the Sea',
+  eventStart: '2026-08-14T10:00:00.000Z',
+  eventEnd: '2026-08-17T20:00:00.000Z',
+  consumables: consumables(75, 7 * 1024 ** 3),
+  itemCount: seaItems.length,
+  memberCount: 4,
+  sharedCount: 3,
+  myRole: 'admin',
+  myContribution: 'done',
+  previewUrls: SEA_PHOTOS.slice(0, 1).map(largeOf),
+};
+
+export const mockProjects: ProjectCardResponse[] = [weddingProject, birthdayProject, seaProject];
 
 export const mockBundles: Record<string, Bundle> = {
   [weddingId]: bundle(
     weddingProject,
-    weddingMembers,
-    [cover, favourite, guests, details],
+    [
+      member(alice, 'admin', 40, 4 * 1024 ** 3),
+      member(bob, 'contributor', 25, 3 * 1024 ** 3),
+      member(carol, 'contributor', 15, 2 * 1024 ** 3),
+    ],
+    weddingLabels,
     weddingItems,
     [weddingMontage],
     [weddingMovie],
@@ -723,259 +528,85 @@ export const mockBundles: Record<string, Bundle> = {
   [birthdayId]: bundle(
     birthdayProject,
     [
-      member(alice, 'admin', 'done', 35, 3 * 1024 ** 3),
-      member(carol, 'contributor', 'done', 15, 1024 ** 3),
-      member(bob, 'contributor', 'done', 10, 512 * 1024 ** 2),
-      member(dave, 'viewer', 'done', 8, 512 * 1024 ** 2),
+      member(alice, 'admin', 35, 3 * 1024 ** 3),
+      member(carol, 'contributor', 20, 2 * 1024 ** 3),
+      member(bob, 'contributor', 15, 1024 ** 3),
+      member(dave, 'contributor', 10, 1024 ** 3),
     ],
-    [birthdayCover, birthdayFamily, birthdayDetails],
+    birthdayLabels,
     birthdayItems,
     [birthdayMontage],
     [birthdayMovie],
   ),
-  [partyId]: bundle(
-    partyProject,
+  [seaId]: bundle(
+    seaProject,
     [
-      member(alice, 'admin', 'done', 25, 3 * 1024 ** 3),
-      member(bob, 'contributor', 'done', 10, 1024 ** 3),
-      member(carol, 'contributor', 'done', 5, 512 * 1024 ** 2),
-      member(dave, 'viewer', 'done', 8, 512 * 1024 ** 2),
+      member(alice, 'admin', 30, 3 * 1024 ** 3),
+      member(bob, 'contributor', 25, 2 * 1024 ** 3),
+      member(carol, 'contributor', 15, 2 * 1024 ** 3),
+      member(dave, 'contributor', 10, 1024 ** 3),
     ],
-    [partyCover, partyFavourites, partyDetails],
-    partyItems,
-    [partyDone],
-    [partyMovie],
-  ),
-  [concertId]: bundle(
-    concertProject,
-    [
-      member(carol, 'admin', 'done', 15, 1024 ** 3),
-      member(alice, 'contributor', 'done', 5, 512 * 1024 ** 2),
-    ],
-    [concertCover, concertStage, concertBackstage],
-    concertItems,
-    [concertDone],
-    [concertMovie],
-  ),
-  [dachaId]: bundle(
-    dachaProject,
-    [
-      member(bob, 'admin', 'done', 30, 2 * 1024 ** 3),
-      member(alice, 'contributor', 'done', 10, 1024 ** 3),
-      member(dave, 'viewer', 'done', 8, 512 * 1024 ** 2),
-    ],
-    [dachaCover, dachaNature, dachaPeople],
-    dachaItems,
-    [dachaMontage, dachaSecond],
-    [dachaMovie, dachaSecondMovie],
+    seaLabels,
+    seaItems,
+    [seaMontage],
+    [seaMovie],
   ),
 };
 
+const template = (
+  id: string,
+  name: string,
+  description: string,
+  targetSeconds: number,
+  prompt: string,
+  cover: string,
+  width: number,
+  height: number,
+): MontageTemplateResponse => ({
+  id,
+  about: { ru: { name, description }, en: { name, description } },
+  settings: { targetSeconds, prompt, dimensions: { width, height }, musicIds: [] },
+  coverId: null,
+  coverUrl: cover,
+  referenceMediaId: null,
+});
+
 export const mockTemplates: MontageTemplateResponse[] = [
-  {
-    id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb01',
-    about: {
-      ru: {
-        name: 'Быстрый клип',
-        description: 'Короткий динамичный клип о самом ярком моменте события, без долгих планов.',
-      },
-      en: {
-        name: 'Quick clip',
-        description:
-          'A short, dynamic clip about the brightest moment of the event, no long shots.',
-      },
-    },
-    settings: {
-      targetSeconds: 15,
-      prompt: 'Короткий динамичный клип о самом ярком моменте.',
-      dimensions: { width: 1080, height: 1920 },
-      musicIds: [],
-    },
-    coverId: null,
-    coverUrl: PARTY,
-    referenceMediaId: null,
-  },
-  {
-    id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb02',
-    about: {
-      ru: {
-        name: 'Кино',
-        description: 'Тёплый фильм с историей, спокойным ритмом и титрами.',
-      },
-      en: {
-        name: 'Film',
-        description: 'A warm film with a story, an unhurried pace and captions.',
-      },
-    },
-    settings: {
-      targetSeconds: 60,
-      prompt: 'Тёплый фильм с историей, спокойным ритмом и титрами.',
-      dimensions: { width: 1080, height: 1920 },
-      musicIds: [],
-    },
-    coverId: null,
-    coverUrl: WEDDING,
-    referenceMediaId: null,
-  },
-  {
-    id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb03',
-    about: {
-      ru: {
-        name: 'Репортаж',
-        description: 'Репортаж о том, как прошёл день, от начала до конца.',
-      },
-      en: {
-        name: 'Report',
-        description: 'A report on how the day went, from start to finish.',
-      },
-    },
-    settings: {
-      targetSeconds: 45,
-      prompt: 'Репортаж о том, как прошёл день, от начала до конца.',
-      dimensions: { width: 1920, height: 1080 },
-      musicIds: [],
-    },
-    coverId: null,
-    coverUrl: CITY,
-    referenceMediaId: null,
-  },
-  {
-    id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb04',
-    about: {
-      ru: {
-        name: 'Для родителей',
-        description: 'Мягкий семейный фильм о детях и близких.',
-      },
-      en: {
-        name: 'For parents',
-        description: 'A gentle family film about children and those close to you.',
-      },
-    },
-    settings: {
-      targetSeconds: 30,
-      prompt: 'Мягкий семейный фильм о детях и близких.',
-      dimensions: { width: 1080, height: 1920 },
-      musicIds: [],
-    },
-    coverId: null,
-    coverUrl: BIRTHDAY,
-    referenceMediaId: null,
-  },
-  {
-    id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb05',
-    about: {
-      ru: {
-        name: 'История',
-        description: 'Рассказ от первого лица о том, как прошёл вечер.',
-      },
-      en: {
-        name: 'Story',
-        description: 'A first-person story of how the evening went.',
-      },
-    },
-    settings: {
-      targetSeconds: 45,
-      prompt: 'Рассказ от первого лица о том, как прошёл вечер.',
-      dimensions: { width: 1080, height: 1920 },
-      musicIds: [],
-    },
-    coverId: null,
-    coverUrl: DANCE,
-    referenceMediaId: null,
-  },
-  {
-    id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb06',
-    about: {
-      ru: {
-        name: 'Атмосфера',
-        description: 'Медленные планы и детали, без суеты.',
-      },
-      en: {
-        name: 'Atmosphere',
-        description: 'Slow shots and details, no rush.',
-      },
-    },
-    settings: {
-      targetSeconds: 20,
-      prompt: 'Медленные планы и детали, без суеты.',
-      dimensions: { width: 1080, height: 1920 },
-      musicIds: [],
-    },
-    coverId: null,
-    coverUrl: SEA,
-    referenceMediaId: null,
-  },
-  {
-    id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb07',
-    about: {
-      ru: {
-        name: 'Трейлер',
-        description: 'Короткий трейлер с нарастанием и кульминацией в финале.',
-      },
-      en: {
-        name: 'Trailer',
-        description: 'A short trailer that builds up to a climax at the end.',
-      },
-    },
-    settings: {
-      targetSeconds: 30,
-      prompt: 'Короткий трейлер с нарастанием и кульминацией в финале.',
-      dimensions: { width: 1080, height: 1920 },
-      musicIds: [],
-    },
-    coverId: null,
-    coverUrl: FRIENDS,
-    referenceMediaId: null,
-  },
-  {
-    id: 'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb08',
-    about: {
-      ru: {
-        name: 'Хроника',
-        description: 'Спокойная хроника события по порядку, от начала до конца.',
-      },
-      en: {
-        name: 'Chronicle',
-        description: 'A calm chronicle of the event in order, from start to finish.',
-      },
-    },
-    settings: {
-      targetSeconds: 75,
-      prompt: 'Спокойная хроника события по порядку, от начала до конца.',
-      dimensions: { width: 1920, height: 1080 },
-      musicIds: [],
-    },
-    coverId: null,
-    coverUrl: PICNIC,
-    referenceMediaId: null,
-  },
+  template('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb01', 'Quick clip', 'A short, dynamic clip about the brightest moment of the event.', 15, 'A short dynamic clip about the brightest moment.', WEDDING_PHOTOS[1] ?? WEDDING_PHOTOS[0] ?? '', 1080, 1920),
+  template('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb02', 'Film', 'A warm film with a story, an unhurried pace and captions.', 60, 'A warm film with a story and captions.', BIRTHDAY_PHOTOS[1] ?? BIRTHDAY_PHOTOS[0] ?? '', 1080, 1920),
+  template('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb03', 'Report', 'A report on how the day went, from start to finish.', 45, 'A report about the day, from start to finish.', SEA_PHOTOS[2] ?? SEA_PHOTOS[0] ?? '', 1920, 1080),
+  template('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb04', 'For parents', 'A gentle family film about the people close to you.', 30, 'A gentle family film about loved ones.', BIRTHDAY_PHOTOS[3] ?? BIRTHDAY_PHOTOS[0] ?? '', 1080, 1920),
+  template('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb05', 'Story', 'A first-person story of how the evening went.', 45, 'A first-person story of the evening.', WEDDING_PHOTOS[4] ?? WEDDING_PHOTOS[0] ?? '', 1080, 1920),
+  template('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb06', 'Atmosphere', 'Slow shots and details, with no rush.', 20, 'Slow shots and small details.', SEA_PHOTOS[5] ?? SEA_PHOTOS[0] ?? '', 1080, 1920),
+  template('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb07', 'Trailer', 'A short trailer that builds to a climax at the end.', 30, 'A short trailer with a strong finale.', WEDDING_PHOTOS[7] ?? WEDDING_PHOTOS[0] ?? '', 1080, 1920),
+  template('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb08', 'Chronicle', 'A calm chronicle of the event in order.', 75, 'A calm chronicle of the event in order.', SEA_PHOTOS[8] ?? SEA_PHOTOS[0] ?? '', 1920, 1080),
 ];
 
 export const mockSongs: SongResponse[] = [
   {
     id: '14141414-1414-4414-8414-141414141414',
-    name: 'Тихий вечер',
-    author: 'Марк Ветров',
-    originalId: TRACK_MEDIA,
+    name: 'Quiet Evening',
+    author: 'Mark Vetrov',
+    originalId: '12121212-1212-4212-8212-121212121212',
     compressedId: null,
     coverId: null,
     previewCoverId: null,
-    coverUrl: PARTY,
-    previewCoverUrl: PARTY,
+    coverUrl: WEDDING_PHOTOS[0] ?? WEDDING_PHOTOS[1] ?? '',
+    previewCoverUrl: WEDDING_PHOTOS[0] ?? WEDDING_PHOTOS[1] ?? '',
     duration: 30,
     uploadedBy: null,
   },
   {
     id: '15151515-1515-4515-8515-151515151515',
-    name: 'Вечерний свет',
-    author: 'Илья Орлов',
+    name: 'Summer Light',
+    author: 'Ilya Orlov',
     originalId: '16161616-1616-4616-8616-161616161616',
     compressedId: null,
     coverId: null,
     previewCoverId: null,
-    coverUrl: SEA,
-    previewCoverUrl: SEA,
-    duration: 20,
+    coverUrl: SEA_PHOTOS[0] ?? SEA_PHOTOS[1] ?? '',
+    previewCoverUrl: SEA_PHOTOS[0] ?? SEA_PHOTOS[1] ?? '',
+    duration: 24,
     uploadedBy: null,
   },
 ];
@@ -997,7 +628,7 @@ export function createMockMontage(
     found.gallery.items.filter((one) => one.item.id === itemId).slice(0, 1),
   );
   if (chosen.length === 0) return undefined;
-  const made = montage(projectId, chosen, 'done', config.targetSeconds, config.prompt);
+  const made = montage(projectId, chosen, config.targetSeconds, config.prompt ?? found.project.title);
   const settings = made.manifest.preparationConfig;
   if (settings) {
     settings.dimensions = config.dimensions;
@@ -1008,7 +639,7 @@ export function createMockMontage(
     projectId,
     made,
     name || found.project.title,
-    chosen[0]?.links.middle ?? null,
+    chosen[0]?.links.middle ?? '',
     new Date().toISOString(),
   );
   found.montages.unshift(made);

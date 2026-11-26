@@ -24,7 +24,7 @@ const systemMedia = {
       width: 1080,
       height: 1440,
       captions: {
-        ru: 'Фото с праздника остаются у каждого из гостей.',
+        ru: 'Everyone leaves the party with their own photos.',
         en: 'Everyone leaves the party with their own photos.',
       },
     },
@@ -35,7 +35,7 @@ const systemMedia = {
       width: 1080,
       height: 1440,
       captions: {
-        ru: 'Все кадры собраны в одном воспоминании.',
+        ru: 'All the shots live in one memory.',
         en: 'All the shots live in one memory.',
       },
     },
@@ -46,7 +46,7 @@ const systemMedia = {
       width: 1080,
       height: 1440,
       captions: {
-        ru: 'Друзья добавляют свои фото без напоминаний.',
+        ru: 'Friends add their photos without reminders.',
         en: 'Friends add their photos without reminders.',
       },
     },
@@ -57,7 +57,7 @@ const systemMedia = {
       width: 1080,
       height: 1440,
       captions: {
-        ru: 'Концерт или свадьба становятся фильмом.',
+        ru: 'A concert or a wedding becomes a film.',
         en: 'A concert or a wedding becomes a film.',
       },
     },
@@ -68,7 +68,7 @@ const systemMedia = {
       width: 1080,
       height: 1440,
       captions: {
-        ru: 'Готовый ролик остаётся с вами надолго.',
+        ru: 'The finished film stays with you.',
         en: 'The finished film stays with you.',
       },
     },
