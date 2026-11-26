@@ -1,5 +1,6 @@
 import {
   createMockMontage,
+  linkFor,
   MOCK_PROJECT_ID,
   mockAccount,
   mockBundles,
@@ -152,6 +153,15 @@ export function mockResponse(method: string, path: string, body?: unknown): unkn
   }
 
   if (method === 'POST') {
+    if (parts[0] === 'projects' && parts[2] === 'download-links') {
+      const wanted = Array.isArray(payload.items) ? payload.items : [];
+      const items = wanted.flatMap((entry) => {
+        if (!entry || typeof entry.itemId !== 'string') return [];
+        const link = linkFor(entry.itemId, entry.variant);
+        return link ? [link] : [];
+      });
+      return { items };
+    }
     if (parts[0] === 'projects' && parts[2] === 'analyze' && parts[3] === 'preview') {
       const ids = Array.isArray(payload.itemIds) ? payload.itemIds : [];
       return { queued: ids.length, tokens: ids.length };

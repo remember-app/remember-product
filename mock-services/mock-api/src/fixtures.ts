@@ -7,6 +7,23 @@ import type { SongResponse } from '../contract/song';
 import type { AccountResponse, PublicUserResponse } from '../contract/user';
 
 const asset = (name: string): string => `__MEDIA__/${name}`;
+const withSuffix = (image: string, suffix: string): string =>
+  image.replace(/\.jpg$/, `-${suffix}.jpg`);
+const smallOf = (image: string): string => withSuffix(image, 'small');
+
+type LinkVariant = 'large' | 'detail' | 'playback' | 'original';
+const linksByItem = new Map<string, Partial<Record<LinkVariant, string>>>();
+
+export const linkFor = (itemId: string, variant: LinkVariant) => {
+  const url = linksByItem.get(itemId)?.[variant];
+  if (!url) return undefined;
+  return {
+    itemId,
+    variant,
+    url,
+    expiresAt: new Date(Date.now() + 900_000).toISOString(),
+  };
+};
 
 const PARTY = asset('party.jpg');
 const WEDDING = asset('wedding.jpg');
@@ -132,10 +149,34 @@ const item = (
     analyzed?: boolean;
     daysAgo?: number;
     withPlace?: boolean;
+    previewReady?: boolean;
   } = {},
 ): ItemResponse => {
   const itemId = id();
   const mediaId = id();
+  const compressedId = id();
+  const previewReady = options.previewReady !== false && kind !== 'audio';
+  const previews = previewReady
+    ? { small: id(), middle: id(), large: id() }
+    : {};
+  const originalUrl =
+    kind === 'video'
+      ? image.replace(/\.jpg$/, '-original.mp4')
+      : kind === 'audio'
+        ? TRACK
+        : image;
+  const compressedUrl =
+    kind === 'video'
+      ? image.replace(/\.jpg$/, '.mp4')
+      : kind === 'audio'
+        ? TRACK
+        : withSuffix(image, 'detail');
+  linksByItem.set(itemId, {
+    original: originalUrl,
+    large: previewReady ? withSuffix(image, 'large') : undefined,
+    detail: kind === 'photo' ? compressedUrl : undefined,
+    playback: kind === 'photo' ? undefined : compressedUrl,
+  });
   const at = new Date(Date.now() - (options.daysAgo ?? 5) * 86_400_000).toISOString();
   const comment =
     options.description ??
@@ -174,10 +215,14 @@ const item = (
       },
     },
     uploader,
+    variants: {
+      original: mediaId,
+      compressed: compressedId,
+      previews,
+    },
     links: {
-      original: image,
-      compressed: image,
-      previews: { small: image, middle: image, large: image },
+      small: previews.small ? withSuffix(image, 'small') : null,
+      middle: previews.middle ? withSuffix(image, 'middle') : null,
     },
   };
 };
@@ -394,6 +439,7 @@ const partyItems = Array.from({ length: 9 }, (_, index) =>
     labelIds: index < 3 ? [partyCover.id] : [],
     analyzed: index % 3 !== 0,
     description: `Кадр ${index + 1}`,
+    previewReady: index !== 8,
   }),
 );
 const partyDirecting = montage(partyId, partyItems, 'directing', 25, 'Короткий клип про вечер');
@@ -409,7 +455,7 @@ const partyProject: ProjectCardResponse = {
   sharedCount: 3,
   myRole: 'admin',
   myContribution: 'done',
-  previewUrls: PHOTOS.slice(0, 4),
+  previewUrls: PHOTOS.slice(0, 4).map(smallOf),
 };
 
 const concertId = '22222222-2222-4222-8222-222222222225';
@@ -431,7 +477,7 @@ const concertProject: ProjectCardResponse = {
   sharedCount: 1,
   myRole: 'contributor',
   myContribution: 'more_coming',
-  previewUrls: [DANCE, CITY, FRIENDS],
+  previewUrls: [DANCE, CITY, FRIENDS].map(smallOf),
 };
 
 const dachaId = '22222222-2222-4222-8222-222222222226';
@@ -463,7 +509,7 @@ const dachaProject: ProjectCardResponse = {
   sharedCount: 2,
   myRole: 'contributor',
   myContribution: 'more_coming',
-  previewUrls: [PICNIC, SEA, FRIENDS],
+  previewUrls: [PICNIC, SEA, FRIENDS].map(smallOf),
 };
 
 const weddingMembers = [
@@ -483,7 +529,7 @@ const weddingProject: ProjectCardResponse = {
   sharedCount: 2,
   myRole: 'admin',
   myContribution: 'done',
-  previewUrls: [PARTY, WEDDING, DANCE, BIRTHDAY],
+  previewUrls: [PARTY, WEDDING, DANCE, BIRTHDAY].map(smallOf),
 };
 
 export const mockProjects: ProjectCardResponse[] = [
@@ -786,7 +832,7 @@ export function createMockMontage(
     projectId,
     made,
     name || found.project.title,
-    chosen[0]?.links.previews.middle ?? null,
+    chosen[0]?.links.middle ?? null,
     new Date().toISOString(),
   );
   found.montages.unshift(made);
