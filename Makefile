@@ -3,10 +3,12 @@ MOCK ?= 0
 HOST ?=
 SONG ?=
 API_PORT = $(if $(filter 1,$(MOCK)),7300,3000)
+DEV_API_URL ?= https://api.remember-app.fun
+BUILD ?= dev
 
 .DEFAULT_GOAL := start
 
-.PHONY: api montage start start-mock start-mobile-local start-mobile-network db-fresh db-seed-essentials analyze-song analyze-songs
+.PHONY: api montage start start-mock start-mobile-local start-mobile-network start-mobile-dev-stend db-fresh db-seed-essentials analyze-song analyze-songs
 
 api:
 	@if [ "$(MOCK)" = "1" ]; then \
@@ -38,6 +40,13 @@ start-mobile-network:
 	cd projects/mobile && EXPO_PUBLIC_API_URL=http://$$ip:$(API_PORT) \
 		EXPO_PUBLIC_API_SERVER_OVERRIDE=$$ip \
 		npx expo start --dev-client --lan
+
+# Только Expo для телефона: API уже развёрнут в дев-контуре, локальный стенд не поднимаем.
+# BUILD=dev — экран разработки и __DEV__, BUILD=prod — продовский бандл без них.
+start-mobile-dev-stend:
+	@case "$(BUILD)" in dev|prod) ;; *) echo "usage: make start-mobile-dev-stend BUILD=dev|prod"; exit 1;; esac; \
+	cd projects/mobile && EXPO_PUBLIC_API_URL=$(DEV_API_URL) \
+		npx expo start --dev-client --lan $(if $(filter prod,$(BUILD)),--no-dev --minify)
 
 db-fresh:
 	docker exec postgres sh -c 'psql -U "$$POSTGRES_USER" -d "$$POSTGRES_DB" -c "drop schema public cascade; create schema public;"'
