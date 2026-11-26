@@ -39,6 +39,26 @@ export const mockTrackUrl = TRACK;
 
 const PHOTOS = [PARTY, WEDDING, DANCE, BIRTHDAY, PICNIC, SEA, FRIENDS, CITY];
 
+const WEDDING_CAPTIONS = [
+  'Клятва под открытым небом',
+  'Первый танец',
+  'Букет и кольца',
+  'Гости за столом',
+  'Свечи и гирлянды',
+  'Море на закате',
+];
+const PARTY_CAPTIONS = [
+  'Ужин на террасе',
+  'Смех и разговоры',
+  'Торт со свечами',
+  'Гирлянда над столом',
+  'Музыка и танцы',
+  'Бокалы за вечер',
+  'Ночной город',
+  'Друзья у камина',
+  'Финальный кадр',
+];
+
 let counter = 100;
 const id = (): string => {
   counter += 1;
@@ -70,37 +90,43 @@ const account = (
   consumables: consumables(90, 100 * 1024 ** 3),
 });
 
-export const mockAccount = account(MOCK_USER_ID, 'alice', 'Алиса', 'a@x.io', 'ru');
+export const mockAccount = account(
+  MOCK_USER_ID,
+  'anna',
+  'Анна Соколова',
+  'anna.sokolova@gmail.com',
+  'ru',
+);
 
 export const mockUsers: AccountResponse[] = [
   mockAccount,
-  account('55555555-5555-4555-8555-555555555555', 'bob', 'Bob', 'b@x.io', 'en'),
-  account('66666666-6666-4666-8666-666666666666', 'carol', 'Кэрол', 'c@x.io', 'ru'),
-  account('77777777-7777-4777-8777-777777777777', 'dave', 'Dave', 'd@x.io', 'en'),
+  account('55555555-5555-4555-8555-555555555555', 'mark', 'Марк Ветров', 'mark.vetrov@gmail.com', 'ru'),
+  account('66666666-6666-4666-8666-666666666666', 'elena', 'Елена Ким', 'elena.kim@gmail.com', 'ru'),
+  account('77777777-7777-4777-8777-777777777777', 'ilia', 'Илья Орлов', 'ilya.orlov@gmail.com', 'en'),
 ];
 
 const alice: PublicUserResponse = {
   id: MOCK_USER_ID,
-  username: 'alice',
-  name: 'Алиса',
+  username: 'anna',
+  name: 'Анна Соколова',
   profileMediaId: null,
 };
 const bob: PublicUserResponse = {
   id: '55555555-5555-4555-8555-555555555555',
-  username: 'bob',
-  name: 'Bob',
+  username: 'mark',
+  name: 'Марк Ветров',
   profileMediaId: null,
 };
 const carol: PublicUserResponse = {
   id: '66666666-6666-4666-8666-666666666666',
-  username: 'carol',
-  name: 'Кэрол',
+  username: 'elena',
+  name: 'Елена Ким',
   profileMediaId: null,
 };
 const dave: PublicUserResponse = {
   id: '77777777-7777-4777-8777-777777777777',
-  username: 'dave',
-  name: 'Dave',
+  username: 'ilia',
+  name: 'Илья Орлов',
   profileMediaId: null,
 };
 
@@ -180,7 +206,11 @@ const item = (
   const at = new Date(Date.now() - (options.daysAgo ?? 5) * 86_400_000).toISOString();
   const comment =
     options.description ??
-    (kind === 'video' ? 'Волны на реке' : kind === 'audio' ? 'Первый танец, музыка' : 'Кадр');
+    (kind === 'video'
+      ? 'Короткое видео с события'
+      : kind === 'audio'
+        ? 'Музыка из того вечера'
+        : 'Любимый кадр');
   return {
     item: {
       id: itemId,
@@ -378,17 +408,44 @@ const bundle = (
 const weddingId = MOCK_PROJECT_ID;
 const cover = label(weddingId, alice.id, 'Обложка', '#e8b04b', []);
 const favourite = label(weddingId, alice.id, 'Любимое', '#ec4899', []);
+const guests = label(weddingId, alice.id, 'Гости', '#4f46e5', []);
+const details = label(weddingId, bob.id, 'Детали', '#14b8a6', []);
 const weddingItems = [
   item(weddingId, 'photo', PARTY, alice, {
-    labelIds: [cover.id, favourite.id],
+    labelIds: [cover.id, favourite.id, details.id],
     analyzed: true,
     withPlace: true,
+    description: WEDDING_CAPTIONS[0],
+    daysAgo: 37,
   }),
-  item(weddingId, 'photo', WEDDING, bob, { labelIds: [cover.id], analyzed: true }),
-  item(weddingId, 'photo', DANCE, carol, { analyzed: true }),
-  item(weddingId, 'photo', BIRTHDAY, alice, { analyzed: true, withPlace: true }),
-  item(weddingId, 'video', SEA, bob),
-  item(weddingId, 'audio', DANCE, alice),
+  item(weddingId, 'photo', WEDDING, bob, {
+    labelIds: [cover.id, guests.id],
+    analyzed: true,
+    description: WEDDING_CAPTIONS[1],
+    daysAgo: 37,
+  }),
+  item(weddingId, 'photo', DANCE, carol, {
+    labelIds: [favourite.id, guests.id],
+    analyzed: true,
+    description: WEDDING_CAPTIONS[2],
+    daysAgo: 36,
+  }),
+  item(weddingId, 'photo', BIRTHDAY, alice, {
+    labelIds: [details.id],
+    analyzed: true,
+    withPlace: true,
+    description: WEDDING_CAPTIONS[3],
+    daysAgo: 36,
+  }),
+  item(weddingId, 'video', SEA, bob, {
+    labelIds: [guests.id],
+    description: WEDDING_CAPTIONS[4],
+    daysAgo: 35,
+  }),
+  item(weddingId, 'audio', DANCE, alice, {
+    description: WEDDING_CAPTIONS[5],
+    daysAgo: 35,
+  }),
 ];
 const weddingMontage = montage(
   weddingId,
@@ -409,46 +466,111 @@ if (weddingReport) {
       songId: '13131313-1313-4313-8313-131313131313',
       mediaId: TRACK_MEDIA,
       name: 'Тихий вечер',
-      author: 'Nox',
+      author: 'Марк Ветров',
       durationSeconds: 30,
       analysis: null,
     },
   ];
 }
-const weddingMovie = movie(weddingId, weddingMontage, 'Свадьба', SEA, '2026-10-22T10:05:00.000Z');
+const weddingMovie = movie(
+  weddingId,
+  weddingMontage,
+  'Свадьба Анны и Марка',
+  SEA,
+  '2026-10-22T10:05:00.000Z',
+);
 
-const emptyId = '22222222-2222-4222-8222-222222222223';
-const emptyProject: ProjectCardResponse = {
-  id: emptyId,
-  title: 'Пустая папка',
-  eventStart: '2026-11-01T10:00:00.000Z',
-  eventEnd: null,
-  consumables: consumables(10, 1024 ** 3),
-  itemCount: 0,
-  memberCount: 1,
-  sharedCount: 0,
+const birthdayId = '22222222-2222-4222-8222-222222222223';
+const birthdayCover = label(birthdayId, alice.id, 'Обложка', '#f59e0b', []);
+const birthdayFamily = label(birthdayId, alice.id, 'Семья', '#ec4899', []);
+const birthdayDetails = label(birthdayId, carol.id, 'Детали', '#22c55e', []);
+const birthdayItems = [
+  item(birthdayId, 'photo', BIRTHDAY, alice, {
+    labelIds: [birthdayCover.id, birthdayFamily.id],
+    analyzed: true,
+    description: 'Мама задувает свечи',
+    daysAgo: 12,
+    withPlace: true,
+  }),
+  item(birthdayId, 'photo', FRIENDS, carol, {
+    labelIds: [birthdayFamily.id],
+    analyzed: true,
+    description: 'Все собрались за столом',
+    daysAgo: 12,
+  }),
+  item(birthdayId, 'photo', PARTY, bob, {
+    labelIds: [birthdayDetails.id],
+    analyzed: true,
+    description: 'Праздничный свет и украшения',
+    daysAgo: 11,
+  }),
+  item(birthdayId, 'photo', CITY, dave, {
+    labelIds: [birthdayDetails.id],
+    description: 'Гуляли до позднего вечера',
+    daysAgo: 11,
+  }),
+  item(birthdayId, 'video', SEA, alice, {
+    labelIds: [birthdayFamily.id],
+    description: 'Короткое видео для мамы',
+    daysAgo: 10,
+  }),
+];
+const birthdayMontage = montage(
+  birthdayId,
+  birthdayItems,
+  'done',
+  25,
+  'Тёплый фильм про семейный праздник',
+);
+const birthdayMovie = movie(
+  birthdayId,
+  birthdayMontage,
+  'День рождения мамы',
+  BIRTHDAY,
+  '2026-11-15T19:30:00.000Z',
+);
+const birthdayProject: ProjectCardResponse = {
+  id: birthdayId,
+  title: 'День рождения мамы',
+  eventStart: '2026-11-14T17:00:00.000Z',
+  eventEnd: '2026-11-14T23:00:00.000Z',
+  consumables: consumables(35, 3 * 1024 ** 3),
+  itemCount: birthdayItems.length,
+  memberCount: 4,
+  sharedCount: 3,
   myRole: 'admin',
-  myContribution: 'not_started',
-  previewUrls: [],
+  myContribution: 'done',
+  previewUrls: [BIRTHDAY].map(largeOf),
 };
 
 const partyId = '22222222-2222-4222-8222-222222222224';
 const partyCover = label(partyId, alice.id, 'Обложка', '#84cc16', []);
+const partyFavourites = label(partyId, bob.id, 'Лучшие кадры', '#f97316', []);
+const partyDetails = label(partyId, carol.id, 'Детали', '#6366f1', []);
 const partyItems = Array.from({ length: 9 }, (_, index) =>
   item(partyId, 'photo', PHOTOS[index % PHOTOS.length] ?? PARTY, index % 2 === 0 ? alice : bob, {
-    labelIds: index < 3 ? [partyCover.id] : [],
+    labelIds: index < 3 ? [partyCover.id] : index < 6 ? [partyFavourites.id] : [partyDetails.id],
     analyzed: index % 3 !== 0,
-    description: `Кадр ${index + 1}`,
+    description: PARTY_CAPTIONS[index % PARTY_CAPTIONS.length] ?? 'Гости и веселье',
+    daysAgo: 20 + index,
     previewReady: index !== 8,
   }),
 );
 const partyDirecting = montage(partyId, partyItems, 'directing', 25, 'Короткий клип про вечер');
 const partyFailed = montage(partyId, partyItems.slice(0, 4), 'failed', 20, null);
+const partyDone = montage(partyId, partyItems.slice(0, 6), 'done', 30, 'Вечер в новом доме');
+const partyMovie = movie(
+  partyId,
+  partyDone,
+  'Новоселье',
+  PARTY,
+  '2026-10-18T21:10:00.000Z',
+);
 const partyProject: ProjectCardResponse = {
   id: partyId,
-  title: 'Корпоратив',
-  eventStart: '2026-10-10T18:00:00.000Z',
-  eventEnd: '2026-10-11T01:00:00.000Z',
+  title: 'Новоселье',
+  eventStart: '2026-10-17T18:00:00.000Z',
+  eventEnd: '2026-10-18T01:00:00.000Z',
   consumables: consumables(25, 3 * 1024 ** 3),
   itemCount: partyItems.length,
   memberCount: 4,
@@ -460,21 +582,46 @@ const partyProject: ProjectCardResponse = {
 
 const concertId = '22222222-2222-4222-8222-222222222225';
 const concertCover = label(concertId, carol.id, 'Обложка', '#a855f7', []);
+const concertStage = label(concertId, carol.id, 'Сцена', '#8b5cf6', []);
+const concertBackstage = label(concertId, alice.id, 'За кадром', '#14b8a6', []);
 const concertItems = [
-  item(concertId, 'photo', DANCE, carol, { labelIds: [concertCover.id], analyzed: true }),
-  item(concertId, 'photo', CITY, carol, { analyzed: true }),
-  item(concertId, 'photo', FRIENDS, alice, { analyzed: true }),
+  item(concertId, 'photo', DANCE, carol, {
+    labelIds: [concertCover.id, concertStage.id],
+    analyzed: true,
+    description: 'Выход на сцену',
+    daysAgo: 18,
+  }),
+  item(concertId, 'photo', CITY, carol, {
+    labelIds: [concertStage.id],
+    analyzed: true,
+    description: 'Город после концерта',
+    daysAgo: 18,
+  }),
+  item(concertId, 'photo', FRIENDS, alice, {
+    labelIds: [concertBackstage.id],
+    analyzed: true,
+    description: 'За кулисами с друзьями',
+    daysAgo: 17,
+  }),
 ];
 const concertMontage = montage(concertId, concertItems, 'analysis', 15, null);
+const concertDone = montage(concertId, concertItems, 'done', 20, 'Вечер в парке');
+const concertMovie = movie(
+  concertId,
+  concertDone,
+  'Концерт в парке',
+  DANCE,
+  '2026-11-09T22:00:00.000Z',
+);
 const concertProject: ProjectCardResponse = {
   id: concertId,
-  title: 'Концерт',
+  title: 'Концерт в парке',
   eventStart: '2026-11-08T20:00:00.000Z',
-  eventEnd: null,
-  consumables: consumables(5, 512 * 1024 ** 2),
+  eventEnd: '2026-11-08T23:30:00.000Z',
+  consumables: consumables(15, 1024 ** 3),
   itemCount: concertItems.length,
   memberCount: 2,
-  sharedCount: 1,
+  sharedCount: 2,
   myRole: 'contributor',
   myContribution: 'more_coming',
   previewUrls: [DANCE].map(largeOf),
@@ -482,25 +629,52 @@ const concertProject: ProjectCardResponse = {
 
 const dachaId = '22222222-2222-4222-8222-222222222226';
 const dachaCover = label(dachaId, bob.id, 'Обложка', '#3b82f6', []);
+const dachaNature = label(dachaId, bob.id, 'Природа', '#22c55e', []);
+const dachaPeople = label(dachaId, alice.id, 'Близкие', '#f97316', []);
 const dachaItems = [
-  item(dachaId, 'photo', PICNIC, bob, { labelIds: [dachaCover.id], analyzed: true }),
-  item(dachaId, 'photo', SEA, bob, { labelIds: [dachaCover.id], analyzed: true }),
-  item(dachaId, 'photo', FRIENDS, alice, { analyzed: true }),
-  item(dachaId, 'video', SEA, dave),
+  item(dachaId, 'photo', PICNIC, bob, {
+    labelIds: [dachaCover.id, dachaNature.id],
+    analyzed: true,
+    description: 'Обед на открытом воздухе',
+    daysAgo: 27,
+  }),
+  item(dachaId, 'photo', SEA, bob, {
+    labelIds: [dachaNature.id],
+    analyzed: true,
+    description: 'Вечер у воды',
+    daysAgo: 26,
+  }),
+  item(dachaId, 'photo', FRIENDS, alice, {
+    labelIds: [dachaPeople.id],
+    analyzed: true,
+    description: 'Собрались всей семьёй',
+    daysAgo: 26,
+  }),
+  item(dachaId, 'video', SEA, dave, {
+    labelIds: [dachaNature.id],
+    description: 'Закат и шум воды',
+    daysAgo: 25,
+  }),
 ];
-const dachaMontage = montage(dachaId, dachaItems, 'done', 20, null);
-const dachaMovie = movie(dachaId, dachaMontage, 'Дача', PICNIC, '2026-11-02T18:00:00.000Z');
+const dachaMontage = montage(dachaId, dachaItems, 'done', 20, 'Выходные у бабушки');
+const dachaMovie = movie(
+  dachaId,
+  dachaMontage,
+  'Дача у бабушки',
+  PICNIC,
+  '2026-11-02T18:00:00.000Z',
+);
 const dachaSecond = montage(dachaId, dachaItems.slice(0, 2), 'done', 10, 'Только вода и еда');
 const dachaSecondMovie = movie(
   dachaId,
   dachaSecond,
-  'Дача, короткая версия',
+  'Дача у бабушки: короткая версия',
   SEA,
   '2026-11-03T09:00:00.000Z',
 );
 const dachaProject: ProjectCardResponse = {
   id: dachaId,
-  title: 'Дача',
+  title: 'Дача у бабушки',
   eventStart: '2026-10-30T12:00:00.000Z',
   eventEnd: '2026-10-31T12:00:00.000Z',
   consumables: consumables(30, 2 * 1024 ** 3),
@@ -520,7 +694,7 @@ const weddingMembers = [
 
 const weddingProject: ProjectCardResponse = {
   id: weddingId,
-  title: 'Свадьба',
+  title: 'Свадьба Анны и Марка',
   eventStart: '2026-10-20T15:00:00.000Z',
   eventEnd: '2026-10-21T02:00:00.000Z',
   consumables: consumables(40, 4 * 1024 ** 3),
@@ -534,20 +708,33 @@ const weddingProject: ProjectCardResponse = {
 
 export const mockProjects: ProjectCardResponse[] = [
   weddingProject,
+  birthdayProject,
   partyProject,
   concertProject,
   dachaProject,
-  emptyProject,
 ];
 
 export const mockBundles: Record<string, Bundle> = {
   [weddingId]: bundle(
     weddingProject,
     weddingMembers,
-    [cover, favourite],
+    [cover, favourite, guests, details],
     weddingItems,
     [weddingMontage],
     [weddingMovie],
+  ),
+  [birthdayId]: bundle(
+    birthdayProject,
+    [
+      member(alice, 'admin', 'done', 35, 3 * 1024 ** 3),
+      member(carol, 'contributor', 'done', 15, 1024 ** 3),
+      member(bob, 'contributor', 'more_coming', 10, 512 * 1024 ** 2),
+      member(dave, 'viewer', 'not_started', 0, 0),
+    ],
+    [birthdayCover, birthdayFamily, birthdayDetails],
+    birthdayItems,
+    [birthdayMontage],
+    [birthdayMovie],
   ),
   [partyId]: bundle(
     partyProject,
@@ -557,21 +744,21 @@ export const mockBundles: Record<string, Bundle> = {
       member(carol, 'contributor', 'more_coming', 5, 512 * 1024 ** 2),
       member(dave, 'viewer', 'not_started', 0, 0),
     ],
-    [partyCover],
+    [partyCover, partyFavourites, partyDetails],
     partyItems,
-    [partyDirecting, partyFailed],
-    [],
+    [partyDirecting, partyFailed, partyDone],
+    [partyMovie],
   ),
   [concertId]: bundle(
     concertProject,
     [
-      member(carol, 'admin', 'done', 20, 1024 ** 3),
+      member(carol, 'admin', 'done', 15, 1024 ** 3),
       member(alice, 'contributor', 'more_coming', 5, 512 * 1024 ** 2),
     ],
-    [concertCover],
+    [concertCover, concertStage, concertBackstage],
     concertItems,
-    [concertMontage],
-    [],
+    [concertMontage, concertDone],
+    [concertMovie],
   ),
   [dachaId]: bundle(
     dachaProject,
@@ -580,18 +767,10 @@ export const mockBundles: Record<string, Bundle> = {
       member(alice, 'contributor', 'done', 10, 1024 ** 3),
       member(dave, 'viewer', 'not_started', 0, 0),
     ],
-    [dachaCover],
+    [dachaCover, dachaNature, dachaPeople],
     dachaItems,
     [dachaMontage, dachaSecond],
     [dachaMovie, dachaSecondMovie],
-  ),
-  [emptyId]: bundle(
-    emptyProject,
-    [member(alice, 'admin', 'not_started', 10, 1024 ** 3)],
-    [],
-    [],
-    [],
-    [],
   ),
 };
 
@@ -779,7 +958,7 @@ export const mockSongs: SongResponse[] = [
   {
     id: '14141414-1414-4414-8414-141414141414',
     name: 'Тихий вечер',
-    author: 'Nox',
+    author: 'Марк Ветров',
     originalId: TRACK_MEDIA,
     compressedId: null,
     coverId: null,
@@ -791,8 +970,8 @@ export const mockSongs: SongResponse[] = [
   },
   {
     id: '15151515-1515-4515-8515-151515151515',
-    name: 'Праздник',
-    author: 'Nox',
+    name: 'Вечерний свет',
+    author: 'Илья Орлов',
     originalId: '16161616-1616-4616-8616-161616161616',
     compressedId: null,
     coverId: null,
