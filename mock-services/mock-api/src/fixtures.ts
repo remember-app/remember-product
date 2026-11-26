@@ -550,14 +550,12 @@ const partyDetails = label(partyId, carol.id, 'Детали', '#6366f1', []);
 const partyItems = Array.from({ length: 9 }, (_, index) =>
   item(partyId, 'photo', PHOTOS[index % PHOTOS.length] ?? PARTY, index % 2 === 0 ? alice : bob, {
     labelIds: index < 3 ? [partyCover.id] : index < 6 ? [partyFavourites.id] : [partyDetails.id],
-    analyzed: index % 3 !== 0,
+    analyzed: true,
     description: PARTY_CAPTIONS[index % PARTY_CAPTIONS.length] ?? 'Гости и веселье',
     daysAgo: 20 + index,
-    previewReady: index !== 8,
+    previewReady: true,
   }),
 );
-const partyDirecting = montage(partyId, partyItems, 'directing', 25, 'Короткий клип про вечер');
-const partyFailed = montage(partyId, partyItems.slice(0, 4), 'failed', 20, null);
 const partyDone = montage(partyId, partyItems.slice(0, 6), 'done', 30, 'Вечер в новом доме');
 const partyMovie = movie(
   partyId,
@@ -604,7 +602,6 @@ const concertItems = [
     daysAgo: 17,
   }),
 ];
-const concertMontage = montage(concertId, concertItems, 'analysis', 15, null);
 const concertDone = montage(concertId, concertItems, 'done', 20, 'Вечер в парке');
 const concertMovie = movie(
   concertId,
@@ -623,7 +620,7 @@ const concertProject: ProjectCardResponse = {
   memberCount: 2,
   sharedCount: 2,
   myRole: 'contributor',
-  myContribution: 'more_coming',
+  myContribution: 'done',
   previewUrls: [DANCE].map(largeOf),
 };
 
@@ -682,14 +679,14 @@ const dachaProject: ProjectCardResponse = {
   memberCount: 3,
   sharedCount: 2,
   myRole: 'contributor',
-  myContribution: 'more_coming',
+  myContribution: 'done',
   previewUrls: [PICNIC].map(largeOf),
 };
 
 const weddingMembers = [
   member(alice, 'admin', 'done', 40, 4 * 1024 ** 3),
-  member(bob, 'contributor', 'more_coming', 20, 2 * 1024 ** 3),
-  member(carol, 'viewer', 'not_started', 0, 0),
+  member(bob, 'contributor', 'done', 20, 2 * 1024 ** 3),
+  member(carol, 'viewer', 'done', 8, 512 * 1024 ** 2),
 ];
 
 const weddingProject: ProjectCardResponse = {
@@ -728,8 +725,8 @@ export const mockBundles: Record<string, Bundle> = {
     [
       member(alice, 'admin', 'done', 35, 3 * 1024 ** 3),
       member(carol, 'contributor', 'done', 15, 1024 ** 3),
-      member(bob, 'contributor', 'more_coming', 10, 512 * 1024 ** 2),
-      member(dave, 'viewer', 'not_started', 0, 0),
+      member(bob, 'contributor', 'done', 10, 512 * 1024 ** 2),
+      member(dave, 'viewer', 'done', 8, 512 * 1024 ** 2),
     ],
     [birthdayCover, birthdayFamily, birthdayDetails],
     birthdayItems,
@@ -741,23 +738,23 @@ export const mockBundles: Record<string, Bundle> = {
     [
       member(alice, 'admin', 'done', 25, 3 * 1024 ** 3),
       member(bob, 'contributor', 'done', 10, 1024 ** 3),
-      member(carol, 'contributor', 'more_coming', 5, 512 * 1024 ** 2),
-      member(dave, 'viewer', 'not_started', 0, 0),
+      member(carol, 'contributor', 'done', 5, 512 * 1024 ** 2),
+      member(dave, 'viewer', 'done', 8, 512 * 1024 ** 2),
     ],
     [partyCover, partyFavourites, partyDetails],
     partyItems,
-    [partyDirecting, partyFailed, partyDone],
+    [partyDone],
     [partyMovie],
   ),
   [concertId]: bundle(
     concertProject,
     [
       member(carol, 'admin', 'done', 15, 1024 ** 3),
-      member(alice, 'contributor', 'more_coming', 5, 512 * 1024 ** 2),
+      member(alice, 'contributor', 'done', 5, 512 * 1024 ** 2),
     ],
     [concertCover, concertStage, concertBackstage],
     concertItems,
-    [concertMontage, concertDone],
+    [concertDone],
     [concertMovie],
   ),
   [dachaId]: bundle(
@@ -765,7 +762,7 @@ export const mockBundles: Record<string, Bundle> = {
     [
       member(bob, 'admin', 'done', 30, 2 * 1024 ** 3),
       member(alice, 'contributor', 'done', 10, 1024 ** 3),
-      member(dave, 'viewer', 'not_started', 0, 0),
+      member(dave, 'viewer', 'done', 8, 512 * 1024 ** 2),
     ],
     [dachaCover, dachaNature, dachaPeople],
     dachaItems,
